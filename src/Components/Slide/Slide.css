@@ -1,0 +1,10 @@
+.slide-card {
+  position: relative;
+  height: 100%;
+  background: white;
+  font-size: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 50% 50%;
+}

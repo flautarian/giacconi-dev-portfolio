@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* HEADER STATES */
+
+.header-0 {
+    width: 35vh;
+    transition: 0.75s cubic-bezier(0.25, 0.1, 0.18, 1.11);
+    margin-top: 2.5vh;
+}
+
+.header-1 {
+    width: 50vh;
+    transition: 0.75s cubic-bezier(0.25, 0.1, 0.18, 1.11);
+    margin-top: 85vh;
+}
+
+.header-2 {
+    width: 50vh;
+    transition: 0.75s cubic-bezier(0.25, 0.1, 0.18, 1.11);
+    margin-top: 80vh;
+}
+
+
+.header-3 {
+    width: 50vh;
+    transition: 0.75s cubic-bezier(0.25, 0.1, 0.18, 1.11);
+    margin-top: 80vh;
+}
+
+.li-active {
+    opacity: 100;
+    display: block;
+    animation: FadeIn 1s ease-in-out;
+}
+
+.li-inactive {
+    opacity: 0;
+    display: none;
+    animation: FadeOut 1s ease-in-out;
+}
+
+.a-section{
+    overflow: hidden;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.ul-style{
+    text-overflow: ellipsis;
+    transition: 0.75s cubic-bezier(0.25, 0.1, 0.18, 1.11);
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes FadeIn {
+    0% {
+        opacity: 0;
+        height: initial;
+    }
+
+    100% {
+        opacity: 1;
+        height: initial;
+    }
+}
+
+@keyframes FadeOut {
+    0% {
+        opacity: 1;
+        height: initial;
+    }
+
+    99% {
+        opacity: 0;
+        height: initial;
+    }
+
+    100% {
+        height: 0;
+        opacity: 0;
+    }
+}
