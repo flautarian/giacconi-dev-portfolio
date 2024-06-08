@@ -17,5 +17,7 @@
     "_service_time": "tiempo de servicio",
     "_de": "de",
     "_to": "a",
-    "_continue_working": "Actualmente en el puesto"
+    "_continue_working": "Actualmente en el puesto",
+    "_go_to_certificate": "Certificado",
+    "_go_to_course": "Curso"
 }

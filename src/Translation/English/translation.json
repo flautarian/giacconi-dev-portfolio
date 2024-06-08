@@ -17,5 +17,7 @@
     "_service_time": "service time",
     "_from": "from",
     "_to": "to",
-    "_continue_working": "Currently on position"
+    "_continue_working": "Currently on position",
+    "_go_to_certificate": "Certificate",
+    "_go_to_course": "Course"
 }

@@ -9,6 +9,8 @@ import "./Certifications.css"
 
 const Certifications = (props) => {
 
+    const { t } = useTranslation('home');
+
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -34,19 +36,21 @@ const Certifications = (props) => {
     return (
         <Carousel responsive={responsive} className="carousel">
             {props.certifications.map((c: Certificate, i: number) => (
-                <div className="card w-96 bg-base-100 shadow-xl" key={`${c.name}-${i}`}>
-                    <figure>
-                        <img src={c.img} alt={c.name[i18n.language]} />
+                <div className="card w-96 bg-base-100 shadow-xl h-[60vh]" key={`${c.name}-${i}`}>
+                    <figure className="w-[100%] h-[30vh]">
+                        <img src={c.img} alt={c.name[i18n.language]} className="w-[100%] h-[35vh] object-cover"/>
                     </figure>
-                    <div className="card-body">
+                    <div className="p-5 flex flex-col h-[30vh]">
                         <h2 className="card-title">{c.name[i18n.language]}</h2>
                         <p>{c.description[i18n.language]}</p>
-                        <div className="card-actions justify-end">
-                            <button className="btn btn-primary">Buy Now</button>
+                    </div>
+                    <div className="w-full flex justify-end h-[5vh]">
+                        <div className="w-[50%] flex flex-row justify-between">
+                            {c.url.length > 0 && <a href={c.url} target="_blank" rel="noopener noreferrer" className="btn btn-xs btn-primary">{t("_go_to_course")}</a>}
+                            {c.urlCert.length > 0 && <a href={c.urlCert} target="_blank" rel="noopener noreferrer" className="btn btn-xs btn-secondary">{t("_go_to_certificate")}</a>}
                         </div>
                     </div>
                 </div>))}
-
         </Carousel>
     );
 }
