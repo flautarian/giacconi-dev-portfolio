@@ -7,8 +7,9 @@ const MainContext = createContext();
 // Create a provider component
 const MainProvider = ({ children }) => {
     const [headerStatus, setHeaderStatus] = useState(0);
+    const [isdark, setIsdark] = useState(localStorage.getItem('isdark') === "true" ? true : false);
 
-    const ctx = { headerStatus, setHeaderStatus };
+    const ctx = { headerStatus, setHeaderStatus, isdark, setIsdark };
 
     return (
         <MainContext.Provider value={ctx}>

@@ -7,7 +7,7 @@ const Timeline = (props) => {
     <ul className="timeline timeline-vertical flex items-center justify-center size-full">
       {props.experience.map((exp, $index) => {
         return (
-          <li key={`timeline-${exp.enterprise}-${$index}`} style={{height: `${100/props.experience.length-5}vh`}}>
+          <li key={`timeline-${exp.enterprise}-${$index}`} style={{ height: `${100 / props.experience.length - 5}vh` }}>
             {
               $index > 0 && <hr className={`${props.state.index >= $index ? 'bg-primary' : 'timeline-middle'}`} />
             }

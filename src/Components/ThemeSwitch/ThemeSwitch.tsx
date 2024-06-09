@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import './ThemeSwitch.css'
 import React from 'react';
+import { MainContext } from '../../Providers/ContextProvider';
 
 const ThemeSwitch = () => {
-    const [isdark, setIsdark] = useState(localStorage.getItem('isdark') === "true" ? true : false);
+    const {isdark, setIsdark} = useContext(MainContext);
     useEffect(() => {
         localStorage.setItem('isdark', JSON.stringify(isdark));
     }, [isdark]);
     return (
         <label className="swap swap-rotate">
-
             {/* this hidden checkbox controls the state */}
             <input type="checkbox" checked={isdark} onChange={() => { setIsdark(!isdark) }} className="theme-controller" value="dark" />
 
@@ -22,7 +22,6 @@ const ThemeSwitch = () => {
             <svg className="swap-on fill-current w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
                 <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
             </svg>
-
         </label>
     )
 }

@@ -5,28 +5,28 @@
 /* HEADER STATES */
 
 .header-0 {
-    width: 35vh;
+    width: 35vw;
     transition: 0.75s cubic-bezier(0.25, 0.1, 0.18, 1.11);
     margin-top: 2.5vh;
 }
 
 .header-1 {
-    width: 50vh;
+    width: 50vw;
     transition: 0.75s cubic-bezier(0.25, 0.1, 0.18, 1.11);
     margin-top: 85vh;
 }
 
 .header-2 {
-    width: 50vh;
+    width: 50vw;
     transition: 0.75s cubic-bezier(0.25, 0.1, 0.18, 1.11);
-    margin-top: 80vh;
+    margin-top: 85vh;
 }
 
 
 .header-3 {
-    width: 50vh;
+    width: 50vw;
     transition: 0.75s cubic-bezier(0.25, 0.1, 0.18, 1.11);
-    margin-top: 80vh;
+    margin-top: 85vh;
 }
 
 .li-active {

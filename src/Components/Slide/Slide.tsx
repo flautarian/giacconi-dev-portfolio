@@ -10,7 +10,7 @@ const Slide = (props) => {
   // FIRST TRANSLATION
   let translate = {
     x: -1 * props.index,
-    y: -40 - (3 * props.index),
+    y: -42 - (2 * props.index),
   };
 
   // MOVEMENT EVENTS

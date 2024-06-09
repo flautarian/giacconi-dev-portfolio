@@ -36,7 +36,7 @@ const Certifications = (props) => {
     return (
         <Carousel responsive={responsive} className="carousel">
             {props.certifications.map((c: Certificate, i: number) => (
-                <div className="card w-96 bg-base-100 shadow-xl h-[60vh]" key={`${c.name}-${i}`}>
+                <div className="card w-96 bg-base-100 shadow-xl h-[60vh] certification" key={`${c.name}-${i}`}>
                     <figure className="w-[100%] h-[30vh]">
                         <img src={c.img} alt={c.name[i18n.language]} className="w-[100%] h-[35vh] object-cover"/>
                     </figure>

@@ -5,10 +5,20 @@
 /* HEADER STATES */
 
 .header {
-    width: 30vh;
     transition: 0.75s cubic-bezier(0.25, 0.1, 0.18, 1.11);
-    margin-top: 2.5vh;
-    right: 0vh;
+}
+
+.header-window{
+    justify-content: end;
+    margin-right: 10;
+    margin: 2.5vh;
+    right: 0;
+    width: 15vw;
+}
+
+.header-mobile{
+    justify-content: center;
+    margin-top: 15vh;
 }
 
 .li-active {

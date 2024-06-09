@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Avatar.css"
 import { useTranslation } from "react-i18next";
 import PropTypes from 'prop-types';
+import { isMobile } from "react-device-detect";
 
 const Avatar = (props) => {
 
@@ -35,16 +36,16 @@ const Avatar = (props) => {
 
 
     return (
-        <div id="avatar-container" className="flex flex-row justify-around items-center">
+        <div id="avatar-container" className={`flex max-2xl:flex-row max-sm:flex-col justify-around items-center`}>
             <div id="avatar" className="avatar">
-                <div className="min-w-xs max-w-xs rounded-full" style={{ boxShadow: `${shadow.x}px ${shadow.y}px ${shadow.blur}px rgba(0, 0, 0, 0.2)` }}>
+                <div className="min-w-xs max-w-xs rounded-full max-sm:w-[50vw] max-sm:mt-[25vh]" style={{ boxShadow: `${shadow.x}px ${shadow.y}px ${shadow.blur}px rgba(0, 0, 0, 0.2)` }}>
                     <img src={props.img} />
                 </div>
             </div>
             {/* <kbd className="kbd mt-10">{t('_welcome_label')}</kbd> */}
-            <div className="hero-content text-left">
+            <div className="hero-content max-2xl:text-left max-sm:text-center">
                 <div className="max-w-md">
-                    <h1 className="text-5xl font-bold">{`${props.name} ${props.surnames}`}</h1>
+                    <h1 className="max-2xl:text-5xl max-sm:text-2xl font-bold">{`${props.name} ${props.surnames}`}</h1>
                     <p className="py-8 whitespace-pre-wrap">{props.description}</p>
                 </div>
             </div>

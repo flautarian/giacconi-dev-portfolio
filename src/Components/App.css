@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --dark-color-start: #1b2735;
+    --dark-color-end: #090a0f;
+    --light-color-start: oklch(49.12% 0.3096 275.75 / 1);
+    --light-color-end: #dbe0f8;
+  }
+
+.App {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background: linear-gradient(90deg, var(--light-color-start), var(--light-color-end), var(--dark-color-start), var(--dark-color-end));
+    background-size: 400% 400%;
+    transition: background-position 0.15s ease-in-out;
+    overflow-y: overlay;
+}
+ 
+.gradient-light {
+    animation: gradientChangeReverse 1s forwards;
+}
+
+.gradient-dark {
+    animation: gradientChange 1s forwards;
+}
+
+@keyframes gradientChange {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes gradientChangeReverse {
+    0% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
