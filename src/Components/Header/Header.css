@@ -4,13 +4,13 @@
 
 /* HEADER STATES */
 
-.header-0 {
+.header-main {
     width: 35vw;
     transition: 0.75s cubic-bezier(0.25, 0.1, 0.18, 1.11);
     margin-top: 2.5vh;
 }
 
-.header-1 {
+.header-cta {
     width: 50vw;
     transition: 0.75s cubic-bezier(0.25, 0.1, 0.18, 1.11);
     margin-top: 85vh;
@@ -32,13 +32,11 @@
 .li-active {
     opacity: 100;
     display: block;
-    animation: FadeIn 1s ease-in-out;
 }
 
 .li-inactive {
     opacity: 0;
     display: none;
-    animation: FadeOut 1s ease-in-out;
 }
 
 .a-section{

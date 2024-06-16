@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "./VerticalCarousel.css";
 import Slide from "../Slide/Slide";
 import { useTranslation } from "react-i18next";
+import formatDate from "../../Utils/utils";
 
 function mod(a, b) {
   return ((a % b) + b) % b;
@@ -21,14 +22,22 @@ const VerticalCarousel = (props) => {
 
   useEffect(() => {
     document.addEventListener("keyup", keyEventListener);
+    document.addEventListener("keydown", preventScrollEventListener);
     return () => {
       document.removeEventListener("keyup", keyEventListener);
+      document.removeEventListener("keydown", preventScrollEventListener);
     };
   }, [props.state]);
 
   useEffect(() => {
     moveSlide(0);
   }, [props.state?.index]);
+
+  const preventScrollEventListener = (event) => {
+    if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(event.code)) {
+      event.preventDefault();
+    }
+  }
 
   const keyEventListener = (event) => {
     if (event.isComposing || event.keyCode === 229) return;
@@ -59,10 +68,6 @@ const VerticalCarousel = (props) => {
     return presentableSlides;
   };
 
-  const formatDate = (date) => {
-    return new Intl.DateTimeFormat('es-ES', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(date);
-  }
-
   return (
     <div className="flex flex-col justify-around size-full">
       <div className="relative flex justify-center">
@@ -78,7 +83,7 @@ const VerticalCarousel = (props) => {
             <div className="card size-full bg-base-200 shadow-xl">
               {/* BASIC INFO */}
               <div className="card-body pt-0 pb-2 mt-10">
-                <p><span className="text-primary">{t("_name")}: </span>{slide.enterprise}</p>
+                <p><span className="text-primary">{t("_name")}: </span>{slide.name[i18n.language]}</p>
                 <p><span className="text-primary">{t("_location")}: </span>{slide.location}</p>
                 <p><span className="text-primary">{t("_position")}: </span>{slide.position}</p>
                 <p><span className="text-primary">{t("_service_time")}: </span> {t("_from")} {formatDate(slide.dateFrom)} - {!slide.dateTo ? t("_continue_working") : `${t("_to")} ${formatDate(slide.dateTo)}`}</p>
@@ -89,7 +94,7 @@ const VerticalCarousel = (props) => {
                 <p className="text-primary">{t("_description")}:</p>
                 <p className="max-h-[20vh] h-[10vh] overflow-auto">{slide.description[i18n.language]}</p>
                 <p className="text-primary">{t("_responsabilities")}:</p>
-                <ul className="max-h-[20vh] h-[15vh] overflow-auto list-disc pl-10">
+                <ul className="max-h-[20vh] h-[15vh] overflow-auto list-disc pl-10 emoji-star">
                   {slide.responsabilities.map((responsability, rIndex) => <li className={`mt-${rIndex > 0 ? 5 : 0}`} key={`${slide.enterprise}-r-${rIndex}`}>{t(responsability[i18n.language])}</li>)}
                 </ul>
                 <hr />

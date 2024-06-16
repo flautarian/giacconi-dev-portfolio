@@ -1,3 +1,7 @@
 .timeline {
     width: 100%;
 }
+
+.animate-fade{
+    transition: background-color 0.25s ease-in-out;
+}

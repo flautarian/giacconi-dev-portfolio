@@ -1,37 +1,38 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
+import "./Timeline.css"
 
 const Timeline = (props) => {
 
+  const { i18n, t } = useTranslation(['home']);
+
+  const visitedElement = (index) => {
+    return props.state.index > index || props.state.index === props.values.length - 1;
+  }
+
   return (
-    <ul className="timeline timeline-vertical flex items-center justify-center size-full">
-      {props.experience.map((exp, $index) => {
+    <ul className="timeline timeline-vertical flex items-center mt-[7.5dvh] size-full">
+      {props.values.map((c, $index) => {
         return (
-          <li key={`timeline-${exp.enterprise}-${$index}`} style={{ height: `${100 / props.experience.length - 5}vh` }}>
+          <li key={`timeline-${c.key}-${$index}`} style={{ height: `${100 / props.values.length - 5}vh` }}>
             {
-              $index > 0 && <hr className={`${props.state.index >= $index ? 'bg-primary' : 'timeline-middle'}`} />
+              $index > 0 && <hr className={`${props.state.index >= $index ? 'bg-primary' : 'timeline-middle'} animate-fade`} />
             }
-            <div className="timeline-start text-xl">{`${exp.dateFrom.getMonth()}/${exp.dateFrom.getFullYear()}`}</div>
+            <div className="timeline-start text-m">
+              {`${c.dateFrom.getMonth()}/${c.dateFrom.getFullYear()} - ${!!c.dateTo ? c.dateTo.getMonth() + "/" : ""}${!!c.dateTo ? c.dateTo.getFullYear() : t("_continue_working")}`}
+            </div>
             <div className="timeline-middle">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-5 h-5"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              {
+                true && (props.state.index >= $index || visitedElement($index)) ? "🟣" : "⚪"
+              }
             </div>
             <div className="timeline-end">
-              <a className="btn text-xl" onClick={() => props.onClickExperience($index)}>{exp.enterprise}</a>
+              <a className="btn text-xl" onClick={() => props.onClickExperience($index)}>{c.name[i18n.language]}</a>
             </div>
             {
-              ($index != props.experience.length - 1 || !exp.dateTo) &&
-              <hr className={`${props.state.index > $index || props.state.index === props.experience.length - 1 ? 'bg-primary' : 'timeline-middle'}`} />
+              ($index != props.values.length - 1 || !c.dateTo) &&
+              <hr className={`${visitedElement($index) ? 'bg-primary' : 'timeline-middle'} animate-fade`} />
             }
           </li>
         );
@@ -42,7 +43,7 @@ const Timeline = (props) => {
 
 Timeline.propTypes = {
   state: PropTypes.object,
-  experience: PropTypes.arrayOf(PropTypes.object),
+  values: PropTypes.arrayOf(PropTypes.object),
   onClickExperience: PropTypes.func,
 };
 

@@ -6,3 +6,37 @@
 #avatar-content {
     bottom: 10vh;
 }
+
+.translation-img-animation {
+    transition: opacity 0.25s, transform 0.25s ease-out;
+    animation: slideIn 1.5s forwards;
+}
+
+.avatar-desc-animation {
+    transition: opacity 0.25s, transform 0.25s ease-out;
+    animation: DescIn 1.5s forwards;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0.01;
+        transform: translateX(-40dvw);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(-10dvw);
+    }
+}
+
+@keyframes DescIn {
+    0% {
+        transform: translateY(10dvw);
+        opacity: 0.01;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0dvw);
+    }
+}

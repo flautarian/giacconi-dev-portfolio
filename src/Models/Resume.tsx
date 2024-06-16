@@ -1,6 +1,7 @@
 export interface Resume {
   name: string;
   surnames: string;
+  job: Label,
   avatar: string;
   location: string;
   aboutMe: Label;
@@ -9,37 +10,43 @@ export interface Resume {
   gitHub: string;
   gitLab: string;
   docker: string;
-  experience: Array<Experience>;
-  certificates: Array<Certificate>;
-  projects: Array<Project>;
+  sections: Array<Section>;
 }
 
-export interface Experience {
+export interface Section {
   key: string;
-  enterprise: string;
+  name: Label;
+  type: String;
+  description?: Label;
+  url?: string;
+  tags?: Array<string>;
+  values: Array<Experience | Certificate | Project>;
+}
+
+export interface Experience extends Section {
   location: string;
-  description: Label;
   position: string;
   responsabilities: Label[];
   dateFrom: Date;
   dateTo: Date | null; // null = currently working in that enterprise
-  tags: Array<string>;
 }
 
-export interface Certificate {
-  name: Label;
-  description: Label;
-  url: string;
+export interface Certificate extends Section {
   urlCert: string;
   img: string;
   date: Date;
   tags: Array<string>;
+  buttons: Array<Button>;
 }
 
-export interface Project {
-  name: string;
-  description: Label;
-  url: string;
+export interface Button {
+  name: string
+  url: string,
+  css: string,
+  label: string,
+}
+
+export interface Project extends Section {
   tags: Array<string>;
 }
 
@@ -49,24 +56,21 @@ export interface Label {
   fr: string;
 }
 
-const exampleResume: Resume = {
-  name: "Facundo",
-  surnames: "Giacconi Fernandez",
-  location: "Girona, Spain",
-  avatar: "./img/avatar.jpeg",
-  aboutMe: {
-    es: "Deasrrollador Full stack dedicado al desarrollo de aplicaciones en multiples tecnologias.\n\nCurioso y autodidacta por naturaleza propia y apasioado de la tecnología y la investigación.",
-    en: "Full stack developer dedicated to the development of applications in multiple technologies.\n\nCurious and self-taught by nature and passionate about technology and research.",
-    fr: "Développeur full stack dédié au développement d'applications dans de multiples technologies.\n\nCurieux et autodidacte de nature et passionné de technologie et de recherche.",
+const experienceSection = {
+  key: "experience-section",
+  name: {
+    es: "Experiencia",
+    en: "Experience",
+    fr: "Expérience"
   },
-  birthDate: new Date("2022-03-25"),
-  linkedIn: "facundo-giacconi-fernandez-a77989a3",
-  gitHub: "",
-  gitLab: "",
-  docker: "",
-  experience: [
+  type: "timeline-carousel",
+  values: [
     {
-      enterprise: "Terramar Tours",
+      name: {
+        es: "Terramar Tours",
+        en: "Terramar Tours",
+        fr: "Terramar Tours"
+      },
       location: "Lloret de Mar, España",
       key: "Terramar-Tours",
       description: {
@@ -92,7 +96,11 @@ const exampleResume: Resume = {
       tags: ["Springboot", "Java", "Jsp", "Spring security", "REST", "Sql Server"],
     },
     {
-      enterprise: "CodiTramuntana",
+      name: {
+        es: "CodiTramuntana",
+        en: "CodiTramuntana",
+        fr: "CodiTramuntana"
+      },
       location: "Girona, Spain",
       key: "CodiTramuntana",
       description: {
@@ -103,9 +111,24 @@ const exampleResume: Resume = {
       position: "Full stack developer",
       responsabilities: [
         {
-          es: "Desarrollo de diversos proyectos CRM y SPA basados ​​en Ruby on Rails con MySQL como base de datos de persistencia",
-          en: "Development of various CRM and SPA projects based on Ruby on Rails with MySQL as the persistence database",
-          fr: "Développement de divers projets CRM et SPA basés sur Ruby on Rails avec MySQL comme base de données de persistance",
+          es: "Participación en procesos de agile para mantener un constante flujo de información a traves de cada sprint.",
+          en: "Participation in agile processes to maintain a constant flow of information throughout each sprint.",
+          fr: "Participation à des processus agiles pour maintenir un flux constant d'informations tout au long de chaque sprint.",
+        },
+        {
+          es: "Desarrollo de diversos proyectos basados ​​en Ruby on Rails con MySQL como base de datos de persistencia.",
+          en: "Development of various based on Ruby on Rails with MySQL as the persistence database.",
+          fr: "Développement de divers projets basés sur Ruby on Rails avec MySQL comme base de données de persistance.",
+        },
+        {
+          es: "Desarrollo de aplicaciones CRM para cliente final, con constantes reuniones de seguimiento y comunicación para asegurar un producto final de calidad.",
+          en: "Development of CRM applications for the end client, with constant follow-up and communication meetings to ensure a quality final product.",
+          fr: "Développement d'applications CRM pour le client final, avec des réunions de suivi et de communication constantes pour garantir un produit final de qualité.",
+        },
+        {
+          es: "Desarrollo de aplicaciones SPA para cliente final, con constantes reuniones de seguimiento y comunicación para asegurar un producto final de calidad.",
+          en: "Development of SPA applications for the end client, with constant follow-up and communication meetings to ensure a quality final product.",
+          fr: "Développement d'applications SPA pour le client final, avec des réunions de suivi et de communication constantes pour garantir un produit final de qualité.",
         }
       ],
       dateFrom: new Date("2016-03-03"),
@@ -113,7 +136,11 @@ const exampleResume: Resume = {
       tags: ["Springboot", "Java", "Jsp", "REST", "Sql Server"],
     },
     {
-      enterprise: "DXC Technology",
+      name: {
+        es: "DXC Technology",
+        en: "DXC Technology",
+        fr: "DXC Technology"
+      },
       location: "Girona, Spain",
       key: "DXC",
       description: {
@@ -144,7 +171,11 @@ const exampleResume: Resume = {
       tags: ["Full stack", "Springboot", "Spring security", "JPA", "Java", "Jsp", "REST", "ElasticSearch", "Angular", "PostreSql"],
     },
     {
-      enterprise: "Sopra Steria",
+      name: {
+        es: "Sopra Steria",
+        en: "Sopra Steria",
+        fr: "Sopra Steria"
+      },
       location: "Madrid, Spain",
       key: "ST",
       description: {
@@ -170,7 +201,11 @@ const exampleResume: Resume = {
       tags: ["Springboot", "Java", "REST", "Sql Server", "Apache Kafka", "Events", "Microservices"],
     },
     {
-      enterprise: "Azimut Electronics",
+      name: {
+        es: "Azimut Electronics",
+        en: "Azimut Electronics",
+        fr: "Azimut Electronics"
+      },
       location: "Gandia, Spain",
       key: "AE",
       description: {
@@ -184,15 +219,15 @@ const exampleResume: Resume = {
           es: "Trabajando en remoto desde Gandia, desarrollando y potenciando programas de entretenimiento multimedia y digital diseñados para mantener entretenidos a los clientes del transporte público de larga distancia.",
           en: "Working remotely from Gandia, developing and enhancing multimedia and digital entertainment programs designed to keep longdistance public transportation customers entertained.",
           fr: "Travailler à distance depuis Gandia, développer et améliorer des programmes de divertissement multimédia et numérique conçus pour divertir les clients des transports publics longue distance.",
-        },{
+        }, {
           es: "Proyecto basado en frontend AngularJs, con conexiones REST a backend Spring Boot con con conectividad MongoDB y comunicaciones REST.",
           en: "Project based on AngularJs frontend and Spring Boot backend with MongoDB connectivity and REST communications.",
           fr: "Projet basé sur le frontend AngularJs et le backend Spring Boot avec connectivité MongoDB et communications REST.",
-        },{
+        }, {
           es: "Responsable de aplicación basada en framework NextJs con React 18, javascript y backend NodeJs con squelize, librería de drivers GraphQL y persistencia de db MySql.",
           en: "Responsible for application based on NextJs framework with React 18, javascript and NodeJs backend with squelize, GraphQL driver library and MySql db persistence.",
           fr: "Responsable de l'application basée sur le framework NextJs avec React 18, javascript et backend NodeJs avec squelize, bibliothèque de pilotes GraphQL et persistance de la base de données MySql.",
-        },{
+        }, {
           es: "Responsable de aplicación basada en framework NextJs con React 18, javascript y backend NodeJs con squelize, librería de drivers GraphQL y persistencia de db MySql.",
           en: "Responsible for application based on NextJs framework with React 18, javascript and NodeJs backend with squelize, GraphQL driver library and MySql db persistence.",
           fr: "Responsable de l'application basée sur le framework NextJs avec React 18, javascript et backend NodeJs avec squelize, bibliothèque de pilotes GraphQL et persistance de la base de données MySql.",
@@ -201,123 +236,262 @@ const exampleResume: Resume = {
       dateFrom: new Date("2022-05-16"),
       dateTo: null,
       tags: ["Full stack", "Springboot", "Spring security", "Java", "AngularJs", "NextJs", "React 18", "REST", "MongoDb", "GraphQL", "NodeJs"],
-    },
+    }
+  ] as Experience[]
+}
+
+const certificatesSection = {
+  key: "certificates-section",
+  name: {
+    es: "Certificados",
+    en: "Certificates",
+    fr: "Certificats"
+  },
+  type: "simple-carousel",
+  values: [
+    {
+      key: "React-Course-1",
+      name: {
+        es: "React: De cero a experto ( Hooks y MERN )",
+        en: "React: From zero to expert (Hooks and MERN)",
+        fr: "React : De zéro à expert (Hooks et MERN)"
+      },
+      description: {
+        es: "Este curso tiene por objetivo llevarte de cero conocimiento de React hasta un nivel competitivo en el ambiente laboral de hoy en día. Este curso está construido 100% en Hooks y functional components.",
+        en: "This course aims to take you from zero knowledge of React to a competitive level in today's work environment. This course is built 100% in Hooks and functional components.",
+        fr: "Ce cours vise à vous faire passer d'une connaissance nulle de React à un niveau compétitif dans l'environnement de travail actuel. Ce cours est construit à 100% en Hooks et composants fonctionnels."
+      },
+      buttons: [
+        {
+          name: "Course",
+          url: "https://www.udemy.com/course/react-cero-experto/",
+          css: "btn btn-xs btn-primary",
+          label: "_go_to_course"
+        },
+        {
+          name: "Certificate",
+          url: "https://www.udemy.com/certificate/UC-fcb467ab-c089-419c-9b6a-afe97f894d14/",
+          css: "btn btn-xs btn-primary",
+          label: "_go_to_certificate"
+        }
+      ],
+      img: "https://bardcrack.com/assets/img/courses/ZBLg0s9R1A/0223b00983822436edfa72b97c9baad1aba07504.png",
+      date: new Date("2022-10-08"),
+      tags: ["React", "Hooks", "Events", "Stateless", "Javascript", "Typescript", "Frontend"]
+    }, {
+      key: "Python-Course-1",
+      name: {
+        es: "Cien proyectos de Python",
+        en: "A hundred Python projects",
+        fr: "Une centaine de projets Python"
+      },
+      description: {
+        es: "Curso con más de 70 horas de contenido, con los principios del lenguaje de programación Python, y con la generación de 100 proyectos con dicho lenguaje, desde aplicaciones nativas con Tkinter hasta webapps y backends con Flask.",
+        en: "Course with more than 70 hours of content, with the principles of the Python programming language, and with the generation of 100 projects with said language, from native applications with Tkinter to webapps and backends with Flask.",
+        fr: "Cours avec plus de 70 heures de contenu, avec les principes du langage de programmation Python, et avec la génération de 100 projets avec ledit langage, des applications natives avec Tkinter aux webapps et backends avec Flask."
+      },
+      buttons: [
+        {
+          name: "Course",
+          url: "https://www.udemy.com/course/100-days-of-code/",
+          css: "btn btn-xs btn-primary",
+          label: "_go_to_course"
+        },
+        {
+          name: "Certificate",
+          url: "https://www.udemy.com/certificate/UC-2d01021e-af92-434c-a4a3-7fc7b33976c9/",
+          css: "btn btn-xs btn-primary",
+          label: "_go_to_certificate"
+        }
+      ],
+      img: "https://www.feuga.es/wp-content/uploads/2023/01/python-curso-1024x576.jpg",
+      date: new Date("2023-11-25"),
+      tags: ["Python", "Flask", "BeautifulSoup", "Backend", "pip"]
+    }, {
+      key: "Nextjs-Course-1",
+      name: {
+        es: "Curso de NextJs",
+        en: "NextJs Course",
+        fr: "Cours NextJs"
+      },
+      description: {
+        es: "Curso con más de 40 horas de contenido que cubre todo lo necesario para desarrollar una aplicación web sin estado con React y NextJs.",
+        en: "Course with over 40 hours of content covering everything needed to develop a stateless web application with React and NextJs.",
+        fr: "Cours avec plus de 40 heures de contenu couvrant tout le nécessaire pour développer une application Web sans état avec React et NextJs."
+      },
+      buttons: [
+        {
+          name: "Course",
+          url: "https://www.udemy.com/course/nextjs-fh/",
+          css: "btn btn-xs btn-primary",
+          label: "_go_to_course"
+        },
+        {
+          name: "Certificate",
+          url: "https://www.udemy.com/certificate/UC-1ede8757-aa0d-406f-813a-8eaa400532c5/",
+          css: "btn btn-xs btn-primary",
+          label: "_go_to_certificate"
+        }
+      ],
+      img: "https://miro.medium.com/v2/resize:fit:1000/1*v3XndYeIsBtk4CkpMf7vmA.jpeg",
+      date: new Date("2023-06-27"),
+      tags: ["React", "Hooks", "Events", "Stateless", "Javascript", "Frontend"]
+    }, {
+      key: "SpringBoot-Course-1",
+      name: {
+        es: "Spring Framework and Spring Boot",
+        en: "Spring Framework and Spring Boot",
+        fr: "Spring Framework au Spring Boot"
+      },
+      description: {
+        es: "Con 75 horas de ejemplos, conocimientos y buenas prácticas, tomé este curso para refrescar y aprender nuevos tips y técnicas de uno de los frameworks más utilizados en mi carrera, el aprendizaje es continuo y no podemos detenernos solo porque ya hemos aprendido lo básico.",
+        en: "With 75 hours of examples, knowledge and good practices, I took this course to refresh and learn new tips and techniques of one of the most used frameworks in my career, learning is continuous, and we can't stop only because we have already learned the basics.",
+        fr: "Avec 75 heures d'exemples et de bonnes pratiques, j'ai suivi ce cours pour rafraîchir et apprendre de nouvelles astuces et techniques d'un des frameworks les plus utilisés de ma carrière, l'apprentissage est continu, et on ne peut pas s'arrêter seulement parce qu'on a déjà appris les bases."
+      },
+      buttons: [
+        {
+          name: "Course",
+          url: "https://www.udemy.com/course/complete-ethical-hacking-bootcamp-zero-to-mastery/?couponCode=OF53124",
+          css: "btn btn-xs btn-primary",
+          label: "_go_to_course"
+        },
+        {
+          name: "Certificate",
+          url: "https://www.udemy.com/certificate/UC-b9804372-ae88-471e-8835-01402fa840f1/",
+          css: "btn btn-xs btn-primary",
+          label: "_go_to_certificate"
+        }
+      ],
+      img: "https://broadwayinfosys.com/blog/wp-content/uploads/2017/04/Spring-Framework.png",
+      date: new Date("2022-06-27"),
+      tags: ["React", "Hooks", "Events", "Stateless", "Javascript", "Frontend"]
+    }, {
+      key: "EthicalHacking-Course-1",
+      name: {
+        es: "Bootcamp de hacking etico",
+        en: "Ethical Hacking Bootcamp",
+        fr: "Bootcamp de piratage éthique"
+      },
+      description: {
+        es: "Completo curso de introducción al mundo del hacking etico, con control y ejemplos de herramientas utilizadas por los profesionales de OSINT, con conocimientos y prácticas de técnicas de hacking, manejo de pen testing y creación y uso de malware.",
+        en: "Complete introductory course to the world of ethical hacking, with control and examples of tools used by OSINT professionals, with knowledge and practices on hacking techniques, handling of pen testing tools and creation and use of malware.",
+        fr: "Cours complet d'introduction au monde du hacking éthique, avec contrôle et exemples d'outils utilisés par les professionnels OSINT, avec des connaissances et pratiques sur les techniques de hacking, la manipulation des outils de pen testing et la création et l'utilisation de malwares."
+      },
+      buttons: [
+        {
+          name: "Course",
+          url: "https://www.udemy.com/course/complete-ethical-hacking-bootcamp-zero-to-mastery/",
+          css: "btn btn-xs btn-primary",
+          label: "_go_to_course"
+        },
+        {
+          name: "Certificate",
+          url: "https://www.udemy.com/certificate/UC-b9804372-ae88-471e-8835-01402fa840f1/",
+          css: "btn btn-xs btn-primary",
+          label: "_go_to_certificate"
+        }
+      ],
+      img: "https://img-c.udemycdn.com/course/480x270/3291970_afb5_2.jpg",
+      date: new Date("2024-03-30"),
+      tags: ["Nmap", "Kali", "Linux", "Sherlock", "fatrat", "hacking"]
+    }, {
+      key: "Mongodb-Course-1",
+      name: {
+        es: "MongoDB - la guía completa para desarrolladores",
+        en: "MongoDB - The Complete Developer's Guide",
+        fr: "MongoDB - Le guide complet du développeur"
+      },
+      description: {
+        es: "Master en desarrollo de MongoDB para aplicaciones web y móviles. Operaciones CRUD, índices, marco de agregación: todo sobre MongoDB, desde la creación de esquemas hasta las agregaciones, la eficiencia, los eventos, la población de datos, las operaciones CRUD y más.",
+        en: "Master MongoDB Development for Web and Mobile Apps. CRUD Operations, Indexes, Aggregation Framework - All about MongoDB, from schema creation to aggregations,  efficience, events, data population, CRUD operations and more.",
+        fr: "Maîtrisez le développement MongoDB pour les applications Web et mobiles. Opérations CRUD, index, cadre d'agrégation - Tout sur MongoDB, de la création de schémas aux agrégations, en passant par l'efficacité, les événements, le remplissage des données, les opérations CRUD et bien plus encore."
+      },
+      buttons: [
+        {
+          name: "Course",
+          url: "https://www.udemy.com/course/mongodb-the-complete-developers-guide/",
+          css: "btn btn-xs btn-primary",
+          label: "_go_to_course"
+        },
+        {
+          name: "Certificate",
+          url: "https://www.udemy.com/certificate/UC-b990e98a-9b76-44b1-8e3e-43b68213725c/",
+          css: "btn btn-xs btn-primary",
+          label: "_go_to_certificate"
+        }
+      ],
+      img: "https://www.openlogic.com/sites/default/files/image/2021-06/image-blog-openlogic-what-is-mongodb.png",
+      date: new Date("2022-06-13"),
+      tags: ["MongoDb", "Atlas", "Robo3T", "Database", "Javascript"]
+    }, {
+      key: "React-Course-1",
+      name: {
+        es: "La guía completa para desarrolladorar apps de Android",
+        en: "The Complete Developer's Guide for Android apps",
+        fr: "Le guide complet du développeur por Android"
+      },
+      description: {
+        es: "Aprendí a programar y publicar apps y juegos para Android, utilizando Material Design, bases de datos, GPS y hardware del dispositivo. Con Android Studio, corrección de errores y el control de versiones con Git y GitHub, además de crear apps multilingües.",
+        en: "I learned how to program and publish apps and games for Android, using Material Design, databases, GPS and device hardware. With Android Studio, bug fixes and version control with Git and GitHub, as well as creating multilingual apps.",
+        fr: "J'ai appris à programmer et à publier des applications et des jeux pour Android, en utilisant Material Design, des bases de données, le GPS et le matériel de l'appareil. Avec Android Studio, corrections de bugs et contrôle de version avec Git et GitHub, ainsi que création d'applications multilingues."
+      },
+      buttons: [
+        {
+          name: "Course",
+          url: "https://www.udemy.com/course/programacion-de-android-desde-cero/",
+          css: "btn btn-xs btn-primary",
+          label: "_go_to_course"
+        },
+        {
+          name: "Certificate",
+          url: "https://www.udemy.com/certificate/UC-41d264cf-7753-4311-ac23-9440056aa0bf/",
+          css: "btn btn-xs btn-primary",
+          label: "_go_to_certificate"
+        }
+      ],
+      img: "https://imagenes.20minutos.es/files/image_640_360/uploads/imagenes/2022/09/02/android.jpeg",
+      date: new Date("2020-08-24"),
+      tags: ["Java", "Android", "IntellyJ", "Studio", "Mono", "Play", "Google", "Material", "Design"]
+    }
+  ] as Certificate[]
+}
+
+const projectsSection = {
+  key: "projects-section",
+  type: "dropdowns",
+  name: {
+    es: "Proyectos",
+    en: "Projects",
+    fr: "Projets"
+  },
+  values: []
+}
+
+const exampleResume: Resume = {
+  name: "Facundo",
+  surnames: "Giacconi Fernandez",
+  job: {
+    es: "Programador Fullstack",
+    en: "Fullstack developer",
+    fr: "Développeur fullstack"
+  },
+  location: "Girona, Spain",
+  avatar: "./img/avatar.jpeg",
+  aboutMe: {
+    es: "Deasrrollador Full stack dedicado al desarrollo de aplicaciones en multiples tecnologias.\n\nCurioso y autodidacta por naturaleza propia y apasioado de la tecnología y la investigación.",
+    en: "Full stack developer dedicated to the development of applications in multiple technologies.\n\nCurious and self-taught by nature and passionate about technology and research.",
+    fr: "Développeur full stack dédié au développement d'applications dans de multiples technologies.\n\nCurieux et autodidacte de nature et passionné de technologie et de recherche.",
+  },
+  birthDate: new Date("2022-03-25"),
+  linkedIn: "facundo-giacconi-fernandez-a77989a3",
+  gitHub: "",
+  gitLab: "",
+  docker: "",
+  sections: [
+    experienceSection,
+    certificatesSection,
+    projectsSection
   ],
-  certificates: [{
-    name: {
-      es: "React: De cero a experto ( Hooks y MERN )",
-      en: "React: From zero to expert (Hooks and MERN)",
-      fr: "React : De zéro à expert (Hooks et MERN)"
-    },
-    description: {
-      es: "Este curso tiene por objetivo llevarte de cero conocimiento de React hasta un nivel competitivo en el ambiente laboral de hoy en día. Este curso está construido 100% en Hooks y functional components.",
-      en: "This course aims to take you from zero knowledge of React to a competitive level in today's work environment. This course is built 100% in Hooks and functional components.",
-      fr: "Ce cours vise à vous faire passer d'une connaissance nulle de React à un niveau compétitif dans l'environnement de travail actuel. Ce cours est construit à 100% en Hooks et composants fonctionnels."
-    },
-    url: "https://www.udemy.com/course/react-cero-experto/",
-    urlCert: "https://www.udemy.com/certificate/UC-fcb467ab-c089-419c-9b6a-afe97f894d14/",
-    img: "https://bardcrack.com/assets/img/courses/ZBLg0s9R1A/0223b00983822436edfa72b97c9baad1aba07504.png",
-    date: new Date("2022-10-08"),
-    tags: ["React", "Hooks", "Events", "Stateless", "Javascript", "Typescript", "Frontend"]
-  },{
-    name: {
-      es: "Cien proyectos de Python",
-      en: "A hundred Python projects",
-      fr: "Une centaine de projets Python"
-    },
-    description: {
-      es: "Curso con más de 70 horas de contenido, con los principios del lenguaje de programación Python, y con la generación de 100 proyectos con dicho lenguaje, desde aplicaciones nativas con Tkinter hasta webapps y backends con Flask.",
-      en: "Course with more than 70 hours of content, with the principles of the Python programming language, and with the generation of 100 projects with said language, from native applications with Tkinter to webapps and backends with Flask.",
-      fr: "Cours avec plus de 70 heures de contenu, avec les principes du langage de programmation Python, et avec la génération de 100 projets avec ledit langage, des applications natives avec Tkinter aux webapps et backends avec Flask."
-    },
-    url: "https://www.udemy.com/course/100-days-of-code/",
-    urlCert: "https://www.udemy.com/certificate/UC-2d01021e-af92-434c-a4a3-7fc7b33976c9/",
-    img: "https://www.feuga.es/wp-content/uploads/2023/01/python-curso-1024x576.jpg",
-    date: new Date("2023-11-25"),
-    tags: ["Python", "Flask", "BeautifulSoup", "Backend", "pip"]
-  },{
-    name: {
-      es: "Curso de NextJs",
-      en: "NextJs Course",
-      fr: "Cours NextJs"
-    },
-    description: {
-      es: "Curso con más de 40 horas de contenido que cubre todo lo necesario para desarrollar una aplicación web sin estado con React y NextJs.",
-      en: "Course with over 40 hours of content covering everything needed to develop a stateless web application with React and NextJs.",
-      fr: "Cours avec plus de 40 heures de contenu couvrant tout le nécessaire pour développer une application Web sans état avec React et NextJs."
-    },
-    url: "https://www.udemy.com/course/nextjs-fh/",
-    urlCert: "https://www.udemy.com/certificate/UC-1ede8757-aa0d-406f-813a-8eaa400532c5/",
-    img: "https://miro.medium.com/v2/resize:fit:1000/1*v3XndYeIsBtk4CkpMf7vmA.jpeg",
-    date: new Date("2023-06-27"),
-    tags: ["React", "Hooks", "Events", "Stateless", "Javascript", "Frontend"]
-  },{
-    name: {
-      es: "Spring Framework and Spring Boot",
-      en: "Spring Framework and Spring Boot",
-      fr: "Spring Framework au Spring Boot"
-    },
-    description: {
-      es: "Con 75 horas de ejemplos, conocimientos y buenas prácticas, tomé este curso para refrescar y aprender nuevos tips y técnicas de uno de los frameworks más utilizados en mi carrera, el aprendizaje es continuo y no podemos detenernos solo porque ya hemos aprendido lo básico.",
-      en: "With 75 hours of examples, knowledge and good practices, I took this course to refresh and learn new tips and techniques of one of the most used frameworks in my career, learning is continuous, and we can't stop only because we have already learned the basics.",
-      fr: "Avec 75 heures d'exemples et de bonnes pratiques, j'ai suivi ce cours pour rafraîchir et apprendre de nouvelles astuces et techniques d'un des frameworks les plus utilisés de ma carrière, l'apprentissage est continu, et on ne peut pas s'arrêter seulement parce qu'on a déjà appris les bases."
-    },
-    url: "https://www.udemy.com/course/complete-ethical-hacking-bootcamp-zero-to-mastery/?couponCode=OF53124",
-    urlCert: "https://www.udemy.com/certificate/UC-b9804372-ae88-471e-8835-01402fa840f1/",
-    img: "https://broadwayinfosys.com/blog/wp-content/uploads/2017/04/Spring-Framework.png",
-    date: new Date("2022-06-27"),
-    tags: ["React", "Hooks", "Events", "Stateless", "Javascript", "Frontend"]
-  },{
-    name: {
-      es: "Bootcamp de hacking etico",
-      en: "Ethical Hacking Bootcamp",
-      fr: "Bootcamp de piratage éthique"
-    },
-    description: {
-      es: "Completo curso de introducción al mundo del hacking etico, con control y ejemplos de herramientas utilizadas por los profesionales de OSINT, con conocimientos y prácticas de técnicas de hacking, manejo de pen testing y creación y uso de malware.",
-      en: "Complete introductory course to the world of ethical hacking, with control and examples of tools used by OSINT professionals, with knowledge and practices on hacking techniques, handling of pen testing tools and creation and use of malware.",
-      fr: "Cours complet d'introduction au monde du hacking éthique, avec contrôle et exemples d'outils utilisés par les professionnels OSINT, avec des connaissances et pratiques sur les techniques de hacking, la manipulation des outils de pen testing et la création et l'utilisation de malwares."
-    },
-    url: "https://www.udemy.com/course/complete-ethical-hacking-bootcamp-zero-to-mastery/?couponCode=OF53124",
-    urlCert: "https://www.udemy.com/certificate/UC-b9804372-ae88-471e-8835-01402fa840f1/",
-    img: "https://img-c.udemycdn.com/course/480x270/3291970_afb5_2.jpg",
-    date: new Date("2024-03-30"),
-    tags: ["Nmap", "Kali", "Linux", "Sherlock", "fatrat", "hacking"]
-  },{
-    name: {
-      es: "MongoDB - la guía completa para desarrolladores",
-      en: "MongoDB - The Complete Developer's Guide",
-      fr: "MongoDB - Le guide complet du développeur"
-    },
-    description: {
-      es: "Master en desarrollo de MongoDB para aplicaciones web y móviles. Operaciones CRUD, índices, marco de agregación: todo sobre MongoDB, desde la creación de esquemas hasta las agregaciones, la eficiencia, los eventos, la población de datos, las operaciones CRUD y más.",
-      en: "Master MongoDB Development for Web and Mobile Apps. CRUD Operations, Indexes, Aggregation Framework - All about MongoDB, from schema creation to aggregations,  efficience, events, data population, CRUD operations and more.",
-      fr: "Maîtrisez le développement MongoDB pour les applications Web et mobiles. Opérations CRUD, index, cadre d'agrégation - Tout sur MongoDB, de la création de schémas aux agrégations, en passant par l'efficacité, les événements, le remplissage des données, les opérations CRUD et bien plus encore."
-    },
-    url: "https://www.udemy.com/course/mongodb-the-complete-developers-guide/",
-    urlCert: "https://www.udemy.com/certificate/UC-b990e98a-9b76-44b1-8e3e-43b68213725c/",
-    img: "https://www.openlogic.com/sites/default/files/image/2021-06/image-blog-openlogic-what-is-mongodb.png",
-    date: new Date("2022-06-13"),
-    tags: ["MongoDb", "Atlas", "Robo3T", "Database", "Javascript"]
-  },{
-    name: {
-      es: "MongoDB - la guía completa para desarrolladores",
-      en: "MongoDB - The Complete Developer's Guide",
-      fr: "MongoDB - Le guide complet du développeur"
-    },
-    description: {
-      es: "Aprendí a programar y publicar apps y juegos para Android, utilizando Material Design, bases de datos, GPS y hardware del dispositivo. Con Android Studio, corrección de errores y el control de versiones con Git y GitHub, además de crear apps multilingües.",
-      en: "I learned how to program and publish apps and games for Android, using Material Design, databases, GPS and device hardware. With Android Studio, bug fixes and version control with Git and GitHub, as well as creating multilingual apps.",
-      fr: "J'ai appris à programmer et à publier des applications et des jeux pour Android, en utilisant Material Design, des bases de données, le GPS et le matériel de l'appareil. Avec Android Studio, corrections de bugs et contrôle de version avec Git et GitHub, ainsi que création d'applications multilingues."
-    },
-    url: "https://www.udemy.com/course/programacion-de-android-desde-cero/",
-    urlCert: "https://www.udemy.com/certificate/UC-41d264cf-7753-4311-ac23-9440056aa0bf/",
-    img: "https://imagenes.20minutos.es/files/image_640_360/uploads/imagenes/2022/09/02/android.jpeg",
-    date: new Date("2020-08-24"),
-    tags: ["Java", "Android", "IntellyJ", "Studio", "Mono", "Play", "Google", "Material", "Design"]
-  }
-],
-  projects: [],
 };
 
 export default exampleResume;

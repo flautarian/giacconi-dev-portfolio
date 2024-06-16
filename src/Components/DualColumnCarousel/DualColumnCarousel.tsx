@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useTranslation } from "react-i18next";
 import PropTypes from 'prop-types';
-import { Certificate } from "../../Models/Resume";
-import "./Certifications.css"
+import "./SimpleCarousel.css"
 
 
 const Certifications = (props) => {
@@ -35,28 +34,34 @@ const Certifications = (props) => {
 
     return (
         <Carousel responsive={responsive} className="carousel">
-            {props.certifications.map((c: Certificate, i: number) => (
+            {props.values.map((c: any, i: number) => (
                 <div className="card w-96 bg-base-100 shadow-xl h-[60vh] certification" key={`${c.name}-${i}`}>
                     <figure className="w-[100%] h-[30vh]">
-                        <img src={c.img} alt={c.name[i18n.language]} className="w-[100%] h-[35vh] object-cover"/>
+                        <img src={c.img} alt={c.name[i18n.language]} className="w-[100%] h-[35vh] object-cover" />
                     </figure>
                     <div className="p-5 flex flex-col h-[30vh]">
                         <h2 className="card-title">{c.name[i18n.language]}</h2>
                         <p>{c.description[i18n.language]}</p>
                     </div>
-                    <div className="w-full flex justify-end h-[5vh]">
-                        <div className="w-[50%] flex flex-row justify-between">
-                            {c.url.length > 0 && <a href={c.url} target="_blank" rel="noopener noreferrer" className="btn btn-xs btn-primary">{t("_go_to_course")}</a>}
-                            {c.urlCert.length > 0 && <a href={c.urlCert} target="_blank" rel="noopener noreferrer" className="btn btn-xs btn-secondary">{t("_go_to_certificate")}</a>}
+                    {
+                        !!c.buttons && <div className="w-full flex justify-end h-[5vh]">
+                            <div className="w-[50%] flex flex-row justify-between">
+                                {
+                                    c.buttons.map((button, $index) => (
+                                        <a key={`${c.name[i18n.language]}-${button.name}-${$index}`} href={button.url} target="_blank" rel="noopener noreferrer" className={`${button.css}`}>{t("_go_to_course")}</a>
+                                    ))
+                                }
+                            </div>
                         </div>
-                    </div>
+                    }
+
                 </div>))}
         </Carousel>
     );
 }
 
 Certifications.proptypes = {
-    certifications: PropTypes.arrayOf(PropTypes.object)
+    values: PropTypes.arrayOf(PropTypes.object)
 }
 
 export default Certifications;
