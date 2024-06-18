@@ -50,10 +50,7 @@ const VerticalCarousel = (props) => {
   };
 
   const moveSlide = (direction) => {
-    props.setState({
-      ...props.state,
-      index: modBySlidesLength(props.state.index + direction),
-    });
+    props.updateState(modBySlidesLength(props.state.index + direction));
   };
 
   const getPresentableSlides = () => {
@@ -131,7 +128,7 @@ VerticalCarousel.propTypes = {
     })
   ).isRequired,
   state: PropTypes.object,
-  setState: PropTypes.func
+  updateState: PropTypes.func
 };
 
 export default VerticalCarousel;

@@ -5,26 +5,11 @@
 /* HEADER STATES */
 
 .header-main {
-    width: 35vw;
     transition: 0.75s cubic-bezier(0.25, 0.1, 0.18, 1.11);
     margin-top: 2.5vh;
 }
 
 .header-cta {
-    width: 50vw;
-    transition: 0.75s cubic-bezier(0.25, 0.1, 0.18, 1.11);
-    margin-top: 85vh;
-}
-
-.header-2 {
-    width: 50vw;
-    transition: 0.75s cubic-bezier(0.25, 0.1, 0.18, 1.11);
-    margin-top: 85vh;
-}
-
-
-.header-3 {
-    width: 50vw;
     transition: 0.75s cubic-bezier(0.25, 0.1, 0.18, 1.11);
     margin-top: 85vh;
 }

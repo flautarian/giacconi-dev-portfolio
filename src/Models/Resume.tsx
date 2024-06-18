@@ -483,7 +483,7 @@ const exampleResume: Resume = {
     fr: "Développeur full stack dédié au développement d'applications dans de multiples technologies.\n\nCurieux et autodidacte de nature et passionné de technologie et de recherche.",
   },
   birthDate: new Date("2022-03-25"),
-  linkedIn: "facundo-giacconi-fernandez-a77989a3",
+  linkedIn: "https://www.linkedin.com/in/facundo-giacconi-fernandez-a77989a3",
   gitHub: "",
   gitLab: "",
   docker: "",

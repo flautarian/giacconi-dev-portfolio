@@ -41,8 +41,8 @@ const Avatar = (props) => {
                 <div className={`w-[100vw] max-sm:w-[50vw] ml-[-25vw] max-sm:ml-[0vw] bg-base-100 max-sm:bg-inherit rounded-full shadow-xl`}>
                 </div>
                 <div id="avatar" className="avatar float-end max-sm:w-[50vw]">
-                    <div className="min-w-xs max-w-xs rounded-full" style={{ boxShadow: `${shadow.x}px ${shadow.y}px ${shadow.blur}px rgba(0, 0, 0, 0.2)` }}>
-                        <img src={props.img} />
+                    <div className="min-w-xs max-w-xs rounded-full avatar-img" style={{ boxShadow: `${shadow.x}px ${shadow.y}px ${shadow.blur}px rgba(0, 0, 0, 0.2)` }}>
+                        <img src={props.img} onClick={()=> window.open(props.linkedInHref || "", "_blank")}/>
                     </div>
                 </div>
             </div>
@@ -66,6 +66,7 @@ Avatar.propTypes = {
     surnames: PropTypes.string,
     job: PropTypes.string,
     description: PropTypes.string,
+    linkedInHref: PropTypes.string,
 }
 
 export default Avatar;

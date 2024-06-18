@@ -17,6 +17,15 @@
     animation: DescIn 1.5s forwards;
 }
 
+.avatar-img {
+    transition: transform 0.3s ease; /* Smooth transition for scaling */
+}
+
+/* Hover effect */
+.avatar-img:hover {
+    transform: scale(1.05); /* Scales the element to 110% of its original size */
+  }
+
 @keyframes slideIn {
     0% {
         opacity: 0.01;

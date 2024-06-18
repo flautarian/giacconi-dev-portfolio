@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import Timeline from "../Timeline/Timeline";
 import VerticalCarousel from "../VerticalCarousel/VerticalCarousel";
@@ -8,10 +8,13 @@ import { useTranslation } from "react-i18next";
 import Carousel from "react-multi-carousel";
 import formatDate from "../../Utils/utils";
 import "./TimelineCarousel.css";
+import { MainContext } from "../../Providers/ContextProvider";
 
 const TimelineCarousel = (props) => {
 
     const { t, i18n } = useTranslation('home');
+
+    const { headerStatus, thresholds } = useContext(MainContext);
 
     const responsive = {
         superLargeDesktop: {
@@ -34,7 +37,7 @@ const TimelineCarousel = (props) => {
     };
 
     const [state, setState] = useState({
-        index: props.values.length -1,
+        index: 0,
         key: "vertical-carousel-state",
         prevPropsGoToSlide: 0,
         newSlide: false,
@@ -44,12 +47,14 @@ const TimelineCarousel = (props) => {
         animationState: { tension: 120, friction: 14, key: "animation-state" }
     });
 
-    const updateState = (newIndex) => {
+    const updateState = useCallback((newIndex) => {
         setState({
             ...state,
             index: newIndex
         });
-    }
+    },
+        [headerStatus],
+    )
 
     return (
         <>
@@ -92,7 +97,7 @@ const TimelineCarousel = (props) => {
                         key={"values-carousel"}
                         slides={props.values}
                         state={state}
-                        setState={setState} />
+                        updateState={updateState} />
                     <Timeline state={state} values={props.values} onClickExperience={updateState}></Timeline>
 
                 </div>

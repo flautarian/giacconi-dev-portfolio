@@ -91,7 +91,7 @@ const Header = (props) => {
 
   return (
     <div className="relative flex justify-center max-h-[10dvh]">
-      <header className={`fixed w-[75dvw] flex justify-center z-20 ${"header-" + (headerStatus == 0 ? "main" : "cta")}`}>
+      <header className={`fixed w-[auto] flex justify-center z-20 ${"header-" + (headerStatus == 0 ? "main" : "cta")}`}>
         <ul className={`menu menu-horizontal bg-base-200 rounded-box ul-style text shadow-xl`}>
           {/* MAIN START BTN */}
           <li className={`${getHeaderStatus() == 0 ? "li-active" : "li-inactive"}`}>
