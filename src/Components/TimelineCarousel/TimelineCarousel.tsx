@@ -1,9 +1,9 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import PropTypes from 'prop-types';
 import Timeline from "../Timeline/Timeline";
 import VerticalCarousel from "../VerticalCarousel/VerticalCarousel";
 import { config } from "react-spring";
-import { BrowserView, MobileView, isMobile } from "react-device-detect";
+import { BrowserView, MobileView } from "react-device-detect";
 import { useTranslation } from "react-i18next";
 import Carousel from "react-multi-carousel";
 import formatDate from "../../Utils/utils";
@@ -14,11 +14,10 @@ const TimelineCarousel = (props) => {
 
     const { t, i18n } = useTranslation('home');
 
-    const { headerStatus, thresholds } = useContext(MainContext);
+    const { headerStatus } = useContext(MainContext);
 
     const responsive = {
         superLargeDesktop: {
-            // the naming can be any, depends on you.
             breakpoint: { max: 4000, min: 3000 },
             items: 5
         },
@@ -32,7 +31,7 @@ const TimelineCarousel = (props) => {
         },
         mobile: {
             breakpoint: { max: 464, min: 0 },
-            items: 1
+            items: 1,
         }
     };
 
@@ -59,10 +58,10 @@ const TimelineCarousel = (props) => {
     return (
         <>
             {/* MOBILE */}
-            <MobileView>
-                <Carousel responsive={responsive} className="carousel">
+            <MobileView style={{ height: "100dvh", width: "100dvw" }}>
+                <Carousel responsive={responsive} className="carousel" draggable>
                     {props.values.map((c: any, i: number) => (
-                        <div key={`${c.name}-${i}`} className="card w-80 bg-base-100 shadow-xl h-[60vh] certification" >
+                        <div key={`${c.name}-${i}`} className=" m-5 card bg-base-100 shadow-xl h-[60vh] certification" >
                             <div className="card size-full bg-base-200 shadow-xl">
                                 {/* BASIC INFO */}
                                 <div className="card-body pt-0 pb-2 mt-5 text-xs">
@@ -91,8 +90,7 @@ const TimelineCarousel = (props) => {
             </MobileView>
             {/* OTHER */}
             <BrowserView className="flex flex-row">
-                <div className='flex flex-row ' style={{ height: "100vh", width: "100vw" }}>
-                    {/* MOBILE */}
+                <div className='flex flex-row ' style={{ height: "100dvh", width: "100dvw" }}>
                     <VerticalCarousel
                         key={"values-carousel"}
                         slides={props.values}

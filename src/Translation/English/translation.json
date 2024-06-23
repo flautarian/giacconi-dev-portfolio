@@ -3,6 +3,7 @@
     "_space": "Space",
     "_start_header_1": "Press",
     "_start_header_2": "or click here to start",
+    "_start_header_3": "Tap here to start",
     "_description": "Description",
     "_responsabilities": "Responsabilities",
     "_header_title": "Start tour!",
@@ -19,5 +20,11 @@
     "_to": "To",
     "_continue_working": "Currently on position",
     "_go_to_certificate": "Certificate",
-    "_go_to_course": "Course"
+    "_go_to_course": "Course",
+    "_purpose": "Purpose",
+    "_stack_used": "Technologies used",
+    "linkedin_label": "My LinkedIn contact",
+    "cv_label": "Download my CV",
+    "github_label": "Check my Github",
+    "mail_label": "Send me an email"
 }

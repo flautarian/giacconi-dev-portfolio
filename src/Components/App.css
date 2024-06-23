@@ -16,6 +16,7 @@
     background-size: 400% 400%;
     transition: background-position 0.15s ease-in-out;
     overflow-y: overlay;
+    overflow-x: hidden;
 }
  
 .gradient-light {

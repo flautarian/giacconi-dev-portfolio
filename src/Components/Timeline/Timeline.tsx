@@ -15,7 +15,7 @@ const Timeline = (props) => {
     <ul className="timeline timeline-vertical flex items-center mt-[7.5dvh] size-full">
       {props.values.map((c, $index) => {
         return (
-          <li key={`timeline-${c.key}-${$index}`} style={{ height: `${100 / props.values.length - 5}vh` }}>
+          <li key={`timeline-${c.key}-${$index}`} style={{ height: `${100 / props.values.length - 5}dvh` }}>
             {
               $index > 0 && <hr className={`${props.state.index >= $index ? 'bg-primary' : 'timeline-middle'} animate-fade`} />
             }

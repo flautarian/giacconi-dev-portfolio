@@ -1,0 +1,11 @@
+.clicable-content {
+    cursor: pointer;
+    transition: transform 0.15s ease;
+    /* Smooth transition for scaling */
+}
+
+/* Hover effect */
+.clicable-content:hover {
+    transform: scale(1.05);
+    /* Scales the element to 110% of its original size */
+}

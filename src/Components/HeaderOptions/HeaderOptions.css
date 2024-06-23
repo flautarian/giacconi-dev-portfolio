@@ -13,12 +13,12 @@
     margin-right: 10;
     margin: 2.5vh;
     right: 0;
-    width: 15vw;
+    width: 15dvw;
 }
 
 .header-mobile{
     justify-content: center;
-    margin-top: 15vh;
+    margin-top: 15dvh;
 }
 
 .li-active {
@@ -28,7 +28,6 @@
 
 .a-section{
     overflow: hidden;
-    display: inline-block;
     white-space: nowrap;
 }
 
@@ -36,10 +35,6 @@
     text-overflow: ellipsis;
     animation: FadeIn 1s forwards;
     transition: opacity 0.25s, transform 0.25s ease-in-out;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
 }
 
 .fade-out{

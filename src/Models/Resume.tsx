@@ -6,10 +6,12 @@ export interface Resume {
   location: string;
   aboutMe: Label;
   birthDate: Date;
+  email: string;
   linkedIn: string;
-  gitHub: string;
-  gitLab: string;
+  github: string;
+  gitlab: string;
   docker: string;
+  cv: string;
   sections: Array<Section>;
 }
 
@@ -44,10 +46,13 @@ export interface Button {
   url: string,
   css: string,
   label: string,
-}
-
-export interface Project extends Section {
-  tags: Array<string>;
+  }
+  
+  export interface Project extends Section {
+    purpose: Label;
+    stack: Array<string>;
+    github?: string,
+    webUrl?: string,
 }
 
 export interface Label {
@@ -458,13 +463,135 @@ const certificatesSection = {
 
 const projectsSection = {
   key: "projects-section",
-  type: "dropdowns",
+  type: "tags-carousel",
   name: {
     es: "Proyectos",
     en: "Projects",
     fr: "Projets"
   },
-  values: []
+  values: [
+    {
+      key: "Python-api",
+      name: {
+        es: "Python-api",
+        en: "Python-api",
+        fr: "Python-api"
+      },
+      purpose: {
+        es: "Con el objetivo de tener una fuente privada de persistencia y mejorar mi conocimiento de Python, la API multipropósito es un proyecto construido con Python, utilizando varias bibliotecas y marcos para diferentes funcionalidades para generar una API segura donde puedo persistir información y usarla. como API para mis otros proyectos.",
+        en: "With the aim of having a private source of persistence and to improve my python knowledge, the Multi-purpose API is a project built with Python, using various libraries and frameworks for different functionalities to generate a secure API where I can persist information and use it as an API for my other projects.",
+        fr: "Dans le but d'avoir une source privée de persistance et d'améliorer mes connaissances en python, l'API polyvalente est un projet construit avec Python, utilisant diverses bibliothèques et frameworks pour différentes fonctionnalités afin de générer une API sécurisée où je peux conserver les informations et les utiliser. comme API pour mes autres projets."
+      },
+      description: {
+        es: "Una API versátil creada con Python, que integra Flask, PyMongo, Gunicorn y más para diversas funcionalidades y una implementación perfecta en Render. Este proyecto admite desarrollo web, interacciones de bases de datos, arquitectura sin servidor, generación de UUID, CORS y autenticación JWT. Para fines de claves y privacidad, el proyecto del repositorio de github actualmente es privado.",
+        en: "A versatile API built with Python, integrating Flask, PyMongo, Gunicorn, and more for diverse functionalities and seamless deployment on render.com. This project supports web development, database interactions, serverless architecture, UUID generation, CORS, and JWT authentication. For keys and privacity pourposes, the github repository project is currently on private.",
+        fr: "Une API polyvalente construite avec Python, intégrant Flask, PyMongo, Gunicorn et bien plus encore pour diverses fonctionnalités et un déploiement transparent sur render.com. Ce projet prend en charge le développement Web, les interactions de bases de données, l'architecture sans serveur, la génération d'UUID, l'authentification CORS et JWT. Pour des raisons de clés et de confidentialité, le projet de référentiel github est actuellement privé."
+      },
+      stack: ["python", "flask", "mongo", "gunicorn", "render"],
+    },
+    {
+      key: "Python-socket-app",
+      name: {
+        es: "Python-socket-app",
+        en: "Python-socket-app",
+        fr: "Python-socket-app"
+      },
+      purpose: {
+        es: "Como objetivo principal de tener un recurso en línea para comunicarme con varios clientes e intercambiar mensajes, tuve que crear una instancia de una API de socket con python para hacerlo posible y utilizarlo en futuros proyectos.",
+        en: "As the main objective of having an online resource to communicate with various clients and message exchange, I had to create an instance of a socket API with python to make it possible and to use it in future projects.",
+        fr: "Comme objectif principal d'avoir une ressource en ligne pour communiquer avec divers clients et échanger des messages, j'ai dû créer une instance d'une API socket avec python pour rendre cela possible et l'utiliser dans de futurs projets."
+      },
+      description: {
+        es: "Una API versátil creada con Python, que integra Flask, PyMongo, Gunicorn y más para diversas funcionalidades y una implementación perfecta en Render. Este proyecto admite desarrollo web, interacciones de bases de datos, arquitectura sin servidor, generación de UUID, CORS y autenticación JWT. Para fines de claves y privacidad, el proyecto del repositorio de github actualmente es privado.",
+        en: "A versatile API built with Python, integrating Flask, PyMongo, Gunicorn, and more for diverse functionalities and seamless deployment on render.com. This project supports web development, database interactions, serverless architecture, UUID generation, CORS, and JWT authentication. For keys and privacity pourposes, the github repository project is currently on private.",
+        fr: "Une API polyvalente construite avec Python, intégrant Flask, PyMongo, Gunicorn et bien plus encore pour diverses fonctionnalités et un déploiement transparent sur render.com. Ce projet prend en charge le développement Web, les interactions de bases de données, l'architecture sans serveur, la génération d'UUID, l'authentification CORS et JWT. Pour des raisons de clés et de confidentialité, le projet de référentiel github est actuellement privé."
+      },
+      stack: ["python", "flask", "mongo", "gunicorn", "render"],
+    },
+    {
+      key: "Copy-thon-app",
+      name: {
+        es: "Copy-thon-app",
+        en: "Copy-thon-app",
+        fr: "Copy-thon-app"
+      },
+      purpose: {
+        es: "Con el propósito de mejorar mis habilidades con Python y automatizar tareas repetidas, he creado esta aplicación que es capaz de registrar las acciones del mouse y del teclado, guardarlas en archivos json y repetirlas cuando sea necesario. Limitaciones, la limitación de esta aplicación es que la aplicación no controla la ubicación de los elementos, solo los eventos del controlador.",
+        en: "With the purpose of improving my python skills and to automatize repeated tasks, I've created this app that is capable of records mouse and keyboard actions, save them into json files and repeat them whenever are needed. Limitations, the limitation of this app is the location of elements is not being controlled by the app, only the controller events.",
+        fr: "Dans le but d'améliorer mes compétences en python et d'automatiser les tâches répétées, j'ai créé cette application capable d'enregistrer les actions de la souris et du clavier, de les enregistrer dans des fichiers json et de les répéter chaque fois que nécessaire. Limitations, la limitation de cette application est que l'emplacement des éléments n'est pas contrôlé par l'application, uniquement par les événements du contrôleur."
+      },
+      description: {
+        es: "Aplicación Python simple creada para registrar, guardar y reproducir los movimientos del mouse y el teclado capturados por un usuario y almacenados en formato json. Esta aplicación fue creada para ayudar a los usuarios a realizar tareas mecánicas y repetitivas, permitiéndoles capturar los movimientos necesarios del teclado y el mouse para reproducirlos una vez o en bucle si es necesario.",
+        en: "Simple python app created to record, save and replay mouse and keyboard movements captured from a user and stored in json format. This app was created to help users to do mechanic and repetitive tasks, let them able to capture the necessary movements of the keyboard and mouse to reproduce them one time or in a loop if case needed.",
+        fr: "Application python simple créée pour enregistrer, sauvegarder et rejouer les mouvements de la souris et du clavier capturés par un utilisateur et stockés au format json. Cette application a été créée pour aider les utilisateurs à effectuer des tâches mécaniques et répétitives, leur permettant de capturer les mouvements nécessaires du clavier et de la souris pour les reproduire une fois ou en boucle si nécessaire."
+      },
+      stack: ["python", "tkinter", "json", "i18n"],
+      github: "https://github.com/flautarian/copy-thon-app"
+    },
+    {
+      key: "Trello-App",
+      name: {
+        es: "Trello-App",
+        en: "Trello-App",
+        fr: "Trello-App"
+      },
+      purpose: {
+        es: "Para mejorar mi conocimiento de React, decidí crear un proyecto que pudiera tener múltiples lados de una aplicación web completa hecha con React, como resultado creé este SPA con typescript que combina el sistema trello drag'n drop, seguridad de autenticación contra el servidor, conexión backend, persistencia. y conexión de sincronicidad de socket.",
+        en: "To improve my React knowledge, I decided to create a project that could have multiple sides of a complete webapp made with React, as a result I created this SPA with typescript, that combines trello drag'n drop system, auth security against server, backend connection, data persistance and socket synchronicity connection.",
+        fr: "Pour améliorer mes connaissances sur React, j'ai décidé de créer un projet qui pourrait avoir plusieurs faces d'une application Web complète réalisée avec React. J'ai donc créé ce SPA qui combine le système glisser-déposer Trello, la sécurité d'authentification contre le serveur, la connexion backend, la persistance. et connexion de synchronisation de prise."
+      },
+      description: {
+        es: "Aplicación React TypeScript diseñada para facilitar la gestión de tareas, inspirada en la funcionalidad de Trello y diseñada para practicar los conceptos y el flujo de trabajo del marco de reacción.",
+        en: "React TypeScript application designed to facilitate task management, inspired by Trello's functionality and made to practice the react framework concepts and workflow.",
+        fr: "Application React TypeScript conçue pour faciliter la gestion des tâches, inspirée des fonctionnalités de Trello et conçue pour mettre en pratique les concepts et le flux de travail du framework React."
+      },
+      stack: ["react", "i18n", "json", "typescript", "javascript", "rest"],
+      github: "https://github.com/flautarian/trello-app",
+      webUrl: "https://trello-app-giacconidev.vercel.app/"
+    },
+    {
+      key: "Portfolio-App",
+      name: {
+        es: "Portfolio-App",
+        en: "Portfolio-App",
+        fr: "Portfolio-App"
+      },
+      purpose: {
+        es: "Para mejorar mi conocimiento de React, decidí crear algo para compartir con la comunidad de la misma manera que podría obtener ganancias como profesional, por esta razón, creé esta aplicación web basada en React, todo desde cero, esta aplicación web se puede usar. como un portafolio personal para alguien que busca un portafolio profesional, dinámico y bien hecho, en el que todos los datos se toman de un único archivo json que se puede personalizar fácilmente.",
+        en: "To improve my React knowledge, I decided to create something to share with the community the same way I could take proffit as a professional, for this reason, I've created this react based webapp, build all from scratch, this webapp can be used as a personal portfolio for someone that is looking for a professional, dynamic and well made portfolio, which all data is taken from a single json file that can be customized easily.",
+        fr: "Pour améliorer mes connaissances sur React, j'ai décidé de créer quelque chose à partager avec la communauté de la même manière que je pourrais en tirer profit en tant que professionnel, pour cette raison, j'ai créé cette application Web basée sur React, construite à partir de zéro, cette application Web peut être utilisée comme portfolio personnel pour quelqu'un qui recherche un portfolio professionnel, dynamique et bien conçu, dont toutes les données sont extraites d'un seul fichier json qui peut être facilement personnalisé."
+      },
+      description: {
+        es: "Aplicación React TypeScript diseñada para ser un portafolio elegante y dinámico, con múltiples idiomas y todos los datos personales fácilmente personalizables, para adaptar la información de cada profesional a mostrar en su página.",
+        en: "React TypeScript application designed to be a elegant and dynamic portfolio, with multiple languages and easy customizable all personal data, to adapt each professional information to show in his/her page.",
+        fr: "Application React TypeScript conçue pour être un portfolio élégant et dynamique, avec plusieurs langues et toutes les données personnelles facilement personnalisables, pour adapter chaque information professionnelle à afficher sur sa page."
+      },
+      stack: ["react", "i18n", "json", "typescript", "javascript"],
+      github: "https://github.com/flautarian/giacconi-dev-portfolio",
+      webUrl: ""
+    },
+    {
+      key: "Fullstack-init-App",
+      name: {
+        es: "Fullstack-init-App",
+        en: "Fullstack-init-App",
+        fr: "Fullstack-init-App"
+      },
+      purpose: {
+        es: "Para tener un stack de desarrollo fácil y privado para crear nuevos proyectos, decidí crear este proyecto, para tener un impulso desde una base y permitirme concentrarme en las características con las que quería investigar.",
+        en: "To have an easy and private development stack to create new projects, I decided to create this project, to have a kickstart from a base and allow me to focus on the features that I wanted to research with.",
+        fr: "Pour disposer d'une pile de développement simple et privée pour créer de nouveaux projets, j'ai décidé de créer ce projet, de démarrer à partir d'une base et de me permettre de me concentrer sur les fonctionnalités avec lesquelles je souhaitais rechercher."
+      },
+      description: {
+        es: "Esta aplicación involucra un entorno de trabajo full stack listo para iniciar implementaciones, basado en una pila dockerizada, con Angular 17 en el frontend y Springboot 3 como backend.",
+        en: "This application involves a working full stack environment ready to start implementations, based on a dockerized stack, with Angular 17 on frontend and Springboot 3 as backend.",
+        fr: "Cette application implique un environnement full stack fonctionnel prêt à démarrer les implémentations, basé sur une pile dockerisée, avec Angular 17 en frontend et Springboot 3 en backend."
+      },
+      stack: ["angular", "json", "typescript", "java", "springboot", "docker"],
+      github: "https://github.com/flautarian/giacconi-dev-portfolio",
+      webUrl: ""
+    }
+  ] as Project[]
 }
 
 const exampleResume: Resume = {
@@ -478,15 +605,17 @@ const exampleResume: Resume = {
   location: "Girona, Spain",
   avatar: "./img/avatar.jpeg",
   aboutMe: {
-    es: "Deasrrollador Full stack dedicado al desarrollo de aplicaciones en multiples tecnologias.\n\nCurioso y autodidacta por naturaleza propia y apasioado de la tecnología y la investigación.",
-    en: "Full stack developer dedicated to the development of applications in multiple technologies.\n\nCurious and self-taught by nature and passionate about technology and research.",
-    fr: "Développeur full stack dédié au développement d'applications dans de multiples technologies.\n\nCurieux et autodidacte de nature et passionné de technologie et de recherche.",
+    es: "Deasrrollador Full stack dedicado al desarrollo de aplicaciones en multiples tecnologias.\nCurioso y autodidacta por naturaleza propia y apasioado de la tecnología y la investigación.",
+    en: "Full stack developer dedicated to the development of applications in multiple technologies.\nCurious and self-taught by nature and passionate about technology and research.",
+    fr: "Développeur full stack dédié au développement d'applications dans de multiples technologies.\nCurieux et autodidacte de nature et passionné de technologie et de recherche.",
   },
   birthDate: new Date("2022-03-25"),
   linkedIn: "https://www.linkedin.com/in/facundo-giacconi-fernandez-a77989a3",
-  gitHub: "",
-  gitLab: "",
+  github: "https://github.com/flautarian",
+  email: "fgiacconi.dev@gmail.com",
+  gitlab: "",
   docker: "",
+  cv: "https://github.com/flautarian/resume-public/blob/main/CV_Facundo_Giacconi_EN.pdf",
   sections: [
     experienceSection,
     certificatesSection,

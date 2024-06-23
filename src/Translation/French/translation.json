@@ -3,6 +3,7 @@
     "_space": "Espace",
     "_start_header_1": "Appuyez",
     "_start_header_2": "ou cliquez ici pour commencer",
+    "_start_header_3": "Appuyez ici pour commencer",
     "_description": "Description",
     "_responsabilities": "Responsabilités",
     "_header_title": "Démarrez la visite !",
@@ -19,5 +20,11 @@
     "_to": "À",
     "_continue_working": "Actuellement en poste",
     "_go_to_certificate": "Certificat",
-    "_go_to_course": "Cours"
+    "_go_to_course": "Cours",
+    "_Purpose": "Objectif",
+    "_stack_used": "Technologies utilisées",
+    "linkedin_label": "Mon contact LinkedIn",
+    "cv_label": "Télécharger mon CV",
+    "github_label": "Vérifiez mon Github",
+    "mail_label": "Envoyez-moi un email"
 }

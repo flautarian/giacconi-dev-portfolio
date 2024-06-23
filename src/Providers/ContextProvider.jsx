@@ -18,7 +18,7 @@ const MainProvider = ({ children }) => {
     useEffect(() => {
         if (exampleResume.sections != null) {
             setThresholds(
-                [9999, ...exampleResume.sections.map((section, $index) => (exampleResume.sections.length - $index) * 100), 0]
+                [...exampleResume.sections.map((section, $index) => (exampleResume.sections.length - $index) * 100), 0]
             );
         }
     }, [])

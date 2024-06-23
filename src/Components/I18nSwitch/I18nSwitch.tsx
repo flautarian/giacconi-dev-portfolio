@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useRef, useState } from "react";
 import React from "react";
 import './I18nSwitch.css'
+import { GrLanguage } from "react-icons/gr";
 
 const flags = [
     {
@@ -27,11 +28,11 @@ const I18nSwitch = () => {
 
     return (
         <>
-            <div className="dropdown" key={"i18n-switch"}>
-                <button className="btn btn-sm btn-primary">
-                    {t(i18n.language)}
+            <div className="dropdown dropdown-bottom" key={"i18n-switch"}>
+                <button>
+                    <GrLanguage size={32} />
                 </button>
-                <ul tabIndex={0} className="dropdown-content z-[1] menu shadow bg-base-100 rounded-box w-auto mt-5">
+                <ul tabIndex={0} className="shadow dropdown-content z-[1] menu bg-base-100 rounded-box mt-5">
                     {
                         flags.map((flag: any, index: number) => (
                             <li key={`"i18n-switch-${flag.code}"`}>

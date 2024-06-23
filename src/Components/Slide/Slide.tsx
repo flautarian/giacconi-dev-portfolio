@@ -27,13 +27,13 @@ const Slide = (props) => {
   return (
     <Spring
       to={{
-        transform: `translateX(${translate.x}vw) translateY(${translate.y}vh)`,
+        transform: `translateX(${translate.x}dvw) translateY(${translate.y}dvh)`,
         opacity: distanceFactor,
       }}
       config={props.animationConfig}
     >
       {(style) => (
-        <div className="absolute w-full md:w-[45vw] h-full md:h-[75vh] overflow-auto"
+        <div className="absolute w-full md:w-[45dvw] h-full md:h-[75dvh] overflow-auto"
           style={{
             ...style,
             zIndex: Math.abs(Math.abs(props.index) - 2),

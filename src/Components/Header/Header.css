@@ -6,12 +6,12 @@
 
 .header-main {
     transition: 0.75s cubic-bezier(0.25, 0.1, 0.18, 1.11);
-    margin-top: 2.5vh;
+    margin-top: 2.5dvh;
 }
 
 .header-cta {
     transition: 0.75s cubic-bezier(0.25, 0.1, 0.18, 1.11);
-    margin-top: 85vh;
+    margin-top: 85dvh;
 }
 
 .li-active {
@@ -26,7 +26,6 @@
 
 .a-section{
     overflow: hidden;
-    display: inline-block;
     white-space: nowrap;
 }
 

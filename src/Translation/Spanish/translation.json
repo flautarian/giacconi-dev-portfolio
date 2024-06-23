@@ -3,6 +3,7 @@
     "_space": "Espacio",
     "_start_header_1": "Presione",
     "_start_header_2": "o haga clic aquí para comenzar",
+    "_start_header_3": "Pulse aquí para comenzar",
     "_description": "Descripción",
     "_responsabilities": "Responsabilidades",
     "_header_title": "¡Iniciar recorrido!",
@@ -15,9 +16,15 @@
     "_remote": "Posición remota",
     "_position": "Posición",
     "_service_time": "Tiempo de servicio",
-    "_de": "de",
+    "_from": "de",
     "_to": "a",
     "_continue_working": "Actualmente en el puesto",
     "_go_to_certificate": "Certificado",
-    "_go_to_course": "Curso"
+    "_go_to_course": "Curso",
+    "_purpose": "Propósito",
+    "_stack_used": "Tecnologías utilizadas",
+    "linkedin_label": "Mi contacto de LinkedIn",
+    "cv_label": "Descargar mi CV",
+    "github_label": "Mira mis repos",
+    "mail_label": "Envíame un correo electrónico"
 }

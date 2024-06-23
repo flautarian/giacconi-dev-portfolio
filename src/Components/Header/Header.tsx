@@ -1,10 +1,13 @@
-import { useCallback, useContext, useEffect, useMemo } from 'react';
-import './Header.css'
+import { useCallback, useContext, useEffect } from 'react';
 import { useTranslation } from "react-i18next";
 import { MainContext } from '../../Providers/ContextProvider';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { isMobile } from 'react-device-detect';
+import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
+import I18nSwitch from '../I18nSwitch/I18nSwitch';
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa6';
+import './Header.css'
 
 const Header = (props) => {
 
@@ -14,6 +17,7 @@ const Header = (props) => {
 
   // init scroll to top
   useEffect(() => {
+    console.log(thresholds);
     window.scrollTo({ top: 0, behavior: "smooth" })
   }, []);
 
@@ -22,11 +26,11 @@ const Header = (props) => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = (100 * window.scrollY) / window.innerHeight;
-      setHeaderStatus(
-        thresholds.length - 1 -
-        thresholds.reduce((closestIndex: number, currentValue: number, currentIndex: number) => {
-          return Math.abs(currentValue - scrollPosition) <= thresholds[closestIndex] - scrollPosition ? currentIndex : closestIndex;
-        }, headerStatus));
+      const newStatus = thresholds.length - 1 -
+      thresholds.reduce((closestIndex: number, currentValue: number, currentIndex: number) => {
+        return Math.abs(currentValue - scrollPosition) <= thresholds[currentIndex] - scrollPosition ? currentIndex : closestIndex;
+      }, headerStatus);
+      setHeaderStatus(newStatus);
     };
 
     const restoreScroll = () => {
@@ -55,7 +59,8 @@ const Header = (props) => {
     () => {
       let scrollPosition = (100 * window.scrollY) / window.innerHeight;
       let newHeaderStatus = Math.abs(thresholds.lastIndexOf(thresholds.find(t => t <= scrollPosition) || 0) - 1);
-      window.scrollTo({ top: (thresholds[newHeaderStatus] * window.innerHeight / 100), behavior: "smooth" });
+      const viewportHeight = window.innerHeight;
+      window.scrollTo({ top: ((thresholds[newHeaderStatus] / 100) * viewportHeight), behavior: "smooth" });
     },
     [headerStatus, thresholds],
   );
@@ -64,14 +69,15 @@ const Header = (props) => {
     () => {
       let scrollPosition = (100 * window.scrollY) / window.innerHeight;
       let newHeaderStatus = Math.abs(thresholds.lastIndexOf(thresholds.find(t => t < scrollPosition) || 0));
-      window.scrollTo({ top: (thresholds[newHeaderStatus] * window.innerHeight / 100), behavior: "smooth" });
+      const viewportHeight = window.innerHeight;
+      window.scrollTo({ top: (thresholds[newHeaderStatus] / 100) * viewportHeight, behavior: "smooth" });
     },
     [headerStatus, thresholds],
   );
 
   const changeThreshold = useCallback((newValue) => {
-    if (newValue === headerStatus) return;
-    window.scrollTo({ top: (thresholds[newValue] * window.innerHeight / 100), behavior: "smooth" });
+    const viewportHeight = window.innerHeight;
+    window.scrollTo({ top: ((thresholds[newValue] / 100) * viewportHeight), behavior: "smooth" });
   }, [headerStatus, thresholds],
   );
 
@@ -84,24 +90,37 @@ const Header = (props) => {
     () => {
       return headerStatus;
     },
-    [headerStatus],
+    [headerStatus, thresholds],
   )
 
 
 
   return (
     <div className="relative flex justify-center max-h-[10dvh]">
-      <header className={`fixed w-[auto] flex justify-center z-20 ${"header-" + (headerStatus == 0 ? "main" : "cta")}`}>
+      <header className={`fixed w-[max-content] flex justify-center z-20 ${"header-" + (headerStatus == 0 ? "main" : "cta")}`}>
         <ul className={`menu menu-horizontal bg-base-200 rounded-box ul-style text shadow-xl`}>
           {/* MAIN START BTN */}
-          <li className={`${getHeaderStatus() == 0 ? "li-active" : "li-inactive"}`}>
+          <li className={`${getHeaderStatus() == 0 ? 'li-active' : 'li-inactive'}`}>
+            <I18nSwitch />
+          </li>
+          <li className={`${getHeaderStatus() == 0 ? 'li-active' : 'li-inactive'}`}>
             <a className='a-section btn' onClick={nextThreshold}>
-              {t('_start_header_1')}
-              <kbd className="kbd kbd-md">
-                {t('_space')}
-              </kbd>
-              {t('_start_header_2')}
+              {
+                isMobile && <> {t('_start_header_3')} </>
+              }
+              {
+                !isMobile && <>
+                  {t('_start_header_1')}
+                  <kbd className="kbd kbd-md">
+                    {t('_space')}
+                  </kbd>
+                  {t('_start_header_2')}
+                </>
+              }
             </a>
+          </li>
+          <li className={`${getHeaderStatus() == 0 ? 'li-active' : 'li-inactive'}`}>
+            <ThemeSwitch />
           </li>
           {
             getHeaderStatus() > 0 &&
@@ -112,9 +131,7 @@ const Header = (props) => {
                   {/* UP ARROW */}
                   <li className="li-active">
                     <a className='a-section btn' onClick={previousThreshold}>
-                      <svg className="w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="#000000" strokeWidth="2" >
-                        <path d="M18 15l-6-6-6 6" />
-                      </svg>
+                      <FaChevronUp size={28} />
                     </a>
                   </li>
                   {/* THRESHOLD NAMES */}
@@ -131,10 +148,8 @@ const Header = (props) => {
                   }
                   {/* DOWN ARROW */}
                   <li className={`${headerStatus >= 1 ? "li-active" : "li-inactive"}`}>
-                    <a className='a-section btn' onClick={nextThreshold}>
-                      <svg className="w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="#000000" strokeWidth="2">
-                        <path d="M6 9l6 6 6-6" />
-                      </svg>
+                    <a className={`a-section ${headerStatus < thresholds.length -1 ? "btn": "btn btn-disabled"}`} onClick={nextThreshold}>
+                      <FaChevronDown size={28} />
                     </a>
                   </li>
                 </>
@@ -145,20 +160,16 @@ const Header = (props) => {
                   {/* UP ARROW */}
                   <li className="li-active">
                     <a className='a-section btn' onClick={previousThreshold}>
-                      <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="#000000" strokeWidth="2">
-                        <path d="M18 15l-6-6-6 6" />
-                      </svg>
+                      <FaChevronUp size={28} />
                     </a>
                   </li>
                   <li className="li-active text-xl text-bold">
                     {props.sectionNames[headerStatus - 1]}
                   </li>
                   {/* DOWN ARROW */}
-                  <li className={`${headerStatus >= 1 ? "li-active" : "li-inactive"}`}>
+                  <li className={`${headerStatus > 1 ? "li-active" : "li-inactive"}`}>
                     <a className='a-section btn' onClick={nextThreshold}>
-                      <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="#000000" strokeWidth="2">
-                        <path d="M6 9l6 6 6-6" />
-                      </svg>
+                      <FaChevronDown size={28} />
                     </a>
                   </li>
                 </>

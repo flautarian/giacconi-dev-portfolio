@@ -10,6 +10,7 @@ import React, { useContext } from 'react';
 import SimpleCarousel from './SimpleCarousel/SimpleCarousel';
 import { MainContext } from '../Providers/ContextProvider';
 import { isMobile } from 'react-device-detect';
+import TagsCarousel from './TagsCarousel/TagsCarousel';
 
 const App = () => {
 
@@ -20,13 +21,15 @@ const App = () => {
   return (
     <div className={`App ${isdark ? 'gradient-dark' : 'gradient-light'} background`}>
       <Header sectionNames={exampleResume.sections.map(s => s.name[i18n.language])} />
-      <HeaderOptions />
-      {!isMobile && Array.from(Array(100).keys()).map((n, $index) => (
-        <div key={`particle-${$index}`} className="circle-container">
-          <div className="circle">
-          </div>
-        </div>
-      ))
+      {!isMobile &&
+        <>
+          {Array.from(Array(100).keys()).map((n, $index) => (
+            <div key={`particle-${$index}`} className="circle-container">
+              <div className="circle">
+              </div>
+            </div>
+          ))}
+        </>
       }
       <Avatar
         img={exampleResume.avatar}
@@ -34,13 +37,18 @@ const App = () => {
         surnames={exampleResume.surnames}
         description={exampleResume.aboutMe[i18n.language]}
         job={exampleResume.job[i18n.language]}
-        linkedInHref={exampleResume.linkedIn} />
+        linkedInUrl={exampleResume.linkedIn} 
+        emailUrl={exampleResume.email} 
+        githubUrl={exampleResume.github} 
+        cv={exampleResume.cv} 
+        />
       {
         exampleResume.sections.map((section) => {
           return (
             <div key={section.key}>
               {section.type === "timeline-carousel" && <TimelineCarousel values={section.values} />}
               {section.type === "simple-carousel" && <SimpleCarousel values={section.values} />}
+              {section.type === "tags-carousel" && <TagsCarousel values={section.values} />}
               {section.type === "dropdown" && <></>}
             </div>
           );

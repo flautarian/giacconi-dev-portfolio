@@ -60,9 +60,9 @@
         width: $circleSize + px;
         height: $circleSize + px;
   
-        $startPositionX: random(80)*-1;
+        $startPositionX: 0;
         $framesName: "move-frames-" + $i;
-        $moveDuration: 25000 + random(9000) + ms;
+        $moveDuration: 15000 + random(9000) + ms;
   
         animation-name: #{$framesName};
         animation-duration: $moveDuration;
@@ -78,7 +78,7 @@
           to {
             visibility: visible;
             transform: translate3d(
-                -$startPositionX - random(50) + dvw,
+                -$startPositionX + random(50) + dvw,
                 random(100) + dvh,
               0
             );

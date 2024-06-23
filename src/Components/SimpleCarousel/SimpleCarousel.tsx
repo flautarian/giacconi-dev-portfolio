@@ -33,9 +33,9 @@ const Certifications = (props) => {
     const { i18n } = useTranslation(['home']);
 
     return (
-        <Carousel responsive={responsive} className="carousel">
+        <Carousel responsive={responsive} focusOnSelect={true} className="carousel" draggable infinite={true}>
             {props.values.map((c: any, i: number) => (
-                <div className="card w-96 bg-base-100 shadow-xl h-[60vh] certification" key={`${c.name}-${i}`}>
+                <div className="card m-5 bg-base-100 shadow-xl h-[60vh] certification" key={`${c.name}-${i}`}>
                     <figure className="w-[100%] h-[30vh]">
                         <img src={c.img} alt={c.name[i18n.language]} className="w-[100%] h-[35vh] object-cover" />
                     </figure>

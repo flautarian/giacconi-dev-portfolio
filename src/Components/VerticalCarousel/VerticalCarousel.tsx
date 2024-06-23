@@ -12,8 +12,8 @@ function mod(a, b) {
 const VerticalCarousel = (props) => {
 
   const defaultProps = {
-    offsetRadius: 2,
-    animationConfig: { tension: 120, friction: 14 },
+    offsetRadius: 5,
+    animationConfig: { tension: 120, friction: 7 },
   };
 
   const { animationConfig, offsetRadius, showNavigation } = props.state;
