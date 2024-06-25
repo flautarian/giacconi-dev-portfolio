@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Timeline from "../Timeline/Timeline";
 import VerticalCarousel from "../VerticalCarousel/VerticalCarousel";
 import { config } from "react-spring";
-import { BrowserView, MobileView } from "react-device-detect";
+import { BrowserView, MobileView, isMobile } from "react-device-detect";
 import { useTranslation } from "react-i18next";
 import Carousel from "react-multi-carousel";
 import formatDate from "../../Utils/utils";
@@ -59,7 +59,7 @@ const TimelineCarousel = (props) => {
         <>
             {/* MOBILE */}
             <MobileView style={{ height: "100dvh", width: "100dvw" }}>
-                <Carousel responsive={responsive} className="carousel" draggable>
+                <Carousel responsive={responsive} className="carousel" draggable arrows={!isMobile}>
                     {props.values.map((c: any, i: number) => (
                         <div key={`${c.name}-${i}`} className=" m-5 card bg-base-100 shadow-xl h-[60vh] certification" >
                             <div className="card size-full bg-base-200 shadow-xl">

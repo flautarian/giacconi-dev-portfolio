@@ -53,18 +53,18 @@ const TagsCarousel = (props) => {
 
     return (
         <div className="flex flex-row" style={{ height: "100dvh", width: "100dvw" }}>
-            <Carousel responsive={responsive} focusOnSelect={true} className="w-[50dvw] mt-[5dvh] max-sm:w-[100dvw] h-[80dvh]" draggable arrows={!isMobile} afterChange={updateCurrentValue}>
+            <Carousel responsive={responsive} focusOnSelect={true} className="w-[50dvw] max-sm:w-[100dvw] mt-[5dvh] max-sm:mt-[0dvh]  h-[90dvh]" draggable arrows={!isMobile} afterChange={updateCurrentValue}>
                 {
                     props.values.map((c: any, i: number) => (
                         <div className="flex flex-col items-center justify-around">
                             {/*TITLE*/}
-                            <div className="card h-[10dvh] w-[25dvw] max-sm:w-[80dvw] bg-base-200 shadow-xl flex justify-center items-center" key={`${c.name[i18n.language]}-title-${i}`}>
-                                <span className="inline-block text-3xl align-c" key={`${c.name[i18n.language]}-title`}>
+                            <div className="card h-[7dvh] w-[25dvw] max-sm:w-[70dvw] bg-base-200 shadow-xl flex justify-center items-center" key={`${c.name[i18n.language]}-title-${i}`}>
+                                <span className="inline-block text-3xl max-sm:text-xl align-c" key={`${c.name[i18n.language]}-title`}>
                                     {c.name[i18n.language]}
                                 </span>
                             </div>
                             {/*BODY*/}
-                            <div className="card h-[55dvh] max-sm:h-[60dvh] w-[35dvw] max-sm:w-[80dvw] mt-5 bg-base-200 shadow-xl" key={`${c.name["en"]}-${i}`}>
+                            <div className="card h-[55dvh] max-sm:h-[60dvh] w-[35dvw] max-sm:w-[90dvw] mt-5 max-sm:mt-[2dvw] bg-base-200 shadow-xl" key={`${c.name["en"]}-${i}`}>
                                 <div className="card-body pt-0 pb-2 mt-10 max-sm:text-xs">
                                     <p><span className="text-primary">{t("_description")}: </span>{c.purpose[i18n.language]}</p>
                                     <p><span className="text-primary">{t("_position")}: </span>{c.description[i18n.language]}</p>
@@ -72,7 +72,7 @@ const TagsCarousel = (props) => {
                             </div>
                             {/*LINKS*/}
                             {(!!c.github || !!c.webUrl) &&
-                                <div className="card bg-base-300 w-[15dvw] flex flex-row justify-around items-center p-5 mt-2">
+                                <div className="card bg-base-300 w-[15dvw] max-sm:w-[45dvw] flex flex-row justify-around items-center p-5 max-sm:p-2 mt-2">
                                     {!!c.github && <BsGithub className="clicable-content" size={32} onClick={() => window.open(c.github, "_blank")} />}
                                     {!!c.webUrl && <BsWindow className="clicable-content" size={32} onClick={() => window.open(c.webUrl, "_blank")} />}
                                 </div>

@@ -1,9 +1,3 @@
-.carousel {
-    height: 100dvh;
-    width: 100dvw;
-    display: flex;
-}
-
 .certification {
     transition: transform 0.3s ease; /* Smooth transition for scaling */
 }

@@ -163,12 +163,12 @@ const Header = (props) => {
                       <FaChevronUp size={28} />
                     </a>
                   </li>
-                  <li className="li-active text-xl text-bold">
+                  <li className="li-active text-xl text-bold text-center pl-5 pr-5">
                     {props.sectionNames[headerStatus - 1]}
                   </li>
                   {/* DOWN ARROW */}
-                  <li className={`${headerStatus > 1 ? "li-active" : "li-inactive"}`}>
-                    <a className='a-section btn' onClick={nextThreshold}>
+                  <li className={`${headerStatus >= 1 ? "li-active" : "li-inactive"}`}>
+                    <a className={`a-section ${headerStatus < thresholds.length -1 ? "btn": "btn btn-disabled"}`} onClick={nextThreshold}>
                       <FaChevronDown size={28} />
                     </a>
                   </li>

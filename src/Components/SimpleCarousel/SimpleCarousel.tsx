@@ -4,6 +4,7 @@ import "react-multi-carousel/lib/styles.css";
 import { useTranslation } from "react-i18next";
 import PropTypes from 'prop-types';
 import "./SimpleCarousel.css"
+import { isMobile } from "react-device-detect";
 
 
 const Certifications = (props) => {
@@ -33,30 +34,32 @@ const Certifications = (props) => {
     const { i18n } = useTranslation(['home']);
 
     return (
-        <Carousel responsive={responsive} focusOnSelect={true} className="carousel" draggable infinite={true}>
-            {props.values.map((c: any, i: number) => (
-                <div className="card m-5 bg-base-100 shadow-xl h-[60vh] certification" key={`${c.name}-${i}`}>
-                    <figure className="w-[100%] h-[30vh]">
-                        <img src={c.img} alt={c.name[i18n.language]} className="w-[100%] h-[35vh] object-cover" />
-                    </figure>
-                    <div className="p-5 flex flex-col h-[30vh]">
-                        <h2 className="card-title">{c.name[i18n.language]}</h2>
-                        <p>{c.description[i18n.language]}</p>
-                    </div>
-                    {
-                        !!c.buttons && <div className="w-full flex justify-end h-[5vh]">
-                            <div className="w-[50%] flex flex-row justify-around">
-                                {
-                                    c.buttons.map((button, $index) => (
-                                        <a key={`${c.name[i18n.language]}-${button.name}-${$index}`} href={button.url} target="_blank" rel="noopener noreferrer" className={`${button.css}`}>{t(button.label)}</a>
-                                    ))
-                                }
-                            </div>
+        <div className={`${!isMobile ? "flex" : ""}`} style={{ height: "100dvh", width: "100dvw" }}>
+            <Carousel responsive={responsive} focusOnSelect={true} draggable infinite={true} arrows={!isMobile}>
+                {props.values.map((c: any, i: number) => (
+                    <div className="card m-5 bg-base-100 shadow-xl h-[60dvh] max-sm:h-[80dvh] certification" key={`${c.name}-${i}`}>
+                        <figure className="w-[100%] h-[30dvh]">
+                            <img src={c.img} alt={c.name[i18n.language]} className="w-[100%] h-[35dvh] object-cover" />
+                        </figure>
+                        <div className="p-5 flex flex-col h-[30dvh]">
+                            <h2 className="card-title">{c.name[i18n.language]}</h2>
+                            <p>{c.description[i18n.language]}</p>
+                            {
+                                !!c.buttons && <div className="w-full flex justify-end h-[5dvh] mt-5">
+                                    <div className="w-[50%] flex flex-row justify-around">
+                                        {
+                                            c.buttons.map((button, $index) => (
+                                                <a key={`${c.name[i18n.language]}-${button.name}-${$index}`} href={button.url} target="_blank" rel="noopener noreferrer" className={`${button.css}`}>{t(button.label)}</a>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                            }
                         </div>
-                    }
 
-                </div>))}
-        </Carousel>
+                    </div>))}
+            </Carousel>
+        </div>
     );
 }
 

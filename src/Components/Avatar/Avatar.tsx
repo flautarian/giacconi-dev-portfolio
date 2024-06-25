@@ -59,11 +59,11 @@ const Avatar = (props) => {
                     }
                 </div>
 
-                <div className="h-[10dvh] w-[25dvw] mt-5 p-5 bg-base-100 rounded-xl shadow-xl flex flex-row justify-around items-center">
-                    <FaLinkedin title={t("linkedin_label")} className="scale-hover" size={48} onClick={() => window.open(props.linkedInUrl, "_blank")} />
-                    <FiMail title={t("mail_label")} className="scale-hover" size={48} onClick={() => window.open("mailto:" + props.emailUrl, "_blank")} />
-                    <FaGithub title={t("github_label")} className="scale-hover" size={48} onClick={() => window.open(props.githubUrl, "_blank")} />
-                    <GrDocument title={t("cv_label")} className="scale-hover" size={48} onClick={() => window.open(props.cv, "_blank")} />
+                <div className="h-[10dvh] w-[25dvw] max-sm:w-[70dvw] mt-5 p-5 bg-base-100 rounded-xl shadow-xl flex flex-row justify-around items-center">
+                    <FaLinkedin title={t("linkedin_label")} className="scale-hover" size={isMobile ? 32 : 48} onClick={() => window.open(props.linkedInUrl, "_blank")} />
+                    <FiMail title={t("mail_label")} className="scale-hover" size={isMobile ? 32 : 48} onClick={() => window.open("mailto:" + props.emailUrl, "_blank")} />
+                    <FaGithub title={t("github_label")} className="scale-hover" size={isMobile ? 32 : 48} onClick={() => window.open(props.githubUrl, "_blank")} />
+                    <GrDocument title={t("cv_label")} className="scale-hover" size={isMobile ? 32 : 48} onClick={() => window.open(props.cv, "_blank")} />
                 </div>
             </div>
         </div>

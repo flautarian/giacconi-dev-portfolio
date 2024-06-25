@@ -2,7 +2,6 @@ import Header from './Header/Header';
 import Avatar from './Avatar/Avatar';
 import './App.css';
 import './App.scss';
-import HeaderOptions from './HeaderOptions/HeaderOptions';
 import exampleResume from '../Models/Resume';
 import { useTranslation } from 'react-i18next';
 import TimelineCarousel from './TimelineCarousel/TimelineCarousel';
