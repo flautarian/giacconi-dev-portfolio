@@ -3,11 +3,9 @@ import "./Avatar.css"
 import { useTranslation } from "react-i18next";
 import PropTypes from 'prop-types';
 import { isMobile } from "react-device-detect";
-import { FaDochub, FaGithub, FaLinkedin } from "react-icons/fa6";
-import { GiMailbox } from "react-icons/gi";
+import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { FiMail } from "react-icons/fi";
-import { FcDocument } from "react-icons/fc";
-import { GrDocumentDownload } from "react-icons/gr";
+import { GrDocument } from "react-icons/gr";
 
 const Avatar = (props) => {
 
@@ -65,7 +63,7 @@ const Avatar = (props) => {
                     <FaLinkedin title={t("linkedin_label")} className="scale-hover" size={48} onClick={() => window.open(props.linkedInUrl, "_blank")} />
                     <FiMail title={t("mail_label")} className="scale-hover" size={48} onClick={() => window.open("mailto:" + props.emailUrl, "_blank")} />
                     <FaGithub title={t("github_label")} className="scale-hover" size={48} onClick={() => window.open(props.githubUrl, "_blank")} />
-                    <GrDocumentDownload title={t("cv_label")} className="scale-hover" size={48} onClick={() => window.open(props.cv, "_blank")} />
+                    <GrDocument title={t("cv_label")} className="scale-hover" size={48} onClick={() => window.open(props.cv, "_blank")} />
                 </div>
             </div>
         </div>

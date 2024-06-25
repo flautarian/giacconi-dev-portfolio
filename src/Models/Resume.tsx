@@ -590,6 +590,48 @@ const projectsSection = {
       stack: ["angular", "json", "typescript", "java", "springboot", "docker"],
       github: "https://github.com/flautarian/giacconi-dev-portfolio",
       webUrl: ""
+    },
+    {
+      key: "Kafka-microservice-app",
+      name: {
+        es: "Kafka-microservice-app",
+        en: "Kafka-microservice-app",
+        fr: "Kafka-microservice-app"
+      },
+      purpose: {
+        es: "He creado este proyecto para tener un backend personal con un sistema de microservicio claro y funcional realizado con trampolín con Java, con Apache Kafka para producir y consumir eventos y un entorno de jerarquía de pedidos de pizza, este proyecto es perfecto para tener una gran inicialización básica y comprender las ventajas de los microservicios y sus mecanismos de mensajes.",
+        en: "I've created this project to have a personal kickstart backend with a clear and functional microservice system made with Springboot with Java, with Apache Kafka to produce and consume events and a pizza order hierarchy environment, this project is perfect to have a great basic initialization and to understand the advantages of microservices, and it's message mechanisms.",
+        fr: "J'ai créé ce projet pour avoir un backend personnel avec un système de microservice clair et fonctionnel fait avec Springboot avec Java, avec Apache Kafka pour produire et consommer des événements et un environnement de hiérarchie de commande de pizza, ce projet est parfait pour avoir une grande initialisation de base de base et comprendre les avantages des microservices, et ses mécanismes de message."
+      },
+      description: {
+        es: "Proyecto creado para desarrollar un caso simple de comunicación que Springboot y Kafka hacen posible para un proyecto de backend. Al emular una empresa de pizza y sus etapas de pedido, esta aplicación se ajusta perfectamente a el backend de ese tipo de negocio.",
+        en: "Project created to develop a simple case of communication that springboot and kafka make possible for a backend project. Emulating a pizza enterprise, and its order stages, this application fits perfectly as the backend of that kind of business.",
+        fr: "Projet créé pour développer un cas simple de communication que Springboot et Kafka permettent un projet backend. Emulant une entreprise de pizza et ses étapes de commande, cette application s'adapte parfaitement au backend de ce type d'entreprise."
+      },
+      stack: ["angular", "json", "java", "springboot"],
+      github: "https://github.com/flautarian/kafka-springboot-microservice-comm",
+      webUrl: ""
+    },
+    {
+      key: "lightPrice-app",
+      name: {
+        es: "lightPrice-app",
+        en: "lightPrice-app",
+        fr: "lightPrice-app"
+      },
+      purpose: {
+        es: "Esta aplicación fue creada con un objetivo simple. Necesitaba saber el costo de electricidad en constante cambio todos los días, así que vi la oportunidad de mejorar mi conocimiento al mismo tiempo, y creé una mini aplicación que obtiene los datos actuales de una API de la empresa eléctrica bien conocida, y se muestra en el Página principal en forma de gráfico.",
+        en: "This app was created with a simple objective. I needed to know the constantly changing electricity cost every day, so I saw the opportunity to improve my knowledge at the same time, and I created a mini app that gets the current data of a well known electric enterprise API, and it shows on the main page in chart form.",
+        fr: "Cette application a été créée avec un objectif simple. J'avais besoin de connaître le coût d'électricité en constante évolution chaque jour, alors j'ai vu l'opportunité d'améliorer mes connaissances en même temps, et j'ai créé une mini application qui obtient les données actuelles d'une API Electric Enterprise bien connue, et elle se manifeste sur le Page principale sous forme de graphique."
+      },
+      description: {
+        es: "Project Created to Solve A Simple Necessity and, at the same time, to Increase the Knowledge of React and Nextjs.",
+        en: "Project created to solve a simple necessity and, at the same time, to increase the knowledge of react and nextjs.",
+        fr: "Projet créé pour résoudre une simple nécessité et, en même temps, pour augmenter les connaissances de React et NextJS."
+      },
+      stack: ["nextjs", "json", "react"],
+      github: "https://github.com/flautarian/precioluzapp",
+      webUrl: "https://precioluzapp.vercel.app/"
     }
   ] as Project[]
 }

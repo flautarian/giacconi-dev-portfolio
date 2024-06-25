@@ -11,6 +11,7 @@ import { SiGunicorn, SiLatex, SiRender, SiSpringboot, SiTypescript } from "react
 import { TbJson } from "react-icons/tb";
 import { IoLanguage } from "react-icons/io5";
 import { BsGithub, BsWindow } from "react-icons/bs";
+import { RiNextjsFill } from "react-icons/ri";
 
 
 const TagsCarousel = (props) => {
@@ -52,7 +53,7 @@ const TagsCarousel = (props) => {
 
     return (
         <div className="flex flex-row" style={{ height: "100dvh", width: "100dvw" }}>
-            <Carousel responsive={responsive} focusOnSelect={true} className="w-[50dvw] mt-[5dvh] max-sm:w-[100dvw] h-[80dvh]" draggable arrows={!isMobile} afterChange={updateCurrentValue} infinite={true}>
+            <Carousel responsive={responsive} focusOnSelect={true} className="w-[50dvw] mt-[5dvh] max-sm:w-[100dvw] h-[80dvh]" draggable arrows={!isMobile} afterChange={updateCurrentValue}>
                 {
                     props.values.map((c: any, i: number) => (
                         <div className="flex flex-col items-center justify-around">
@@ -111,6 +112,7 @@ const TagsCarousel = (props) => {
                                         {element === "springboot" && <SiSpringboot size={72} onClick={() => window.open("https://spring.io/projects/spring-boot", "_blank")} />}
                                         {element === "java" && <FaJava size={72} onClick={() => window.open("https://www.java.com", "_blank")} />}
                                         {element === "docker" && <FaDocker size={72} onClick={() => window.open("https://www.docker.com/", "_blank")} />}
+                                        {element === "nextjs" && <RiNextjsFill size={72} onClick={() => window.open("https://www.docker.com/", "_blank")} />}
                                     </span>
                                 );
                             })
