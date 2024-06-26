@@ -35,7 +35,7 @@ const Certifications = (props) => {
 
     return (
         <div className={`${!isMobile ? "flex" : ""}`} style={{ height: "100dvh", width: "100dvw" }}>
-            <Carousel responsive={responsive} focusOnSelect={true} draggable infinite={true} arrows={!isMobile}>
+            <Carousel responsive={responsive} focusOnSelect={true} draggable infinite={true} arrows={!isMobile} className="size-full">
                 {props.values.map((c: any, i: number) => (
                     <div className="card m-5 bg-base-100 shadow-xl h-[60dvh] max-sm:h-[80dvh] certification" key={`${c.name}-${i}`}>
                         <figure className="w-[100%] h-[30dvh]">
