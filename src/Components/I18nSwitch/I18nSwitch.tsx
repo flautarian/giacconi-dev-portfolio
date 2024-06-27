@@ -4,18 +4,7 @@ import React from "react";
 import './I18nSwitch.css'
 import { GrLanguage } from "react-icons/gr";
 
-const flags = [
-    {
-        code: "en",
-        img: "/img/englishFlag.png"
-    }, {
-        code: "es",
-        img: "/img/spanishFlag.png"
-    }, {
-        code: "fr",
-        img: "/img/frenchFlag.png"
-    },
-]
+const flags = ["en", "es", "fr"]
 
 const I18nSwitch = () => {
 
@@ -34,10 +23,10 @@ const I18nSwitch = () => {
                 </button>
                 <ul tabIndex={0} className="shadow dropdown-content z-[1] menu bg-base-100 rounded-box mt-5">
                     {
-                        flags.map((flag: any, index: number) => (
-                            <li key={`"i18n-switch-${flag.code}"`}>
-                                <a className={`btn ${i18n.language == flag.code ? "btn-primary" : "btn-neutral"} mt-2 max-w-20`} key={index} onClick={(evt) => { onClickLanguageChange(flag.code); }} >
-                                    {t(flag.code)}
+                        flags.map((flag: string, index: number) => (
+                            <li key={`"i18n-switch-${flag}"`}>
+                                <a className={`btn ${i18n.language == flag ? "btn-primary" : "btn-neutral"} mt-2 max-w-20`} key={index} onClick={(evt) => { onClickLanguageChange(flag); }} >
+                                    {t(flag)}
                                 </a>
                             </li>
                         ))

@@ -18,12 +18,15 @@ const TagsCarousel = (props) => {
 
     const { t } = useTranslation('home');
 
+    const [iconsActive, setIconsActive] = useState(true);
+
     const [currentValue, setCurrentValue] = useState(0);
 
     const updateCurrentValue = useCallback(
         (previousSlide, { currentSlide }) => {
             console.log(currentSlide % props.values.length);
             setCurrentValue(currentSlide % props.values.length);
+            setIconsActive(true);
         },
         [currentValue],
     )
@@ -53,7 +56,7 @@ const TagsCarousel = (props) => {
 
     return (
         <div className="flex flex-row" style={{ height: "100dvh", width: "100dvw" }}>
-            <Carousel responsive={responsive} focusOnSelect={true} className="w-[50dvw] max-sm:w-[100dvw] mt-[5dvh] max-sm:mt-[0dvh]  h-[90dvh]" draggable arrows={!isMobile} afterChange={updateCurrentValue}>
+            <Carousel responsive={responsive} focusOnSelect={true} className="w-[50dvw] max-sm:w-[100dvw] mt-[5dvh] max-sm:mt-[0dvh]  h-[90dvh]" draggable arrows={!isMobile} beforeChange={(previousSlide, { currentSlide }) => setIconsActive(false)} afterChange={updateCurrentValue}>
                 {
                     props.values.map((c: any, i: number) => (
                         <div className="flex flex-col items-center justify-around">
@@ -83,18 +86,18 @@ const TagsCarousel = (props) => {
                 }
             </Carousel>
             {!isMobile &&
-                <div className="w-[25dvw] m-[5dvw] mt-[6.25dvh] h-[80dvh]">
+                <div className={`w-[25dvw] m-[5dvw] mt-[12.75dvh] h-[80dvh] flex flex-col items-center`}>
                     {/*TITLE*/}
-                    <div className="card h-[10dvh] w-[25dvw] bg-base-200 shadow-xl flex justify-center items-center">
+                    <div className="card h-[7dvh] w-[25dvw] bg-base-200 shadow-xl flex justify-center items-center">
                         <span className="inline-block text-3xl align-c">
                             {t("_stack_used")}
                         </span>
                     </div>
-                    <span className="mt-[2.5dvh] grid grid-cols-2 gap-4 justify-center">
+                    <span className={`mt-[2.5dvh] w-full grid grid-cols-2 gap-6`}>
                         {
                             !!props.values[currentValue] && props.values[currentValue].stack.map((element) => {
                                 return (
-                                    <span className="card h-[15dvh] max-w-[10dvw] bg-base-200 shadow-xl flex justify-center items-center clicable-content" key={`${props.values[currentValue].name["en"]}-${element}`} title={`${element}`}>
+                                    <span className={`card h-[15dvh] bg-base-200 shadow-xl flex justify-center items-center clicable-content  ${iconsActive ? "fadeIn" : "fadeOut"}`} key={`${props.values[currentValue].name["en"]}-${element}`} title={`${element}`}>
                                         {element === "python" && <DiPython size={72} onClick={() => window.open("https://www.python.org/", "_blank")} />}
                                         {element === "flask" && <FaFlask size={64} onClick={() => window.open("https://flask.palletsprojects.com/en/3.0.x/", "_blank")} />}
                                         {element === "mongo" && <DiMongodb size={72} onClick={() => window.open("https://www.mongodb.com/", "_blank")} />}

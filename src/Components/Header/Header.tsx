@@ -96,14 +96,14 @@ const Header = (props) => {
 
 
   return (
-    <div className="relative flex justify-center max-h-[10dvh]">
-      <header className={`fixed w-[max-content] flex justify-center rounded-box z-20 ${"header-" + (headerStatus == 0 ? "main reflection" : "cta")}`}>
+    <div className="flex justify-center max-h-[10dvh]">
+      <header className={`fixed w-[max-content] flex justify-center rounded-box z-20 ${"header-" + (headerStatus == 0 ? "main" : "cta")}`}>
         <ul className={`menu menu-horizontal bg-base-200 rounded-box ul-style text shadow-xl`}>
           {/* MAIN START BTN */}
           <li className={`${getHeaderStatus() == 0 ? 'li-active' : 'li-inactive'}`}>
             <I18nSwitch />
           </li>
-          <li className={`${getHeaderStatus() == 0 ? 'li-active' : 'li-inactive'}`}>
+          <li className={`${getHeaderStatus() == 0 ? 'li-active' : 'li-inactive'} reflection rounded`}>
             <a className='a-section btn' onClick={nextThreshold}>
               {
                 isMobile && <> {t('_start_header_3')} </>
