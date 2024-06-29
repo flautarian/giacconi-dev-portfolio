@@ -5,11 +5,12 @@ import './App.scss';
 import exampleResume from '../Models/Resume';
 import { useTranslation } from 'react-i18next';
 import TimelineCarousel from './TimelineCarousel/TimelineCarousel';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import SimpleCarousel from './SimpleCarousel/SimpleCarousel';
 import { MainContext } from '../Providers/ContextProvider';
 import { isMobile } from 'react-device-detect';
 import TagsCarousel from './TagsCarousel/TagsCarousel';
+import Summary from './Summary/Summary';
 
 const App = () => {
 
@@ -19,7 +20,12 @@ const App = () => {
 
   return (
     <div className={`App ${isdark ? 'gradient-dark' : 'gradient-light'} background`}>
-      <Header sectionNames={exampleResume.sections.map(s => s.name[i18n.language])} />
+      <Header
+        sectionNames={exampleResume.sections.map(s => s.name[i18n.language])}
+        linkedInUrl={exampleResume.linkedIn}
+        emailUrl={exampleResume.email}
+        githubUrl={exampleResume.github}
+        cvUrl={exampleResume.cv} />
       {!isMobile &&
         <>
           {Array.from(Array(100).keys()).map((n, $index) => (
@@ -36,11 +42,11 @@ const App = () => {
         surnames={exampleResume.surnames}
         description={exampleResume.aboutMe[i18n.language]}
         job={exampleResume.job[i18n.language]}
-        linkedInUrl={exampleResume.linkedIn} 
-        emailUrl={exampleResume.email} 
-        githubUrl={exampleResume.github} 
-        cv={exampleResume.cv} 
-        />
+        linkedInUrl={exampleResume.linkedIn}
+        emailUrl={exampleResume.email}
+        githubUrl={exampleResume.github}
+        cv={exampleResume.cv}
+      />
       {
         exampleResume.sections.map((section) => {
           return (
@@ -48,7 +54,7 @@ const App = () => {
               {section.type === "timeline-carousel" && <TimelineCarousel values={section.values} />}
               {section.type === "simple-carousel" && <SimpleCarousel values={section.values} />}
               {section.type === "tags-carousel" && <TagsCarousel values={section.values} />}
-              {section.type === "dropdown" && <></>}
+              {section.type === "summary" && <Summary img={exampleResume.avatar} />}
             </div>
           );
         })

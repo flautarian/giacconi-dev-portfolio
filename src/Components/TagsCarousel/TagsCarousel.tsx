@@ -115,7 +115,7 @@ const TagsCarousel = (props) => {
                                         {element === "springboot" && <SiSpringboot size={72} onClick={() => window.open("https://spring.io/projects/spring-boot", "_blank")} />}
                                         {element === "java" && <FaJava size={72} onClick={() => window.open("https://www.java.com", "_blank")} />}
                                         {element === "docker" && <FaDocker size={72} onClick={() => window.open("https://www.docker.com/", "_blank")} />}
-                                        {element === "nextjs" && <RiNextjsFill size={72} onClick={() => window.open("https://www.docker.com/", "_blank")} />}
+                                        {element === "nextjs" && <RiNextjsFill size={72} onClick={() => window.open("https://nextjs.org/", "_blank")} />}
                                     </span>
                                 );
                             })

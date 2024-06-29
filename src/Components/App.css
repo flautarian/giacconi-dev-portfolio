@@ -117,6 +117,8 @@ p::-webkit-scrollbar-button {
     display: none;
 }
 
+/* Button Reflection */
+
 .reflection {
     overflow: hidden;
 }

@@ -1,35 +1,36 @@
-import { useCallback, useContext, useEffect } from 'react';
-import { useTranslation } from "react-i18next";
+import { FaChevronDown, FaChevronUp, FaGithub, FaLinkedin } from 'react-icons/fa6';
 import { MainContext } from '../../Providers/ContextProvider';
-import React from 'react';
-import PropTypes from 'prop-types';
-import { isMobile } from 'react-device-detect';
+import { useCallback, useContext, useEffect } from 'react';
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
 import I18nSwitch from '../I18nSwitch/I18nSwitch';
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa6';
-import './Header.css'
+import { isMobile } from 'react-device-detect';
+import { useTranslation } from "react-i18next";
+import { GrDocument } from 'react-icons/gr';
+import { FiMail } from 'react-icons/fi';
+import Confetti from 'react-confetti';
+import PropTypes from 'prop-types';
+import React from 'react';
+import './Header.css';
+import './Header.tsx';
 
 const Header = (props) => {
-
-  const { headerStatus, setHeaderStatus, thresholds } = useContext(MainContext);
-
+  const { headerStatus, setHeaderStatus, thresholds, effects, isdark } = useContext(MainContext);
   const { t } = useTranslation(['home']);
 
-  // init scroll to top
+  // Initial scroll to top
   useEffect(() => {
-    console.log(thresholds);
     window.scrollTo({ top: 0, behavior: "smooth" })
   }, []);
 
 
-  // handle scroll system
+  // Handle scroll system useEffect
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = (100 * window.scrollY) / window.innerHeight;
       const newStatus = thresholds.length - 1 -
-      thresholds.reduce((closestIndex: number, currentValue: number, currentIndex: number) => {
-        return Math.abs(currentValue - scrollPosition) <= thresholds[currentIndex] - scrollPosition ? currentIndex : closestIndex;
-      }, headerStatus);
+        thresholds.reduce((closestIndex: number, currentValue: number, currentIndex: number) => {
+          return Math.abs(currentValue - scrollPosition) <= thresholds[currentIndex] - scrollPosition ? currentIndex : closestIndex;
+        }, headerStatus);
       setHeaderStatus(newStatus);
     };
 
@@ -55,6 +56,7 @@ const Header = (props) => {
     }
   };
 
+  /* Next window threshold function */
   const nextThreshold = useCallback(
     () => {
       let scrollPosition = (100 * window.scrollY) / window.innerHeight;
@@ -65,6 +67,7 @@ const Header = (props) => {
     [headerStatus, thresholds],
   );
 
+  /* Previous window threshold function */
   const previousThreshold = useCallback(
     () => {
       let scrollPosition = (100 * window.scrollY) / window.innerHeight;
@@ -75,35 +78,45 @@ const Header = (props) => {
     [headerStatus, thresholds],
   );
 
+  /* Change window threshold function */
   const changeThreshold = useCallback((newValue) => {
     const viewportHeight = window.innerHeight;
     window.scrollTo({ top: ((thresholds[newValue] / 100) * viewportHeight), behavior: "smooth" });
   }, [headerStatus, thresholds],
   );
 
+  /* Current section function helper */
   const isCurrentSection = useCallback((value) => {
     return headerStatus == value;
   }, [headerStatus, thresholds],
   );
 
-  const getHeaderStatus = useCallback(
-    () => {
-      return headerStatus;
-    },
-    [headerStatus, thresholds],
-  )
+  /* NEON SHADOW BOX STYLE */
 
-
+  const boxShadowStyle = `
+      0 0 5px ${effects[headerStatus]?.color}, 
+      0 0 10px ${effects[headerStatus]?.color}, 
+      0 0 20px ${effects[headerStatus]?.color}
+      /* 0 0 30px ${effects[headerStatus]?.color} */
+    `;
 
   return (
     <div className="flex justify-center max-h-[10dvh]">
-      <header className={`fixed w-[max-content] flex justify-center rounded-box z-20 ${"header-" + (headerStatus == 0 ? "main" : "cta")}`}>
-        <ul className={`menu menu-horizontal bg-base-200 rounded-box ul-style text shadow-xl`}>
+      {/* EFFECTS */}
+      {effects[headerStatus]?.name == "confetti" && <div className='fixed size-full'>
+        <Confetti className='size-full' /></div>}
+      {/* HEADER */}
+      <header className={`fixed w-[max-content] flex justify-center rounded-box z-10 ${"header-" + (headerStatus == 0 ? "main" : "cta")} neon-light-container smooth-animation`}>
+        <ul className={`menu menu-horizontal bg-base-200 rounded-box ul-style text`}
+          style={isdark ? {
+            boxShadow: boxShadowStyle,
+            animation: `randomNeon 5s infinite`
+          }: {}}>
           {/* MAIN START BTN */}
-          <li className={`${getHeaderStatus() == 0 ? 'li-active' : 'li-inactive'}`}>
+          <li className={`${headerStatus == 0 ? 'li-active' : 'li-inactive'}`}>
             <I18nSwitch />
           </li>
-          <li className={`${getHeaderStatus() == 0 ? 'li-active' : 'li-inactive'} reflection rounded`}>
+          <li className={`${headerStatus == 0 ? 'li-active' : 'li-inactive'} reflection rounded`}>
             <a className='a-section btn' onClick={nextThreshold}>
               {
                 isMobile && <> {t('_start_header_3')} </>
@@ -119,11 +132,11 @@ const Header = (props) => {
               }
             </a>
           </li>
-          <li className={`${getHeaderStatus() == 0 ? 'li-active' : 'li-inactive'}`}>
+          <li className={`${headerStatus == 0 ? 'li-active' : 'li-inactive'}`}>
             <ThemeSwitch />
           </li>
           {
-            getHeaderStatus() > 0 &&
+            headerStatus > 0 && headerStatus < thresholds.length - 1 &&
             <>
               {
                 !isMobile &&
@@ -148,7 +161,7 @@ const Header = (props) => {
                   }
                   {/* DOWN ARROW */}
                   <li className={`${headerStatus >= 1 ? "li-active" : "li-inactive"}`}>
-                    <a className={`a-section ${headerStatus < thresholds.length -1 ? "btn": "btn btn-disabled"}`} onClick={nextThreshold}>
+                    <a className={`a-section ${headerStatus < thresholds.length - 1 ? "btn" : "btn btn-disabled"}`} onClick={nextThreshold}>
                       <FaChevronDown size={28} />
                     </a>
                   </li>
@@ -168,12 +181,43 @@ const Header = (props) => {
                   </li>
                   {/* DOWN ARROW */}
                   <li className={`${headerStatus >= 1 ? "li-active" : "li-inactive"}`}>
-                    <a className={`a-section ${headerStatus < thresholds.length -1 ? "btn": "btn btn-disabled"}`} onClick={nextThreshold}>
+                    <a className={`a-section ${headerStatus < thresholds.length - 1 ? "btn" : "btn btn-disabled"}`} onClick={nextThreshold}>
                       <FaChevronDown size={28} />
                     </a>
                   </li>
                 </>
               }
+            </>
+          }
+          {/* SUMMARY HEADER */}
+          {
+            headerStatus == thresholds.length - 1 &&
+            <>
+              {/* UP ARROW */}
+              <li className="li-active">
+                <a className='a-section btn' onClick={previousThreshold}>
+                  <FaChevronUp size={28} />
+                </a>
+              </li>
+              {/* LINKS */}
+              <li className="li-active font-semibold">
+                <FaLinkedin title={t("linkedin_label")} className="scale-hover" size={52} onClick={() => window.open(props.linkedInUrl, "_blank")} />
+              </li>
+              <li className="li-active font-semibold">
+                <FiMail title={t("mail_label")} className="scale-hover" size={52} onClick={() => window.open("mailto:" + props.emailUrl, "_blank")} />
+              </li>
+              <li className="li-active font-semibold">
+                <FaGithub title={t("github_label")} className="scale-hover" size={52} onClick={() => window.open(props.githubUrl, "_blank")} />
+              </li>
+              <li className="li-active font-semibold">
+                <GrDocument title={t("cv_label")} className="scale-hover" size={52} onClick={() => window.open(props.cvUrl, "_blank")} />
+              </li>
+              {/* DOWN ARROW */}
+              <li className={`${headerStatus >= 1 ? "li-active" : "li-inactive"}`}>
+                <a className={`a-section ${headerStatus < thresholds.length - 1 ? "btn" : "btn btn-disabled"}`} onClick={nextThreshold}>
+                  <FaChevronDown size={28} />
+                </a>
+              </li>
             </>
           }
         </ul>
@@ -183,7 +227,11 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
-  sectionNames: PropTypes.arrayOf(PropTypes.string)
+  sectionNames: PropTypes.arrayOf(PropTypes.string),
+  linkedInUrl: PropTypes.string,
+  emailUrl: PropTypes.string,
+  githubUrl: PropTypes.string,
+  cvUrl: PropTypes.string,
 }
 
 export default Header;

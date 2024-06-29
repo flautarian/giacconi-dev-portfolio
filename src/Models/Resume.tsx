@@ -21,6 +21,8 @@ export interface Section {
   type: String;
   description?: Label;
   url?: string;
+  enteringEffect: string;
+  neonMenuColor: string;
   tags?: Array<string>;
   values: Array<Experience | Certificate | Project>;
 }
@@ -46,13 +48,13 @@ export interface Button {
   url: string,
   css: string,
   label: string,
-  }
-  
-  export interface Project extends Section {
-    purpose: Label;
-    stack: Array<string>;
-    github?: string,
-    webUrl?: string,
+}
+
+export interface Project extends Section {
+  purpose: Label;
+  stack: Array<string>;
+  github?: string,
+  webUrl?: string,
 }
 
 export interface Label {
@@ -69,6 +71,8 @@ const experienceSection = {
     fr: "Expérience"
   },
   type: "timeline-carousel",
+  enteringEffect: "aurora-purple",
+  neonMenuColor: "rgba(255, 150, 0, 1)",
   values: [
     {
       name: {
@@ -253,6 +257,8 @@ const certificatesSection = {
     fr: "Certificats"
   },
   type: "simple-carousel",
+  enteringEffect: "",
+  neonMenuColor: "rgba(0, 255, 255, 1)",
   values: [
     {
       key: "React-Course-1",
@@ -469,6 +475,8 @@ const projectsSection = {
     en: "Projects",
     fr: "Projets"
   },
+  enteringEffect: "",
+  neonMenuColor: "rgba(255, 255, 0, 1)",
   values: [
     {
       key: "Python-api",
@@ -636,6 +644,19 @@ const projectsSection = {
   ] as Project[]
 }
 
+const summarySection = {
+  key: "summary-section",
+  type: "summary",
+  name: {
+    es: "Resumen",
+    en: "Summary",
+    fr: "Résumé"
+  },
+  enteringEffect: "confetti",
+  neonMenuColor: "rgba(0, 255, 0, 1)",
+  values: []
+}
+
 const exampleResume: Resume = {
   name: "Facundo",
   surnames: "Giacconi Fernandez",
@@ -661,7 +682,8 @@ const exampleResume: Resume = {
   sections: [
     experienceSection,
     certificatesSection,
-    projectsSection
+    projectsSection,
+    summarySection
   ],
 };
 

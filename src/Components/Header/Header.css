@@ -24,16 +24,20 @@
     display: none;
 }
 
-.a-section{
+.a-section {
     overflow: hidden;
     white-space: nowrap;
 }
 
-.ul-style{
+.ul-style {
     text-overflow: ellipsis;
     transition: 0.75s cubic-bezier(0.25, 0.1, 0.18, 1.11);
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
+}
+
+.neon-light-container {
+    background: #00000000;
 }

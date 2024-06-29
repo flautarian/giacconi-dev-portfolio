@@ -17,16 +17,6 @@
     animation: DescIn 1.5s forwards;
 }
 
-.scale-hover {
-    cursor: pointer;
-    transition: transform 0.3s ease; /* Smooth transition for scaling */
-}
-
-/* Hover effect */
-.scale-hover:hover {
-    transform: scale(1.05); /* Scales the element to 110% of its original size */
-  }
-
 @keyframes slideIn {
     0% {
         opacity: 0.01;

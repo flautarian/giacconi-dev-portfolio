@@ -1,0 +1,12 @@
+
+.scale-hover {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    /* Smooth transition for scaling */
+}
+
+/* Hover effect */
+.scale-hover:hover {
+    transform: scale(1.05);
+    /* Scales the element to 110% of its original size */
+}

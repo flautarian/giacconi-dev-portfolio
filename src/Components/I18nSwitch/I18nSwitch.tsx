@@ -25,7 +25,7 @@ const I18nSwitch = () => {
                     {
                         flags.map((flag: string, index: number) => (
                             <li key={`"i18n-switch-${flag}"`}>
-                                <a className={`btn ${i18n.language == flag ? "btn-primary" : "btn-neutral"} mt-2 max-w-20`} key={index} onClick={(evt) => { onClickLanguageChange(flag); }} >
+                                <a className={`btn ${i18n.language == flag ? "btn-primary" : ""} mt-2 max-w-20`} key={index} onClick={(evt) => { onClickLanguageChange(flag); }} >
                                     {t(flag)}
                                 </a>
                             </li>

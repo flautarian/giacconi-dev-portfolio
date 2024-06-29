@@ -1,0 +1,29 @@
+/* NeonLightEffect.css */
+.neon-light-container {
+    position: relative;
+    width: 100%;
+    height: 100px; /* Adjust height as needed */
+    overflow: hidden;
+    background: #00000000;
+  }
+  
+  .neon-light {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 10px; /* Adjust height as needed */
+    background: none;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 1), 0 0 40px rgba(0, 255, 255, 1), 0 0 60px rgba(0, 255, 255, 1), 0 0 80px rgba(0, 255, 255, 1);
+    transform: translateY(-50%);
+    animation: pulseNeon 2s infinite;
+  }
+  
+  @keyframes pulseNeon {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(0, 255, 255, 1), 0 0 40px rgba(0, 255, 255, 1), 0 0 60px rgba(0, 255, 255, 1), 0 0 80px rgba(0, 255, 255, 1);
+    }
+    50% {
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.5), 0 0 30px rgba(0, 255, 255, 0.5), 0 0 40px rgba(0, 255, 255, 0.5);
+    }
+  }

@@ -13,13 +13,17 @@ const MainProvider = ({ children }) => {
 
     const [thresholds, setThresholds] = useState([9999, 400, 200, 100, 0]);
 
-    const ctx = { headerStatus, setHeaderStatus, isdark, setIsdark, thresholds, setThresholds };
+    const [effects, setEffects] = useState([""]);
+
+    const ctx = { headerStatus, setHeaderStatus, isdark, setIsdark, thresholds, setThresholds, effects };
 
     useEffect(() => {
         if (exampleResume.sections != null) {
             setThresholds(
                 [...exampleResume.sections.map((section, $index) => (exampleResume.sections.length - $index) * 100), 0]
             );
+            
+            setEffects([{name: "", color: "rgba(125, 0, 255, 1)"}, ...exampleResume.sections.map(m=>{return {name: m.enteringEffect, color: m.neonMenuColor};})]);
         }
     }, [])
 
