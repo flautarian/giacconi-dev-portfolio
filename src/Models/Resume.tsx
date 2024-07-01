@@ -344,7 +344,7 @@ const certificatesSection = {
           label: "_go_to_certificate"
         }
       ],
-      img: "https://miro.medium.com/v2/resize:fit:1000/1*v3XndYeIsBtk4CkpMf7vmA.jpeg",
+      img: "https://cdn.filestackcontent.com/8MbtJ4hTAaOk3KPcptqZ",
       date: new Date("2023-06-27"),
       tags: ["React", "Hooks", "Events", "Stateless", "Javascript", "Frontend"]
     }, {

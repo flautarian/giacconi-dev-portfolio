@@ -18,14 +18,14 @@ const I18nSwitch = () => {
     return (
         <>
             <div className="dropdown dropdown-bottom" key={"i18n-switch"}>
-                <button>
+                <button name="lang-dropdown" role="langdropdown">
                     <GrLanguage size={32} />
                 </button>
-                <ul tabIndex={0} className="shadow dropdown-content z-[1] menu bg-base-100 rounded-box mt-5">
+                <ul tabIndex={0} className="shadow dropdown-content z-[1] menu bg-base-100 rounded-box mt-5" role="langmenu">
                     {
                         flags.map((flag: string, index: number) => (
-                            <li key={`"i18n-switch-${flag}"`}>
-                                <a className={`btn ${i18n.language == flag ? "btn-primary" : ""} mt-2 max-w-20`} key={index} onClick={(evt) => { onClickLanguageChange(flag); }} >
+                            <li key={`"i18n-switch-${flag}"`} role="none">
+                                <a className={`btn ${i18n.language == flag ? "btn-primary" : ""} mt-2 max-w-20`} key={index} role="langitem" onClick={(evt) => { onClickLanguageChange(flag); }} >
                                     {t(flag)}
                                 </a>
                             </li>

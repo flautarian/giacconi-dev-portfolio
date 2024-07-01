@@ -108,16 +108,17 @@ const Header = (props) => {
       {/* HEADER */}
       <header className={`fixed w-[max-content] flex justify-center rounded-box z-10 ${"header-" + (headerStatus == 0 ? "main" : "cta")} neon-light-container smooth-animation`}>
         <ul className={`menu menu-horizontal bg-base-200 rounded-box ul-style text`}
+          role="headermenu"
           style={isdark ? {
             boxShadow: boxShadowStyle,
             animation: `randomNeon 5s infinite`
-          }: {}}>
+          } : {}}>
           {/* MAIN START BTN */}
           <li className={`${headerStatus == 0 ? 'li-active' : 'li-inactive'}`}>
             <I18nSwitch />
           </li>
-          <li className={`${headerStatus == 0 ? 'li-active' : 'li-inactive'} reflection rounded`}>
-            <a className='a-section btn' onClick={nextThreshold}>
+          <li className={`${headerStatus == 0 ? 'li-active' : 'li-inactive'} reflection rounded`}  role="none">
+            <a className='a-section btn' onClick={nextThreshold} role="startheaderbutton">
               {
                 isMobile && <> {t('_start_header_3')} </>
               }
@@ -132,7 +133,7 @@ const Header = (props) => {
               }
             </a>
           </li>
-          <li className={`${headerStatus == 0 ? 'li-active' : 'li-inactive'}`}>
+          <li className={`${headerStatus == 0 ? 'li-active' : 'li-inactive'}`}  role="none">
             <ThemeSwitch />
           </li>
           {
@@ -142,8 +143,8 @@ const Header = (props) => {
                 !isMobile &&
                 <>
                   {/* UP ARROW */}
-                  <li className="li-active">
-                    <a className='a-section btn' onClick={previousThreshold}>
+                  <li className="li-active"  role="none">
+                    <a className='a-section btn' onClick={previousThreshold} role="upbuttonmain">
                       <FaChevronUp size={28} />
                     </a>
                   </li>
@@ -151,7 +152,7 @@ const Header = (props) => {
                   {
                     props.sectionNames.map((name, $index) => {
                       return (
-                        <li className="li-active font-semibold" key={`header-section-${$index}`}>
+                        <li className="li-active font-semibold" key={`header-section-${$index}`} role="none">
                           <a className={`a-section btn ${isCurrentSection($index + 1) ? 'text-secondary' : 'text-primary'}`} onClick={() => changeThreshold(thresholds.length - 1 - ($index + 1))}>
                             {name}
                           </a>
@@ -160,8 +161,8 @@ const Header = (props) => {
                     })
                   }
                   {/* DOWN ARROW */}
-                  <li className={`${headerStatus >= 1 ? "li-active" : "li-inactive"}`}>
-                    <a className={`a-section ${headerStatus < thresholds.length - 1 ? "btn" : "btn btn-disabled"}`} onClick={nextThreshold}>
+                  <li className={`${headerStatus >= 1 ? "li-active" : "li-inactive"}`} role="none">
+                    <a className={`a-section ${headerStatus < thresholds.length - 1 ? "btn" : "btn btn-disabled"}`} onClick={nextThreshold} role="downbuttonmain">
                       <FaChevronDown size={28} />
                     </a>
                   </li>
@@ -171,17 +172,17 @@ const Header = (props) => {
               {isMobile &&
                 <>
                   {/* UP ARROW */}
-                  <li className="li-active">
-                    <a className='a-section btn' onClick={previousThreshold}>
+                  <li className="li-active" role="none">
+                    <a className='a-section btn' onClick={previousThreshold} role="upbuttonmobile">
                       <FaChevronUp size={28} />
                     </a>
                   </li>
-                  <li className="li-active text-xl text-bold text-center pl-5 pr-5">
+                  <li className="li-active text-xl text-bold text-center pl-5 pr-5" role="none">
                     {props.sectionNames[headerStatus - 1]}
                   </li>
                   {/* DOWN ARROW */}
-                  <li className={`${headerStatus >= 1 ? "li-active" : "li-inactive"}`}>
-                    <a className={`a-section ${headerStatus < thresholds.length - 1 ? "btn" : "btn btn-disabled"}`} onClick={nextThreshold}>
+                  <li className={`${headerStatus >= 1 ? "li-active" : "li-inactive"}`} role="none">
+                    <a className={`a-section ${headerStatus < thresholds.length - 1 ? "btn" : "btn btn-disabled"}`} onClick={nextThreshold} role="downbuttonmobile">
                       <FaChevronDown size={28} />
                     </a>
                   </li>
@@ -194,27 +195,27 @@ const Header = (props) => {
             headerStatus == thresholds.length - 1 &&
             <>
               {/* UP ARROW */}
-              <li className="li-active">
-                <a className='a-section btn' onClick={previousThreshold}>
+              <li className="li-active" role="none">
+                <a className='a-section btn' onClick={previousThreshold} role="upbuttonsummary">
                   <FaChevronUp size={28} />
                 </a>
               </li>
               {/* LINKS */}
-              <li className="li-active font-semibold">
-                <FaLinkedin title={t("linkedin_label")} className="scale-hover" size={52} onClick={() => window.open(props.linkedInUrl, "_blank")} />
+              <li className="li-active font-semibold" role="none">
+                <FaLinkedin title={t("linkedin_label")} className="scale-hover" size={52} onClick={() => window.open(props.linkedInUrl, "_blank")}  role="linkedinbutton" />
               </li>
-              <li className="li-active font-semibold">
-                <FiMail title={t("mail_label")} className="scale-hover" size={52} onClick={() => window.open("mailto:" + props.emailUrl, "_blank")} />
+              <li className="li-active font-semibold" role="none">
+                <FiMail title={t("mail_label")} className="scale-hover" size={52} onClick={() => window.open("mailto:" + props.emailUrl, "_blank")}  role="mailbutton" />
               </li>
-              <li className="li-active font-semibold">
-                <FaGithub title={t("github_label")} className="scale-hover" size={52} onClick={() => window.open(props.githubUrl, "_blank")} />
+              <li className="li-active font-semibold" role="none">
+                <FaGithub title={t("github_label")} className="scale-hover" size={52} onClick={() => window.open(props.githubUrl, "_blank")}  role="gitbutton" />
               </li>
-              <li className="li-active font-semibold">
-                <GrDocument title={t("cv_label")} className="scale-hover" size={52} onClick={() => window.open(props.cvUrl, "_blank")} />
+              <li className="li-active font-semibold" role="none">
+                <GrDocument title={t("cv_label")} className="scale-hover" size={52} onClick={() => window.open(props.cvUrl, "_blank")}  role="cvbutton" />
               </li>
               {/* DOWN ARROW */}
-              <li className={`${headerStatus >= 1 ? "li-active" : "li-inactive"}`}>
-                <a className={`a-section ${headerStatus < thresholds.length - 1 ? "btn" : "btn btn-disabled"}`} onClick={nextThreshold}>
+              <li className={`${headerStatus >= 1 ? "li-active" : "li-inactive"}`} role="none">
+                <a className={`a-section ${headerStatus < thresholds.length - 1 ? "btn" : "btn btn-disabled"}`} onClick={nextThreshold} role="downbuttonsummary">
                   <FaChevronDown size={28} />
                 </a>
               </li>
