@@ -87,7 +87,7 @@ const VerticalCarousel = (props) => {
               </div>
 
               {/* ADVANCED-INFO */}
-              <div className="card-body pt-0  pb-2">
+              <div className="card-body pt-0 pb-2">
                 <p className="text-primary">{t("_description")}:</p>
                 <p className="max-h-[20vh] h-[10vh] overflow-auto">{slide.description[i18n.language]}</p>
                 <p className="text-primary">{t("_responsabilities")}:</p>

@@ -59,25 +59,28 @@ const TimelineCarousel = (props) => {
         <>
             {/* MOBILE */}
             <MobileView style={{ height: "100dvh", width: "100dvw" }}>
-                <Carousel responsive={responsive} className="carousel" draggable arrows={!isMobile}>
+                <Carousel responsive={responsive} className="size-full carousel" draggable arrows={!isMobile}>
                     {props.values.map((c: any, i: number) => (
-                        <div key={`${c.name}-${i}`} className=" m-5 card bg-base-100 shadow-xl h-[60vh] certification" >
+                        <div key={`${c.name}-${i}`} className=" m-5 card bg-base-100 shadow-xl certification max-h-[75dvh]" >
                             <div className="card size-full bg-base-200 shadow-xl">
-                                {/* BASIC INFO */}
-                                <div className="card-body pt-0 pb-2 mt-5 text-xs">
-                                    <p><span className="text-primary">{t("_name")}: </span>{c.name[i18n.language]}</p>
-                                    <p><span className="text-primary">{t("_location")}: </span>{c.location}</p>
-                                    <p><span className="text-primary">{t("_position")}: </span>{c.position}</p>
-                                    <p><span className="text-primary">{t("_service_time")}: </span> {t("_from")} {formatDate(c.dateFrom)} - {!c.dateTo ? t("_continue_working") : `${t("_to")} ${formatDate(c.dateTo)}`}</p>
-                                </div>
-                                {/* ADVANCED-INFO */}
-                                <div className="card-body pt-0 pb-2 text-xs">
-                                    <p className="text-primary">{t("_responsabilities")}:</p>
-                                    <ul className="max-h-[20vh] h-[15vh] overflow-auto list-disc pl-10">
-                                        {c.responsabilities.map((responsability, rIndex) => <li className={`mt-${rIndex > 0 ? 5 : 0}`} key={`${c.enterprise}-r-${rIndex}`}>{t(responsability[i18n.language])}</li>)}
-                                    </ul>
+                                <div className="card-body pt-1 flex flex-col">
+                                    {/* BASIC INFO */}
+                                    <div className="pb-2 mt-5 text-xs">
+                                        <p><span className="text-primary">{t("_name")}: </span>{c.name[i18n.language]}</p>
+                                        <p><span className="text-primary">{t("_location")}: </span>{c.location}</p>
+                                        <p><span className="text-primary">{t("_position")}: </span>{c.position}</p>
+                                        <p><span className="text-primary">{t("_service_time")}: </span> {t("_from")} {formatDate(c.dateFrom)} - {!c.dateTo ? t("_continue_working") : `${t("_to")} ${formatDate(c.dateTo)}`}</p>
+                                    </div>
+                                    <hr/>
+                                    {/* ADVANCED-INFO */}
+                                    <div className="pt-0 text-xs overflow-auto max-h-[30dvh]">
+                                        <p className="text-primary">{t("_responsabilities")}:</p>
+                                        <ul className="overflow-auto list-disc pl-10">
+                                            {c.responsabilities.map((responsability, rIndex) => <li className={`mt-${rIndex > 0 ? 5 : 0}`} key={`${c.enterprise}-r-${rIndex}`}>{t(responsability[i18n.language])}</li>)}
+                                        </ul>
+                                    </div>
                                     <hr />
-                                    <div>
+                                    <div className="overflow-auto max-h-[20dvh]">
                                         <p className="text-primary mb-2">{t("_techs_and_skills")}:</p>
                                         <div className="card-actions">
                                             {c.tags.map((tag, tIndex) => <div key={`${c.enterprise}-t-${tIndex}`} className="badge badge-outline text-xs">{tag}</div>)}

@@ -1,7 +1,5 @@
 .carousel {
-    height: 100dvh;
-    width: 100dvw;
-    display: flex;
+    align-items: flex-start !important;
 }
 
 .certification {
