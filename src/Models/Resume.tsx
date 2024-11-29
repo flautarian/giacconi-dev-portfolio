@@ -244,7 +244,7 @@ const experienceSection = {
       ],
       dateFrom: new Date("2022-05-16"),
       dateTo: null,
-      tags: ["Full stack", "Springboot", "Spring security", "Java", "AngularJs", "NextJs", "React 18", "REST", "MongoDb", "GraphQL", "NodeJs"],
+      tags: ["Full stack", "Springboot", "Spring security", "Java", "AngularJs", "NextJs", "React 18", "REST", "MongoDb", "GraphQL", "nodejs"],
     }
   ] as Experience[]
 }
@@ -479,6 +479,27 @@ const projectsSection = {
   neonMenuColor: "rgba(255, 255, 0, 1)",
   values: [
     {
+      key: "PizzApp",
+      name: {
+        es: "PizzApp",
+        en: "PizzApp",
+        fr: "PizzApp"
+      },
+      purpose: {
+        es: "A modo de reto y para poder tener una aplicación Fullstack cubriendo todo lo posible el sector, decidí realizar la programación completa de una aplicación de cero y con el objetivo de abarcar todos los sectores que cubre un programador Fullstack, con ese objetivo construí PizzApp.",
+        en: "As a challenge and in order to have a Fullstack application covering the sector as much as possible, I decided to carry out the complete programming of an application from scratch and with the objective of covering all the sectors that a Fullstack programmer covers, with that objective I've built PizzApp.",
+        fr: "Comme défi et afin d'avoir une application Fullstack couvrant le plus possible le secteur, j'ai décidé de réaliser la programmation complète d'une application à partir de zéro et dans le but de couvrir tous les secteurs que couvre un programmeur Fullstack, avec cet objectif J'ai construit PizzaApp."
+      },
+      description: {
+        es: "Esta aplicación simula el funcionamiento entero de una pizzería, contiene una pagina web para la compra de pizza y una pagina de administración para gestionar los pedidos, con un front en Angular 17, backend basado en microservicios con dos servicios con SpringBoot 3 y uno con Node JS con Express, base de datos en mongoDb para los pedidos y en Redis para el stock de la tienda y comunicación entre microservicios, este proyecto pretende mostrar todos los sectores que domino como desarrollador Fullstack.",
+        en: "This application simulates the entire operation of a pizzeria, it contains a web page for purchasing pizza and an administration page to manage orders, with a front in Angular 17, a backend based on microservices with two services with SpringBoot 3 and one with Node JS with Express, database in mongoDb for orders and in Redis for the store stock and communication between microservices, this project aims to show all the sectors that I master as a Fullstack developer.",
+        fr: "Cette application simule tout le fonctionnement d'une pizzeria, elle contient une page web pour l'achat de pizza et une page d'administration pour gérer les commandes, avec un front en Angular 17, un backend basé sur des microservices avec deux services avec SpringBoot 3 et un avec Node JS avec Express, base de données en mongoDb pour les commandes et en Redis pour le stock magasin et la communication entre microservices, ce projet a pour objectif de montrer tous les secteurs que je maîtrise en tant que développeur Fullstack."
+      },
+      stack: ["angular", "json", "nodejs", "java", "springboot", "docker", "mongo", "redis"], 
+      github: "https://github.com/flautarian/pizzapp",
+      webUrl: ""
+    },
+    {
       key: "Python-api",
       name: {
         es: "Python-api",
@@ -607,14 +628,14 @@ const projectsSection = {
         fr: "Kafka-microservice-app"
       },
       purpose: {
-        es: "He creado este proyecto para tener un backend personal con un sistema de microservicio claro y funcional realizado con trampolín con Java, con Apache Kafka para producir y consumir eventos y un entorno de jerarquía de pedidos de pizza, este proyecto es perfecto para tener una gran inicialización básica y comprender las ventajas de los microservicios y sus mecanismos de mensajes.",
-        en: "I've created this project to have a personal kickstart backend with a clear and functional microservice system made with Springboot with Java, with Apache Kafka to produce and consume events and a pizza order hierarchy environment, this project is perfect to have a great basic initialization and to understand the advantages of microservices, and it's message mechanisms.",
-        fr: "J'ai créé ce projet pour avoir un backend personnel avec un système de microservice clair et fonctionnel fait avec Springboot avec Java, avec Apache Kafka pour produire et consommer des événements et un environnement de hiérarchie de commande de pizza, ce projet est parfait pour avoir une grande initialisation de base de base et comprendre les avantages des microservices, et ses mécanismes de message."
+        es: "He creado este proyecto para tener un backend personal con un sistema de microservicio claro y funcional realizado con trampolín con Java, con Apache Kafka para producir y consumir eventos y un entorno de jerarquía de pedidos de productos, este proyecto es perfecto para tener una gran inicialización básica y comprender las ventajas de los microservicios y sus mecanismos de mensajes.",
+        en: "I've created this project to have a personal kickstart backend with a clear and functional microservice system made with Springboot with Java, with Apache Kafka to produce and consume events and a products order hierarchy environment, this project is perfect to have a great basic initialization and to understand the advantages of microservices, and it's message mechanisms.",
+        fr: "J'ai créé ce projet pour avoir un backend personnel avec un système de microservice clair et fonctionnel fait avec Springboot avec Java, avec Apache Kafka pour produire et consommer des événements et un environnement de hiérarchie de commande de products, ce projet est parfait pour avoir une grande initialisation de base de base et comprendre les avantages des microservices, et ses mécanismes de message."
       },
       description: {
-        es: "Proyecto creado para desarrollar un caso simple de comunicación que Springboot y Kafka hacen posible para un proyecto de backend. Al emular una empresa de pizza y sus etapas de pedido, esta aplicación se ajusta perfectamente a el backend de ese tipo de negocio.",
-        en: "Project created to develop a simple case of communication that springboot and kafka make possible for a backend project. Emulating a pizza enterprise, and its order stages, this application fits perfectly as the backend of that kind of business.",
-        fr: "Projet créé pour développer un cas simple de communication que Springboot et Kafka permettent un projet backend. Emulant une entreprise de pizza et ses étapes de commande, cette application s'adapte parfaitement au backend de ce type d'entreprise."
+        es: "Proyecto creado para desarrollar un caso simple de comunicación que Springboot y Kafka hacen posible para un proyecto de backend. Al emular una empresa de productos y sus etapas de pedido, esta aplicación se ajusta perfectamente a el backend de ese tipo de negocio.",
+        en: "Project created to develop a simple case of communication that springboot and kafka make possible for a backend project. Emulating a products enterprise, and its order stages, this application fits perfectly as the backend of that kind of business.",
+        fr: "Projet créé pour développer un cas simple de communication que Springboot et Kafka permettent un projet backend. Emulant une entreprise de products et ses étapes de commande, cette application s'adapte parfaitement au backend de ce type d'entreprise."
       },
       stack: ["angular", "json", "java", "springboot"],
       github: "https://github.com/flautarian/kafka-springboot-microservice-comm",

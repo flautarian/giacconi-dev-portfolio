@@ -15,8 +15,7 @@
     background: linear-gradient(90deg, var(--light-color-start), var(--light-color-end), var(--dark-color-start), var(--dark-color-end));
     background-size: 400% 400%;
     transition: background-position 0.15s ease-in-out;
-    overflow-y: overlay;
-    overflow-x: hidden;
+    overflow: hidden; 
 }
 
 .gradient-light {
@@ -56,6 +55,10 @@ SCROLLBAR
 */
 
 /* BODY */
+
+body {
+    overflow: hidden; 
+}
 
 body::-webkit-scrollbar {
     background-color: #ffffff00;

@@ -11,7 +11,7 @@ import { SiGunicorn, SiLatex, SiRender, SiSpringboot, SiTypescript } from "react
 import { TbJson } from "react-icons/tb";
 import { IoLanguage } from "react-icons/io5";
 import { BsGithub, BsWindow } from "react-icons/bs";
-import { RiNextjsFill } from "react-icons/ri";
+import { RiNextjsFill, RiNodejsFill } from "react-icons/ri";
 
 
 const TagsCarousel = (props) => {
@@ -56,7 +56,7 @@ const TagsCarousel = (props) => {
 
     return (
         <div className="flex flex-row" style={{ height: "100dvh", width: "100dvw" }}>
-            <Carousel responsive={responsive} focusOnSelect={true} className="w-[50dvw] max-sm:w-[100dvw] mt-[5dvh] max-sm:mt-[0dvh]  h-[90dvh]" draggable arrows={!isMobile} beforeChange={(previousSlide, { currentSlide }) => setIconsActive(false)} afterChange={updateCurrentValue}>
+            <Carousel responsive={responsive} className="w-[50dvw] max-sm:w-[100dvw] max-sm:mt-[0dvh]  h-[90dvh]" draggable arrows={!isMobile} beforeChange={(previousSlide, { currentSlide }) => setIconsActive(false)} afterChange={updateCurrentValue}>
                 {
                     props.values.map((c: any, i: number) => (
                         <div className="flex flex-col items-center justify-around">
@@ -69,8 +69,8 @@ const TagsCarousel = (props) => {
                             {/*BODY*/}
                             <div className="card h-[55dvh] max-sm:h-[60dvh] w-[35dvw] max-sm:w-[90dvw] mt-5 max-sm:mt-[2dvw] bg-base-200 shadow-xl" key={`${c.name["en"]}-${i}`}>
                                 <div className="card-body pt-0 pb-2 mt-10 max-sm:text-xs">
-                                    <p><span className="text-primary">{t("_description")}: </span>{c.purpose[i18n.language]}</p>
-                                    <p><span className="text-primary">{t("_position")}: </span>{c.description[i18n.language]}</p>
+                                    <p><span className="text-primary">{t("_motivation")}: </span>{c.purpose[i18n.language]}</p>
+                                    <p><span className="text-primary">{t("_description")}: </span>{c.description[i18n.language]}</p>
                                 </div>
                             </div>
                             {/*LINKS*/}
@@ -86,7 +86,7 @@ const TagsCarousel = (props) => {
                 }
             </Carousel>
             {!isMobile &&
-                <div className={`w-[25dvw] m-[5dvw] mt-[12.75dvh] h-[80dvh] flex flex-col items-center`}>
+                <div className={`w-[25dvw] m-[5dvw] mt-[5dvh] h-[80dvh] flex flex-col items-center`}>
                     {/*TITLE*/}
                     <div className="card h-[7dvh] w-[25dvw] bg-base-200 shadow-xl flex justify-center items-center">
                         <span className="inline-block text-3xl align-c">
@@ -116,6 +116,8 @@ const TagsCarousel = (props) => {
                                         {element === "java" && <FaJava size={72} onClick={() => window.open("https://www.java.com", "_blank")} />}
                                         {element === "docker" && <FaDocker size={72} onClick={() => window.open("https://www.docker.com/", "_blank")} />}
                                         {element === "nextjs" && <RiNextjsFill size={72} onClick={() => window.open("https://nextjs.org/", "_blank")} />}
+                                        {element === "nodejs" && <RiNodejsFill size={72} onClick={() => window.open("https://nodejs.org/", "_blank")} />}
+                                        {element === "redis" && <img onClick={() => window.open("https://redis.io/", "_blank")} src={"/icons/redis-icon.png"} />}
                                     </span>
                                 );
                             })
