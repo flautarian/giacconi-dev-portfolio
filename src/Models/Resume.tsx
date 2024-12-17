@@ -702,8 +702,8 @@ const exampleResume: Resume = {
   cv: "https://github.com/flautarian/resume-public/blob/main/CV_Facundo_Giacconi_EN.pdf",
   sections: [
     experienceSection,
-    certificatesSection,
     projectsSection,
+    certificatesSection,
     summarySection
   ],
 };

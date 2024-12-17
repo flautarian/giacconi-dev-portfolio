@@ -17,15 +17,15 @@ const I18nSwitch = () => {
 
     return (
         <>
-            <div className="dropdown dropdown-bottom" key={"i18n-switch"}>
-                <button name="lang-dropdown" role="langdropdown">
+            <div className="dropdown dropdown-bottom flex justify-center" key={"i18n-switch"}> 
+                <button type="button" title="languages" name="lang-dropdown" role="button">
                     <GrLanguage size={32} />
                 </button>
-                <ul tabIndex={0} className="shadow dropdown-content z-[1] menu bg-base-100 rounded-box mt-5" role="langmenu">
+                <ul tabIndex={0} className="shadow dropdown-content z-[1] menu bg-base-100 rounded-box mt-5" role="list">
                     {
                         flags.map((flag: string, index: number) => (
-                            <li key={`"i18n-switch-${flag}"`} role="none">
-                                <a className={`btn ${i18n.language == flag ? "btn-primary" : ""} mt-2 max-w-20`} key={index} role="langitem" onClick={(evt) => { onClickLanguageChange(flag); }} >
+                            <li key={`"i18n-switch-${flag}"`} role="listitem">
+                                <a className={`btn ${i18n.language == flag ? "btn-primary" : ""} mt-2 max-w-20`} key={index} role="button" onClick={(evt) => { onClickLanguageChange(flag); }} >
                                     {t(flag)}
                                 </a>
                             </li>

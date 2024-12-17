@@ -36,7 +36,7 @@ const TimelineCarousel = (props) => {
     };
 
     const [state, setState] = useState({
-        index: 0,
+        index: props.values.length -1,
         key: "vertical-carousel-state",
         prevPropsGoToSlide: 0,
         newSlide: false,

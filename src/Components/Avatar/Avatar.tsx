@@ -15,7 +15,7 @@ const Avatar = (props) => {
     return (
         <div id="avatar-container" className={`flex max-2xl:flex-row max-sm:flex-col justify-around items-center`}>
             <div id="avatar-img-container" className={`w-[60dvw] max-sm:w-[50dvw] ml-[-25dvw] max-sm:ml-[0dvw] bg-base-100 max-sm:bg-inherit rounded-full shadow-xl ${!isMobile ? 'translation-img-animation' : 'mt-[20dvh]'}`}>
-                <AvatarImage img={props.img} url={props.linkedInUrl} />
+                <AvatarImage img={props.img} url={props.linkedInUrl} alt="Go to my LikedIn page" title="Go to my LikedIn page" />
             </div>
             <div className="max-2xl:text-left max-sm:text-center avatar-desc-animation mr-[5dvw] max-sm:mr-[0dvw] flex flex-col items-center">
                 <div className="max-w-xl p-5 bg-base-100 rounded-xl shadow-xl">

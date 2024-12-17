@@ -59,7 +59,7 @@ const TagsCarousel = (props) => {
             <Carousel responsive={responsive} className="w-[50dvw] max-sm:w-[100dvw] max-sm:mt-[0dvh]  h-[90dvh]" draggable arrows={!isMobile} beforeChange={(previousSlide, { currentSlide }) => setIconsActive(false)} afterChange={updateCurrentValue}>
                 {
                     props.values.map((c: any, i: number) => (
-                        <div className="flex flex-col items-center justify-around">
+                        <div className="flex flex-col items-center justify-around" key={`${c.name[i18n.language]}-container-${i}`}>
                             {/*TITLE*/}
                             <div className="card h-[7dvh] w-[25dvw] max-sm:w-[70dvw] bg-base-200 shadow-xl flex justify-center items-center" key={`${c.name[i18n.language]}-title-${i}`}>
                                 <span className="inline-block text-3xl max-sm:text-xl align-c" key={`${c.name[i18n.language]}-title`}>
