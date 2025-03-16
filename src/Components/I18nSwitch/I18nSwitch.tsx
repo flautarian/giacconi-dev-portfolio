@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { useEffect, useRef, useState } from "react";
 import React from "react";
 import './I18nSwitch.css'
 import { GrLanguage } from "react-icons/gr";

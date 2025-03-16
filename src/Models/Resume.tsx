@@ -90,14 +90,14 @@ const experienceSection = {
       position: "Full stack developer",
       responsabilities: [
         {
-          es: "Desarrollo y mantenimiento/mejora de un proyecto diseñado para crear automáticamente diferentes horarios de viaje a partir de las necesidades del usuario. Proyecto MVC basado en backend Java Spring con persistencia de datos SQL y frontend de comunicaciones JSP, CSS y REST.",
-          en: "Development and maintenance/enhancement of a project designed to automatically create different travel schedules from user needs. MVC project based on Java Spring backend with SQL data persistence and JSP, CSS, and REST communications frontend.",
-          fr: "Développement et maintenance/amélioration d’un projet conçu pour créer automatiquement des horaires de déplacement différents des besoins des utilisateurs. Projet MVC basé sur le backend Java Spring avec persistance des données SQL et frontend de communication JSP, CSS et REST.",
+          es: "Desarrollo, mantenimiento y mejora de un proyecto diseñado para crear automáticamente diferentes horarios de viaje a partir de las necesidades del usuario. Proyecto MVC basado en backend Java Spring con persistencia de datos SQL y frontend de comunicaciones JSP, CSS y REST.",
+          en: "Development maintenance and enhancement of a project designed to automatically create different travel schedules from user needs. MVC project based on Java Spring backend with SQL data persistence and JSP, CSS, and REST communications frontend.",
+          fr: "Développement, maintenance et amélioration d’un projet conçu pour créer automatiquement des horaires de déplacement différents des besoins des utilisateurs. Projet MVC basé sur le backend Java Spring avec persistance des données SQL et frontend de communication JSP, CSS et REST.",
         },
         {
-          es: "Desarrollador y mantenimiento/mejora en el sector de relaciones API de un proyecto basado en Spring y Java en el backend, y JSP y CSS en el frontend, con una base de datos SQL y la librería JOOQ.",
-          en: "Developer and maintenance/enhancement in the API relations sector of a project based on Spring and Java in the backend, and JSP and CSS in the frontend, with an SQL database and the JOOQ library.",
-          fr: "Développeur et maintenance/amélioration dans le secteur des relations API d’un projet basé sur Spring et Java en backend, et JSP et CSS en frontend, avec une base de données SQL et la librairie JOOQ.",
+          es: "Desarrollador, mantenimiento y mejora en el sector de relaciones API de un proyecto basado en Spring y Java en el backend, y JSP y CSS en el frontend, con una base de datos SQL y la librería JOOQ.",
+          en: "Developer, maintenance and enhancement in the API relations sector of a project based on Spring and Java in the backend, and JSP and CSS in the frontend, with an SQL database and the JOOQ library.",
+          fr: "Développeur, maintenance et amélioration dans le secteur des relations API d’un projet basé sur Spring et Java en backend, et JSP et CSS en frontend, avec une base de données SQL et la librairie JOOQ.",
         }
       ],
       dateFrom: new Date("2013-07-17"),

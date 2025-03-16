@@ -65,7 +65,7 @@ const TimelineCarousel = (props) => {
                             <div className="card size-full bg-base-200 shadow-xl">
                                 <div className="card-body pt-1 flex flex-col">
                                     {/* BASIC INFO */}
-                                    <div className="pb-2 mt-5 text-xs">
+                                    <div className="pb-2 mt-5 text-xs text-balance hyphens-auto">
                                         <p><span className="text-primary">{t("_name")}: </span>{c.name[i18n.language]}</p>
                                         <p><span className="text-primary">{t("_location")}: </span>{c.location}</p>
                                         <p><span className="text-primary">{t("_position")}: </span>{c.position}</p>
@@ -75,8 +75,8 @@ const TimelineCarousel = (props) => {
                                     {/* ADVANCED-INFO */}
                                     <div className="pt-0 text-xs overflow-auto max-h-[30dvh]">
                                         <p className="text-primary">{t("_responsabilities")}:</p>
-                                        <ul className="overflow-auto list-disc pl-10">
-                                            {c.responsabilities.map((responsability, rIndex) => <li className={`mt-${rIndex > 0 ? 5 : 0}`} key={`${c.enterprise}-r-${rIndex}`}>{t(responsability[i18n.language])}</li>)}
+                                        <ul className="overflow-auto list-disc p-5 pt-0">
+                                            {c.responsabilities.map((responsability, rIndex) => <li className={`mt-${rIndex > 0 ? 5 : 0} text-balance hyphens-auto`} key={`${c.enterprise}-r-${rIndex}`}>{t(responsability[i18n.language])}</li>)}
                                         </ul>
                                     </div>
                                     <hr />

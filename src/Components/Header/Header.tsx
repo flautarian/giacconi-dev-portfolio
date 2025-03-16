@@ -107,7 +107,7 @@ const Header = (props) => {
         <Confetti className='size-full' /></div>}
       {/* HEADER */}
       <header className={`fixed w-[max-content] flex justify-center rounded-box z-10 ${"header-" + (headerStatus == 0 ? "main" : "cta")} neon-light-container smooth-animation`}>
-        <ul className={`menu menu-horizontal bg-base-200 rounded-box ul-style text`}
+        <ul className={`menu menu-horizontal bg-base-200 gap-2 rounded-box ul-style text`}
           role="headermenu"
           style={isdark ? {
             boxShadow: boxShadowStyle,

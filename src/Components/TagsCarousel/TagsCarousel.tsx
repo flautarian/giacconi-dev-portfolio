@@ -24,7 +24,6 @@ const TagsCarousel = (props) => {
 
     const updateCurrentValue = useCallback(
         (previousSlide, { currentSlide }) => {
-            console.log(currentSlide % props.values.length);
             setCurrentValue(currentSlide % props.values.length);
             setIconsActive(true);
         },
@@ -69,8 +68,8 @@ const TagsCarousel = (props) => {
                             {/*BODY*/}
                             <div className="card h-[55dvh] max-sm:h-[60dvh] w-[35dvw] max-sm:w-[90dvw] mt-5 max-sm:mt-[2dvw] bg-base-200 shadow-xl" key={`${c.name["en"]}-${i}`}>
                                 <div className="card-body pt-0 pb-2 mt-10 max-sm:text-xs">
-                                    <p><span className="text-primary">{t("_motivation")}: </span>{c.purpose[i18n.language]}</p>
-                                    <p><span className="text-primary">{t("_description")}: </span>{c.description[i18n.language]}</p>
+                                    <p className="text-balance hyphens-auto"><span className="text-primary">{t("_motivation")}: </span>{c.purpose[i18n.language]}</p>
+                                    <p className="text-balance hyphens-auto"><span className="text-primary">{t("_description")}: </span>{c.description[i18n.language]}</p>
                                 </div>
                             </div>
                             {/*LINKS*/}

@@ -92,7 +92,7 @@ const VerticalCarousel = (props) => {
                 <p className="max-h-[20vh] h-[10vh] overflow-auto">{slide.description[i18n.language]}</p>
                 <p className="text-primary">{t("_responsabilities")}:</p>
                 <ul className="max-h-[20vh] h-[15vh] overflow-auto list-disc pl-10 emoji-star">
-                  {slide.responsabilities.map((responsability, rIndex) => <li className={`mt-${rIndex > 0 ? 5 : 0}`} key={`${slide.enterprise}-r-${rIndex}`}>{t(responsability[i18n.language])}</li>)}
+                  {slide.responsabilities.map((responsability, rIndex) => <li className={`mt-${rIndex > 0 ? 5 : 0} text-balance hyphens-auto`} key={`${slide.enterprise}-r-${rIndex}`}>{t(responsability[i18n.language])}</li>)}
                 </ul>
                 <hr />
                 <div>

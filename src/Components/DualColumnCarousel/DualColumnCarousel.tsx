@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import "./SimpleCarousel.css"
 
 
-const Certifications = (props) => {
+const DualColumnCarousel = (props) => {
 
     const { t } = useTranslation('home');
 
@@ -41,7 +41,7 @@ const Certifications = (props) => {
                     </figure>
                     <div className="p-5 flex flex-col h-[30vh]">
                         <h2 className="card-title">{c.name[i18n.language]}</h2>
-                        <p>{c.description[i18n.language]}</p>
+                        <p className="text-balance hyphens-auto">{c.description[i18n.language]}</p>
                     </div>
                     {
                         !!c.buttons && <div className="w-full flex justify-end h-[5vh]">
@@ -60,8 +60,8 @@ const Certifications = (props) => {
     );
 }
 
-Certifications.proptypes = {
+DualColumnCarousel.proptypes = {
     values: PropTypes.arrayOf(PropTypes.object)
 }
 
-export default Certifications;
+export default DualColumnCarousel;

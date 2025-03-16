@@ -7,7 +7,7 @@ import "./SimpleCarousel.css"
 import { isMobile } from "react-device-detect";
 
 
-const Certifications = (props) => {
+const SimpleCarousel = (props) => {
 
     const { t } = useTranslation('home');
 
@@ -43,7 +43,7 @@ const Certifications = (props) => {
                         </figure>
                         <div className="p-5 flex flex-col h-[30dvh]">
                             <h2 className="card-title">{c.name[i18n.language]}</h2>
-                            <p>{c.description[i18n.language]}</p>
+                            <p className="text-balance hyphens-auto">{c.description[i18n.language]}</p>
                             {
                                 !!c.buttons && <div className="w-full flex justify-end h-[5dvh] mt-5">
                                     <div className="w-[50%] flex flex-row justify-around">
@@ -63,8 +63,8 @@ const Certifications = (props) => {
     );
 }
 
-Certifications.proptypes = {
+SimpleCarousel.proptypes = {
     values: PropTypes.arrayOf(PropTypes.object)
 }
 
-export default Certifications;
+export default SimpleCarousel;
