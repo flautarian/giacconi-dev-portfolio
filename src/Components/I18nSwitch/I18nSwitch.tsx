@@ -16,10 +16,10 @@ const I18nSwitch = () => {
 
     return (
         <>
-            <div className="dropdown dropdown-bottom flex justify-center" key={"i18n-switch"}> 
-                <button type="button" title="languages" name="lang-dropdown" role="button">
+            <details  className="dropdown dropdown-bottom flex flex-col justify-center" key={"i18n-switch"}> 
+                <summary title="languages" role="button" className="btn">
                     <GrLanguage size={32} />
-                </button>
+                </summary>
                 <ul tabIndex={0} className="shadow dropdown-content z-[1] menu bg-base-100 rounded-box mt-5" role="list">
                     {
                         flags.map((flag: string, index: number) => (
@@ -31,7 +31,7 @@ const I18nSwitch = () => {
                         ))
                     }
                 </ul>
-            </div>
+            </details>
         </>
     );
 };
