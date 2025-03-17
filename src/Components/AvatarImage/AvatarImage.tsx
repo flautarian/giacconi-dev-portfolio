@@ -34,7 +34,7 @@ const AvatarImage = (props) => {
 
     return (
         <div id="avatar-img" ref={pathRef} className="avatar float-end max-sm:w-[50dvw]" key={`avatar-container-${props.url}`}>
-            <div className="min-w-xs max-w-xs rounded-full scale-hover" style={{ boxShadow: `${shadow.x}px ${shadow.y}px ${shadow.blur}px rgba(0, 0, 0, 0.2)` }}>
+            <div className="min-w-xs max-sm:w-[50dvw] rounded-full scale-hover" style={{ boxShadow: `${shadow.x}px ${shadow.y}px ${shadow.blur}px rgba(0, 0, 0, 0.2)` }}>
                 <img src={props.img} onClick={() => window.open(props.url || "", "_blank")} alt={props.alt} title={props.title}/>
             </div>
         </div>
