@@ -54,7 +54,7 @@ const App = () => {
               {section.type === "timeline-carousel" && <TimelineCarousel values={section.values} />}
               {section.type === "simple-carousel" && <SimpleCarousel values={section.values} />}
               {section.type === "tags-carousel" && <TagsCarousel values={section.values} />}
-              {section.type === "summary" && <Summary img={resumeJson.avatar} />}
+              {section.type === "summary" && <Summary img={resumeJson.avatar} linkedInUrl={resumeJson.linkedIn} />}
             </div>
           );
         })
