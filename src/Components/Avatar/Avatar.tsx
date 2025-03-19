@@ -10,7 +10,7 @@ import AvatarImage from "../AvatarImage/AvatarImage";
 
 const Avatar = (props) => {
 
-    const { t } = useTranslation(['home']);
+    const { t, i18n } = useTranslation(['home']);
 
     return (
         <div id="avatar-container" className={`flex max-2xl:flex-row max-sm:flex-col justify-around items-center`}>

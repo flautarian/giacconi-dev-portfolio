@@ -11,7 +11,7 @@ export interface Resume {
   github: string;
   gitlab: string;
   docker: string;
-  cv: string;
+  cv: Label;
   sections: Array<Section>;
 }
 
@@ -699,7 +699,11 @@ const exampleResume: Resume = {
   email: "fgiacconi.dev@gmail.com",
   gitlab: "",
   docker: "",
-  cv: "https://github.com/flautarian/resume-public/blob/main/CV_Facundo_Giacconi_EN.pdf",
+  cv: {
+    es: "https://github.com/flautarian/resume-public/blob/main/CV_Facundo_Giacconi_ES.pdf",
+    en: "https://github.com/flautarian/resume-public/blob/main/CV_Facundo_Giacconi_EN.pdf",
+    fr: "https://github.com/flautarian/resume-public/blob/main/CV_Facundo_Giacconi_EN.pdf"
+  },
   sections: [
     experienceSection,
     projectsSection,

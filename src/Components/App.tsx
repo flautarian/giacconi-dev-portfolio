@@ -5,7 +5,7 @@ import './App.scss';
 import resumeJson from '../Models/Resume';
 import { useTranslation } from 'react-i18next';
 import TimelineCarousel from './TimelineCarousel/TimelineCarousel';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import SimpleCarousel from './SimpleCarousel/SimpleCarousel';
 import { MainContext } from '../Providers/ContextProvider';
 import { isMobile } from 'react-device-detect';
@@ -25,7 +25,7 @@ const App = () => {
         linkedInUrl={resumeJson.linkedIn}
         emailUrl={resumeJson.email}
         githubUrl={resumeJson.github}
-        cvUrl={resumeJson.cv} />
+        cvUrl={resumeJson.cv[i18n.language]} />
       {!isMobile &&
         <>
           {Array.from(Array(100).keys()).map((n, $index) => (
@@ -45,7 +45,7 @@ const App = () => {
         linkedInUrl={resumeJson.linkedIn}
         emailUrl={resumeJson.email}
         githubUrl={resumeJson.github}
-        cv={resumeJson.cv}
+        cv={resumeJson.cv[i18n.language]}
       />
       {
         resumeJson.sections.map((section) => {
