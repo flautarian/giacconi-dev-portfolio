@@ -18,7 +18,7 @@ const Avatar = (props) => {
                 <AvatarImage img={props.img} url={props.linkedInUrl} maxSize={isMobile ? "50dvw" : "25dvw"} alt="Go to my LikedIn page" title="Go to my LikedIn page" />
             </div>
             <div className="max-2xl:text-left max-sm:text-center avatar-desc-animation mr-[5dvw] max-sm:mr-[0dvw] flex flex-col items-center">
-                <div className="max-w-xl p-5 bg-base-100 rounded-xl shadow-xl">
+                <div className="max-w-xl p-5 bg-base-100 rounded-xl  drop-shadow-[0px_7px_10px_rgba(0,0,0,0.7)]">
                     <h1 className="text-5xl max-sm:text-2xl font-bold">{`${props.name} ${props.surnames}`}</h1>
                     <p className="py-4 whitespace-pre-wrap">{props.job}</p>
                     {
@@ -27,7 +27,7 @@ const Avatar = (props) => {
                     }
                 </div>
 
-                <div className="h-[10dvh] w-[25dvw] max-sm:w-[70dvw] mt-5 p-5 bg-base-100 rounded-xl shadow-xl flex flex-row justify-around items-center">
+                <div className="h-[10dvh] w-[25dvw] max-sm:w-[70dvw] mt-5 p-5 bg-base-100 rounded-xl  drop-shadow-[0px_7px_10px_rgba(0,0,0,0.7)] flex flex-row justify-around items-center">
                     <FaLinkedin title={t("linkedin_label")} className="scale-hover" size={isMobile ? 32 : 48} onClick={() => window.open(props.linkedInUrl, "_blank")} />
                     <FiMail title={t("mail_label")} className="scale-hover" size={isMobile ? 32 : 48} onClick={() => window.open("mailto:" + props.emailUrl, "_blank")} />
                     <FaGithub title={t("github_label")} className="scale-hover" size={isMobile ? 32 : 48} onClick={() => window.open(props.githubUrl, "_blank")} />

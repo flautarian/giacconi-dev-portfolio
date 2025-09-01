@@ -33,7 +33,7 @@ const Slide = (props) => {
       config={props.animationConfig}
     >
       {(style) => (
-        <div className="absolute w-full md:w-[45dvw] h-full md:h-[75dvh] overflow-auto"
+        <div className="absolute w-full md:w-[45dvw] h-full md:h-[75dvh] overflow-auto  drop-shadow-[0px_7px_10px_rgba(0,0,0,0.7)]"
           style={{
             ...style,
             zIndex: Math.abs(Math.abs(props.index) - 2),

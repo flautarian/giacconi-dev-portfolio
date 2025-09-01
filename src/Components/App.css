@@ -2,13 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    --dark-color-start: #1b2735;
-    --dark-color-end: #090a0f;
-    --light-color-start: #3400c3;
-    --light-color-end: #dbe0f8;
-}
-
 .App {
     background-repeat: no-repeat;
     background-attachment: fixed;

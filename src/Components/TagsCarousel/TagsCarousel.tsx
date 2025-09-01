@@ -1,17 +1,13 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useTranslation } from "react-i18next";
 import PropTypes from 'prop-types';
 import "./TagsCarousel.css"
-import { DiJavascript, DiMongodb, DiPython } from "react-icons/di";
-import { FaAngular, FaDocker, FaFlask, FaJava, FaReact, FaWifi, FaWindowMaximize } from "react-icons/fa6";
 import { isMobile } from "react-device-detect";
-import { SiGunicorn, SiLatex, SiRender, SiSpringboot, SiTypescript } from "react-icons/si";
-import { TbJson } from "react-icons/tb";
-import { IoLanguage } from "react-icons/io5";
 import { BsGithub, BsWindow } from "react-icons/bs";
-import { RiNextjsFill, RiNodejsFill } from "react-icons/ri";
+import Utils from "../../Utils/utils";
+import { MainContext } from "../../Providers/ContextProvider";
 
 
 const TagsCarousel = (props) => {
@@ -21,6 +17,23 @@ const TagsCarousel = (props) => {
     const [iconsActive, setIconsActive] = useState(true);
 
     const [currentValue, setCurrentValue] = useState(0);
+
+    const rootRef = useRef<HTMLDivElement>(null);
+
+    const { isdark } = useContext(MainContext);
+
+    useEffect(() => {
+        if (rootRef.current && !!props.backgroundLights) {
+            let lightColorStart = props.backgroundLights["lightColorStart"];
+            let lightColorEnd = props.backgroundLights["lightColorEnd"];
+            let darkColorStart = props.backgroundLights["darkColorStart"];
+            let darkColorEnd = props.backgroundLights["darkColorEnd"];
+
+            rootRef.current.style.background =
+                `linear-gradient(90deg, ${lightColorStart}, ${lightColorEnd}, ${darkColorStart}, ${darkColorEnd})`;
+            rootRef.current.style.backgroundSize = '400% 400%';
+        }
+    }, []);
 
     const updateCurrentValue = useCallback(
         (previousSlide, { currentSlide }) => {
@@ -33,7 +46,6 @@ const TagsCarousel = (props) => {
 
     const responsive = {
         superLargeDesktop: {
-            // the naming can be any, depends on you.
             breakpoint: { max: 4000, min: 3000 },
             items: 1
         },
@@ -54,27 +66,27 @@ const TagsCarousel = (props) => {
     const { i18n } = useTranslation(['home']);
 
     return (
-        <div className="flex flex-row" style={{ height: "100dvh", width: "100dvw" }}>
-            <Carousel responsive={responsive} className="w-[50dvw] max-sm:w-[100dvw] max-sm:mt-[0dvh]  h-[90dvh]" draggable arrows={!isMobile} beforeChange={(previousSlide, { currentSlide }) => setIconsActive(false)} afterChange={updateCurrentValue}>
+        <div ref={rootRef} className={`flex flex-row ${isdark ? 'gradient-dark' : 'gradient-light'}`} style={{ height: "100dvh", width: "100dvw" }}>
+            <Carousel responsive={responsive} className="w-[50dvw] max-sm:w-[100dvw] max-sm:mt-[0dvh] h-[100dvh]" containerClass="carousel-container" draggable arrows={!isMobile} beforeChange={(previousSlide, { currentSlide }) => setIconsActive(false)} afterChange={updateCurrentValue}>
                 {
                     props.values.map((c: any, i: number) => (
-                        <div className="flex flex-col items-center justify-around" key={`${c.name[i18n.language]}-container-${i}`}>
+                        <div className="flex flex-col items-center justify-start align-start" key={`${c.name[i18n.language]}-container-${i}`}>
                             {/*TITLE*/}
-                            <div className="card h-[7dvh] w-[25dvw] max-sm:w-[70dvw] bg-base-200 shadow-xl flex justify-center items-center" key={`${c.name[i18n.language]}-title-${i}`}>
+                            <div className="card h-[7dvh] w-[25dvw] max-sm:w-[70dvw] bg-base-200 flex justify-center items-center drop-shadow-[0px_7px_10px_rgba(0,0,0,0.7)]" key={`${c.name[i18n.language]}-title-${i}`}>
                                 <span className="inline-block text-3xl max-sm:text-xl align-c" key={`${c.name[i18n.language]}-title`}>
                                     {c.name[i18n.language]}
                                 </span>
                             </div>
                             {/*BODY*/}
-                            <div className="card h-[55dvh] max-sm:h-[60dvh] w-[35dvw] max-sm:w-[90dvw] mt-5 max-sm:mt-[2dvw] bg-base-200 shadow-xl" key={`${c.name["en"]}-${i}`}>
-                                <div className="card-body pt-0 pb-2 mt-10 max-sm:text-xs">
-                                    <p className="text-balance hyphens-auto"><span className="text-primary">{t("_motivation")}: </span>{c.purpose[i18n.language]}</p>
-                                    <p className="text-balance hyphens-auto"><span className="text-primary">{t("_description")}: </span>{c.description[i18n.language]}</p>
+                            <div className="card h-fit max-h-[60dvh] max-sm:h-[60dvh] w-[35dvw] max-sm:w-[90dvw] mt-5 max-sm:mt-[2dvw] bg-base-200 drop-shadow-[0px_7px_10px_rgba(0,0,0,0.7)]" key={`${c.name["en"]}-${i}`}>
+                                <div className="card-body pt-0 pb-2 mt-2 max-sm:text-xs">
+                                    <p className="text-balance hyphens-auto"><span className="text-primary text-xl">{t("_motivation")}: </span>{c.purpose[i18n.language]}</p>
+                                    <p className="text-balance hyphens-auto mt-2"><span className="text-primary text-xl">{t("_description")}: </span>{c.description[i18n.language]}</p>
                                 </div>
                             </div>
                             {/*LINKS*/}
                             {(!!c.github || !!c.webUrl) &&
-                                <div className="card bg-base-300 w-[15dvw] max-sm:w-[45dvw] flex flex-row justify-around items-center p-5 max-sm:p-2 mt-2">
+                                <div className="card bg-base-300 drop-shadow-[0px_7px_10px_rgba(0,0,0,0.7)] w-fit gap-x-5 max-sm:w-[45dvw] flex flex-row justify-around items-center p-5 max-sm:p-2 mt-2">
                                     {!!c.github && <BsGithub className="clicable-content" size={32} onClick={() => window.open(c.github, "_blank")} />}
                                     {!!c.webUrl && <BsWindow className="clicable-content" size={32} onClick={() => window.open(c.webUrl, "_blank")} />}
                                 </div>
@@ -85,9 +97,9 @@ const TagsCarousel = (props) => {
                 }
             </Carousel>
             {!isMobile &&
-                <div className={`w-[25dvw] m-[5dvw] mt-[5dvh] h-[80dvh] flex flex-col items-center`}>
+                <div className={`w-[25dvw] m-[5dvw] mt-[5dvh] h-[80dvh] max-h[80dvh] overflow-auto flex flex-col items-center`}>
                     {/*TITLE*/}
-                    <div className="card h-[7dvh] w-[25dvw] bg-base-200 shadow-xl flex justify-center items-center">
+                    <div className="card h-[7dvh] w-[25dvw] bg-base-200 drop-shadow-[0px_5px_5px_rgba(0,0,0,0.7)] flex justify-center items-center">
                         <span className="inline-block text-3xl align-c">
                             {t("_stack_used")}
                         </span>
@@ -96,27 +108,13 @@ const TagsCarousel = (props) => {
                         {
                             !!props.values[currentValue] && props.values[currentValue].stack.map((element) => {
                                 return (
-                                    <span className={`card h-[15dvh] bg-base-200 shadow-xl flex justify-center items-center clicable-content  ${iconsActive ? "fadeIn" : "fadeOut"}`} key={`${props.values[currentValue].name["en"]}-${element}`} title={`${element}`}>
-                                        {element === "python" && <DiPython size={72} onClick={() => window.open("https://www.python.org/", "_blank")} />}
-                                        {element === "flask" && <FaFlask size={64} onClick={() => window.open("https://flask.palletsprojects.com/en/3.0.x/", "_blank")} />}
-                                        {element === "mongo" && <DiMongodb size={72} onClick={() => window.open("https://www.mongodb.com/", "_blank")} />}
-                                        {element === "gunicorn" && <SiGunicorn size={72} onClick={() => window.open("https://gunicorn.org/", "_blank")} />}
-                                        {element === "render" && <SiRender size={48} onClick={() => window.open("https://render.com/", "_blank")} />}
-                                        {element === "react" && <FaReact size={72} onClick={() => window.open("https://react.dev/", "_blank")} />}
-                                        {element === "angular" && <FaAngular size={72} onClick={() => window.open("https://angular.io/", "_blank")} />}
-                                        {element === "tkinter" && <FaWindowMaximize size={72} onClick={() => window.open("https://docs.python.org/3/library/tkinter.html", "_blank")} />}
-                                        {element === "json" && <TbJson size={72} onClick={() => window.open("https://www.json.org/json-en.html", "_blank")} />}
-                                        {element === "latex" && <SiLatex size={72} onClick={() => window.open("https://www.latex-project.org/", "_blank")} />}
-                                        {element === "typescript" && <SiTypescript size={72} onClick={() => window.open("https://www.typescriptlang.org/", "_blank")} />}
-                                        {element === "javascript" && <DiJavascript size={72} onClick={() => window.open("https://www.javascript.com/", "_blank")} />}
-                                        {element === "i18n" && <IoLanguage size={72} onClick={() => window.open("https://www.javascript.com/", "_blank")} />}
-                                        {element === "rest" && <FaWifi size={72} onClick={() => window.open("https://www.javascript.com/", "_blank")} />}
-                                        {element === "springboot" && <SiSpringboot size={72} onClick={() => window.open("https://spring.io/projects/spring-boot", "_blank")} />}
-                                        {element === "java" && <FaJava size={72} onClick={() => window.open("https://www.java.com", "_blank")} />}
-                                        {element === "docker" && <FaDocker size={72} onClick={() => window.open("https://www.docker.com/", "_blank")} />}
-                                        {element === "nextjs" && <RiNextjsFill size={72} onClick={() => window.open("https://nextjs.org/", "_blank")} />}
-                                        {element === "nodejs" && <RiNodejsFill size={72} onClick={() => window.open("https://nodejs.org/", "_blank")} />}
-                                        {element === "redis" && <img onClick={() => window.open("https://redis.io/", "_blank")} src={"/icons/redis-icon.png"} />}
+                                    <span
+                                        className={`card h-[15dvh] bg-base-200 drop-shadow-[0px_5px_5px_rgba(0,0,0,0.7)] flex justify-center items-center clicable-content ${iconsActive ? "fadeIn" : "fadeOut"}`}
+                                        key={`${props.values[currentValue].name["en"]}-${element}`}
+                                        title={element}
+                                        onClick={() => window.open(Utils.iconMap[element]?.url, "_blank")}
+                                    >
+                                        {Utils.iconMap[element]?.component}
                                     </span>
                                 );
                             })

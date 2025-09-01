@@ -1,15 +1,33 @@
-import React from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useTranslation } from "react-i18next";
 import PropTypes from 'prop-types';
 import "./SimpleCarousel.css"
 import { isMobile } from "react-device-detect";
+import { MainContext } from "../../Providers/ContextProvider";
 
 
 const SimpleCarousel = (props) => {
 
     const { t } = useTranslation('home');
+
+    const rootRef = useRef<HTMLDivElement>(null);
+
+    const { isdark } = useContext(MainContext);
+
+    useEffect(() => {
+        if (rootRef.current && !!props.backgroundLights) {
+            let lightColorStart = props.backgroundLights["lightColorStart"];
+            let lightColorEnd = props.backgroundLights["lightColorEnd"];
+            let darkColorStart = props.backgroundLights["darkColorStart"];
+            let darkColorEnd = props.backgroundLights["darkColorEnd"];
+
+            rootRef.current.style.background =
+                `linear-gradient(90deg, ${lightColorStart}, ${lightColorEnd}, ${darkColorStart}, ${darkColorEnd})`;
+            rootRef.current.style.backgroundSize = '400% 400%';
+        }
+    }, []);
 
     const responsive = {
         superLargeDesktop: {
@@ -34,10 +52,10 @@ const SimpleCarousel = (props) => {
     const { i18n } = useTranslation(['home']);
 
     return (
-        <div className={`${!isMobile ? "flex" : ""}`} style={{ height: "100dvh", width: "100dvw" }}>
+        <div ref={rootRef} className={`${!isMobile ? "flex" : ""} ${isdark ? 'gradient-dark' : 'gradient-light'}`} style={{ height: "100dvh", width: "100dvw" }}>
             <Carousel responsive={responsive} focusOnSelect={true} draggable infinite={true} arrows={!isMobile} className={`${!isMobile ? "size-full" : ""}`}>
                 {props.values.map((c: any, i: number) => (
-                    <div className="card m-5 bg-base-100 shadow-xl h-[60dvh] max-sm:h-[80dvh] certification" key={`${c.name}-${i}`}>
+                    <div className="card m-5 bg-base-100 drop-shadow-[0px_7px_10px_rgba(0,0,0,0.7)] h-[60dvh] max-sm:h-[80dvh] certification" key={`${c.name}-${i}`}>
                         <figure className="w-[100%] h-[30dvh]">
                             <img src={c.img} alt={c.name[i18n.language]} className="w-[100%] h-[35dvh] object-cover" />
                         </figure>

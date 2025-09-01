@@ -12,6 +12,7 @@ export interface Resume {
   gitlab: string;
   docker: string;
   cv: Label;
+  backgroundLights: BackgroundLights,
   sections: Array<Section>;
 }
 
@@ -24,7 +25,15 @@ export interface Section {
   enteringEffect: string;
   neonMenuColor: string;
   tags?: Array<string>;
+  backgroundLights?: BackgroundLights;
   values: Array<Experience | Certificate | Project>;
+}
+
+export interface BackgroundLights {
+  darkColorStart: string;
+  darkColorEnd: string;
+  lightColorStart: string;
+  lightColorEnd: string;
 }
 
 export interface Experience extends Section {
@@ -73,6 +82,12 @@ const experienceSection = {
   type: "timeline-carousel",
   enteringEffect: "aurora-purple",
   neonMenuColor: "rgba(255, 150, 0, 1)",
+  backgroundLights: {
+    darkColorStart: "#35211bff",
+    darkColorEnd: "#090a0f",
+    lightColorStart: "#c34800ff",
+    lightColorEnd: "#dbe0f8"
+  },
   values: [
     {
       name: {
@@ -259,6 +274,12 @@ const certificatesSection = {
   type: "simple-carousel",
   enteringEffect: "",
   neonMenuColor: "rgba(0, 255, 255, 1)",
+  backgroundLights: {
+    darkColorStart: "#1b3135ff",
+    darkColorEnd: "#090a0f",
+    lightColorStart: "#00bdc3ff",
+    lightColorEnd: "#dbe0f8"
+  },
   values: [
     {
       key: "React-Course-1",
@@ -477,7 +498,55 @@ const projectsSection = {
   },
   enteringEffect: "",
   neonMenuColor: "rgba(255, 255, 0, 1)",
+  backgroundLights: {
+    darkColorStart: "#35351bff",
+    darkColorEnd: "#090a0f",
+    lightColorStart: "#b6c300ff",
+    lightColorEnd: "#dbe0f8"
+  },
   values: [
+    {
+      key: "BotCommander",
+      name: {
+        es: "Bot commander app",
+        en: "Bot commander app",
+        fr: "Bot commander app"
+      },
+      purpose: {
+        es: "Bot Commander es un proyecto educativo iniciado para poder probar la capacidad que puede tener un sistema dockerizado para poder ser en si misma una plataforma de gestión de diferentes sistemas en tiempo real, con este objetivo se desarrollo la plataforma bot-commander, que ofrece no solo un sistema de gestión de maquinas a distancia en tiempo real, sino que monitoriza cada bot mediante pulsos de presencia y tiene la capacidad de descargar payloads para generar mas bots.",
+        en: "Bot Commander is an educational project initiated to test the capacity that a Dockerized system can have to be a management platform for different systems in real time. With this objective, the Bot Commander platform was developed, which offers not only a remote machine management system in real time, but also monitors each bot through presence pulses and has the ability to download payloads to generate more bots.",
+        fr: "Bot Commander est un projet éducatif visant à tester la capacité d'un système dockerisé à gérer différents systèmes en temps réel. C'est dans ce but qu'a été développée la plateforme Bot Commander. Elle offre non seulement un système de gestion à distance des machines en temps réel, mais surveille également chaque robot grâce à des impulsions de présence et permet de télécharger des charges utiles pour générer davantage de robots."
+      },
+      description: {
+        es: "Botcommander platform es un proyecto fullstack diseñado para gestionar y controlar una red de bots con fines educativos y de demostración de las capacidades del sistema dockerizado, desarrollado principalmente en Java (backend), TypeScript (frontend), Python y Javascript (payloads), con soporte de un fronend en Angular 17 y un backend en springboot 3.X, que permite la administración centralizada de bots, la generación y descarga de payloads para la activación de estos, la captura de pantallas, la monitorización de procesos en tiempo real mediante gráficos, y la implementación de sistemas de seguridad y comunicación como heartbeat (latido) para supervisar el estado de los bots, el envio de ordenes en tiempo real y la recolección de sus resultados con opción a visor geografico de cada bot, todo ello estructurado con Docker para facilitar su despliegue y escalabilidad.",
+        en: "Botcommander platform is a fullstack project designed to manage and control a network of bots for educational purposes and to demonstrate the capabilities of the dockerized system, developed mainly in Java (backend), TypeScript (frontend), Python and Javascript (payloads), with support for a frontend in Angular 17 and a backend in springboot 3.X, which allows centralized administration of bots, generation and download of payloads for their activation, screenshots, real-time process monitoring through graphics, and the implementation of security and communication systems such as heartbeat to monitor the status of bots, sending orders in real time and collecting their results with the option of a geographic viewer for each bot, all structured with Docker to facilitate its deployment and scalability.",
+        fr: "La plateforme Botcommander est un projet fullstack conçu pour gérer et contrôler un réseau de bots à des fins éducatives et pour démontrer les capacités du système dockerisé, développé principalement en Java (backend), TypeScript (frontend), Python et Javascript (payloads), avec prise en charge d'un frontend en Angular 17 et d'un backend en springboot 3.X, qui permet l'administration centralisée des bots, la génération et le téléchargement de payloads pour leur activation, des captures d'écran, la surveillance des processus en temps réel via des graphiques et la mise en œuvre de systèmes de sécurité et de communication tels que heartbeat pour surveiller l'état des bots, envoyer des commandes en temps réel et collecter leurs résultats avec l'option d'un visualiseur géographique pour chaque bot, le tout structuré avec Docker pour faciliter son déploiement et son évolutivité."
+      },
+      stack: ["angular", "typescript", "javascript", "java", "python", "json", "mongo", "docker"],
+      github: "https://github.com/flautarian/bot-commander",
+      webUrl: ""
+    },
+    {
+      key: "MemeGenerator",
+      name: {
+        es: "Meme generator app",
+        en: "Meme generator app",
+        fr: "Meme generator app"
+      },
+      purpose: {
+        es: "Aplicación multiplataforma escrita en React Native, creada para crear, personalizar y compartir memes de forma sencilla y creativa, con una interfaz intuitiva y moderna.",
+        en: "A cross-platform app written in React Native, built for creating, customizing, and sharing memes easily and creatively, with an intuitive, modern interface.",
+        fr: "Une application multiplateforme écrite en React Native, conçue pour créer, personnaliser et partager des mèmes facilement et de manière créative, avec une interface intuitive et moderne."
+      },
+      description: {
+        es: "Es una aplicación multiplataforma y responsive desarrollada con React Native y Expo que permite crear, personalizar y compartir memes de forma intuitiva y rápida, ofreciendo herramientas como texto editable con fuente variable, importación de plantillas propias, decoraciones personalizables, una comoda interfaz tipo drag and drop, soporte para múltiples idiomas (inglés, español, francés e italiano), y opciones para compartir directamente las creaciones, todo ello con un diseño moderno y fondo animado adaptado a sistema web, Android y IOs",
+        en: "It is a multiplatform and responsive application developed with React Native and Expo that allows you to create, customize and share memes intuitively and quickly, offering tools such as editable text with variable font, import of your own templates, customizable decorations, a comfortable drag and drop interface, support for multiple languages ​​(English, Spanish, French and Italian), and options to directly share creations, all with a modern design and animated background adapted to the web, Android and IOs systems.",
+        fr: "Il s'agit d'une application multiplateforme et réactive développée avec React Native et Expo qui vous permet de créer, personnaliser et partager des mèmes de manière intuitive et rapide, en offrant des outils tels que du texte modifiable avec une police variable, l'importation de vos propres modèles, des décorations personnalisables, une interface glisser-déposer confortable, la prise en charge de plusieurs langues (anglais, espagnol, français et italien) et des options pour partager directement des créations, le tout avec un design moderne et un arrière-plan animé adapté aux systèmes Web, Android et IOs."
+      },
+      stack: ["react", "typescript", "nodejs"],
+      github: "https://github.com/flautarian/meme-generator-app",
+      webUrl: ""
+    },
     {
       key: "PizzApp",
       name: {
@@ -495,7 +564,7 @@ const projectsSection = {
         en: "This application simulates the entire operation of a pizzeria, it contains a web page for purchasing pizza and an administration page to manage orders, with a front in Angular 17, a backend based on microservices with two services with SpringBoot 3 and one with Node JS with Express, database in mongoDb for orders and in Redis for the store stock and communication between microservices, this project aims to show all the sectors that I master as a Fullstack developer.",
         fr: "Cette application simule tout le fonctionnement d'une pizzeria, elle contient une page web pour l'achat de pizza et une page d'administration pour gérer les commandes, avec un front en Angular 17, un backend basé sur des microservices avec deux services avec SpringBoot 3 et un avec Node JS avec Express, base de données en mongoDb pour les commandes et en Redis pour le stock magasin et la communication entre microservices, ce projet a pour objectif de montrer tous les secteurs que je maîtrise en tant que développeur Fullstack."
       },
-      stack: ["angular", "json", "nodejs", "java", "springboot", "docker", "mongo", "redis"], 
+      stack: ["angular", "json", "nodejs", "java", "springboot", "docker", "mongo", "redis"],
       github: "https://github.com/flautarian/pizzapp",
       webUrl: ""
     },
@@ -675,10 +744,16 @@ const summarySection = {
   },
   enteringEffect: "confetti",
   neonMenuColor: "rgba(0, 255, 0, 1)",
+  backgroundLights: {
+    darkColorStart: "#25351bff",
+    darkColorEnd: "#090a0f",
+    lightColorStart: "#68c300ff",
+    lightColorEnd: "#dbe0f8"
+  },
   values: []
 }
 
-const exampleResume: Resume = {
+const resume: Resume = {
   name: "Facundo",
   surnames: "Giacconi Fernandez",
   job: {
@@ -704,6 +779,12 @@ const exampleResume: Resume = {
     en: "https://github.com/flautarian/resume-public/blob/main/CV_Facundo_Giacconi_EN.pdf",
     fr: "https://github.com/flautarian/resume-public/blob/main/CV_Facundo_Giacconi_EN.pdf"
   },
+  backgroundLights: {
+    darkColorStart: "#1b2735",
+    darkColorEnd: "#090a0f",
+    lightColorStart: "#3400c3",
+    lightColorEnd: "#dbe0f8"
+  },
   sections: [
     experienceSection,
     projectsSection,
@@ -712,4 +793,4 @@ const exampleResume: Resume = {
   ],
 };
 
-export default exampleResume;
+export default resume;

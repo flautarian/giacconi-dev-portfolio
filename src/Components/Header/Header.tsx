@@ -117,7 +117,7 @@ const Header = (props) => {
           <li className={`${headerStatus == 0 ? 'li-active' : 'li-inactive'}`}>
             <I18nSwitch />
           </li>
-          <li className={`${headerStatus == 0 ? 'li-active' : 'li-inactive'} reflection rounded`}  role="none">
+          <li className={`${headerStatus == 0 ? 'li-active' : 'li-inactive'} reflection rounded`} role="none">
             <a className='a-section btn' onClick={nextThreshold} role="startheaderbutton">
               {
                 isMobile && <> {t('_start_header_3')} </>
@@ -133,7 +133,7 @@ const Header = (props) => {
               }
             </a>
           </li>
-          <li className={`${headerStatus == 0 ? 'li-active' : 'li-inactive'}`}  role="none">
+          <li className={`${headerStatus == 0 ? 'li-active' : 'li-inactive'}`} role="none">
             <ThemeSwitch />
           </li>
           {
@@ -143,7 +143,7 @@ const Header = (props) => {
                 !isMobile &&
                 <>
                   {/* UP ARROW */}
-                  <li className="li-active"  role="none">
+                  <li className="li-active" role="none">
                     <a className='a-section btn' onClick={previousThreshold} role="upbuttonmain">
                       <FaChevronUp size={28} />
                     </a>
@@ -202,16 +202,16 @@ const Header = (props) => {
               </li>
               {/* LINKS */}
               <li className="li-active font-semibold" role="none">
-                <FaLinkedin title={t("linkedin_label")} className="scale-hover" size={52} onClick={() => window.open(props.linkedInUrl, "_blank")}  role="linkedinbutton" />
+                <FaLinkedin title={t("linkedin_label")} className="scale-hover" size={52} onClick={() => window.open(props.linkedInUrl, "_blank")} role="linkedinbutton" />
               </li>
               <li className="li-active font-semibold" role="none">
-                <FiMail title={t("mail_label")} className="scale-hover" size={52} onClick={() => window.open("mailto:" + props.emailUrl, "_blank")}  role="mailbutton" />
+                <FiMail title={t("mail_label")} className="scale-hover" size={52} onClick={() => window.open("mailto:" + props.emailUrl, "_blank")} role="mailbutton" />
               </li>
               <li className="li-active font-semibold" role="none">
-                <FaGithub title={t("github_label")} className="scale-hover" size={52} onClick={() => window.open(props.githubUrl, "_blank")}  role="gitbutton" />
+                <FaGithub title={t("github_label")} className="scale-hover" size={52} onClick={() => window.open(props.githubUrl, "_blank")} role="gitbutton" />
               </li>
               <li className="li-active font-semibold" role="none">
-                <GrDocument title={t("cv_label")} className="scale-hover" size={52} onClick={() => window.open(props.cvUrl, "_blank")}  role="cvbutton" />
+                <GrDocument title={t("cv_label")} className="scale-hover" size={52} onClick={() => window.open(props.cvUrl, "_blank")} role="cvbutton" />
               </li>
               {/* DOWN ARROW */}
               <li className={`${headerStatus >= 1 ? "li-active" : "li-inactive"}`} role="none">

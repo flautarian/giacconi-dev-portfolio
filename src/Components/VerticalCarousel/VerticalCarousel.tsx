@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./VerticalCarousel.css";
 import Slide from "../Slide/Slide";
 import { useTranslation } from "react-i18next";
-import formatDate from "../../Utils/utils";
+import Utils from "../../Utils/utils";
 
 function mod(a, b) {
   return ((a % b) + b) % b;
@@ -77,13 +77,13 @@ const VerticalCarousel = (props) => {
             index={presentableIndex}
             animationConfig={animationConfig || defaultProps.animationConfig}
           >
-            <div className="card size-full bg-base-200 shadow-xl">
+            <div className="card size-full bg-base-200">
               {/* BASIC INFO */}
               <div className="card-body pt-0 pb-2 mt-10">
                 <p><span className="text-primary">{t("_name")}: </span>{slide.name[i18n.language]}</p>
                 <p><span className="text-primary">{t("_location")}: </span>{slide.location}</p>
                 <p><span className="text-primary">{t("_position")}: </span>{slide.position}</p>
-                <p><span className="text-primary">{t("_service_time")}: </span> {t("_from")} {formatDate(slide.dateFrom)} - {!slide.dateTo ? t("_continue_working") : `${t("_to")} ${formatDate(slide.dateTo)}`}</p>
+                <p><span className="text-primary">{t("_service_time")}: </span> {t("_from")} {Utils.formatDate(slide.dateFrom)} - {!slide.dateTo ? t("_continue_working") : `${t("_to")} ${Utils.formatDate(slide.dateTo)}`}</p>
               </div>
 
               {/* ADVANCED-INFO */}

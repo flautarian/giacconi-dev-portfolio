@@ -1,11 +1,9 @@
 import { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import exampleResume from '../Models/Resume';
+import resume from '../Models/Resume';
 
-// Create the context
 const MainContext = createContext();
 
-// Create a provider component
 const MainProvider = ({ children }) => {
     const [headerStatus, setHeaderStatus] = useState(0);
 
@@ -18,12 +16,12 @@ const MainProvider = ({ children }) => {
     const ctx = { headerStatus, setHeaderStatus, isdark, setIsdark, thresholds, setThresholds, effects };
 
     useEffect(() => {
-        if (exampleResume.sections != null) {
+        if (resume.sections != null) {
             setThresholds(
-                [...exampleResume.sections.map((section, $index) => (exampleResume.sections.length - $index) * 100), 0]
+                [...resume.sections.map((section, $index) => (resume.sections.length - $index) * 100), 0]
             );
             
-            setEffects([{name: "", color: "rgba(125, 0, 255, 1)"}, ...exampleResume.sections.map(m=>{return {name: m.enteringEffect, color: m.neonMenuColor};})]);
+            setEffects([{name: "", color: "rgba(125, 0, 255, 1)"}, ...resume.sections.map(m=>{return {name: m.enteringEffect, color: m.neonMenuColor};})]);
         }
     }, [])
 
