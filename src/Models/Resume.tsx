@@ -83,9 +83,9 @@ const experienceSection = {
   enteringEffect: "aurora-purple",
   neonMenuColor: "rgba(255, 150, 0, 1)",
   backgroundLights: {
-    darkColorStart: "#35211bff",
+    darkColorStart: "#1b2735",
     darkColorEnd: "#090a0f",
-    lightColorStart: "#c34800ff",
+    lightColorStart: "#3400c3",
     lightColorEnd: "#dbe0f8"
   },
   values: [
@@ -275,9 +275,9 @@ const certificatesSection = {
   enteringEffect: "",
   neonMenuColor: "rgba(0, 255, 255, 1)",
   backgroundLights: {
-    darkColorStart: "#1b3135ff",
+    darkColorStart: "#1b2735",
     darkColorEnd: "#090a0f",
-    lightColorStart: "#00bdc3ff",
+    lightColorStart: "#3400c3",
     lightColorEnd: "#dbe0f8"
   },
   values: [
@@ -499,9 +499,9 @@ const projectsSection = {
   enteringEffect: "",
   neonMenuColor: "rgba(255, 255, 0, 1)",
   backgroundLights: {
-    darkColorStart: "#35351bff",
+    darkColorStart: "#1b2735",
     darkColorEnd: "#090a0f",
-    lightColorStart: "#b6c300ff",
+    lightColorStart: "#3400c3",
     lightColorEnd: "#dbe0f8"
   },
   values: [
@@ -745,9 +745,9 @@ const summarySection = {
   enteringEffect: "confetti",
   neonMenuColor: "rgba(0, 255, 0, 1)",
   backgroundLights: {
-    darkColorStart: "#25351bff",
+    darkColorStart: "#1b2735",
     darkColorEnd: "#090a0f",
-    lightColorStart: "#68c300ff",
+    lightColorStart: "#3400c3",
     lightColorEnd: "#dbe0f8"
   },
   values: []
